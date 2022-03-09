@@ -1,0 +1,47 @@
+.App {
+    border: 2px solid black;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    background-color: #3F72AF;
+    color: white;
+}
+
+.header a {
+    text-decoration: none;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #3F72AF;
+    margin-bottom: 20px;
+}
+
+.text-header {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.title {
+    margin-right: 10px;
+
+}
+
+.descr {
+
+}
+
+.category {
+
+}
