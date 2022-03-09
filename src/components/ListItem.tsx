@@ -10,7 +10,7 @@ return (
                 <div className='title'>Title: {props.title}</div>
                 <div className='category'>Category: {props.category}</div>
             </div>
-            <div className='descr'>Description: {props.descr}</div>
+            <div className='descr'>Description: {props.description}</div>
             
         </div>
         <div className='item-btns'>
