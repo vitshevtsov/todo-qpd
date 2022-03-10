@@ -1,21 +1,15 @@
 import React from 'react'
 import List from './List'
+import Header from './Header'
+
 import '../styles.css'
 
 export default function App() {
   return (
     <div className='App'>
-      <header className='header'>
-        <div>
-          <div>Logo</div>
-          <a href="">Задачи</a>
-          <a href="">Категории</a>
-        </div>
-        <button>Добавить задачу</button>
-      </header>
+      <Header/>
       <main>
         <div className='container'>
-          <br />
           <List />
         </div>
       </main>
