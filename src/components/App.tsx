@@ -1,6 +1,10 @@
 import React from 'react'
-import List from './List'
+import {Routes, Route, Navigate} from 'react-router-dom'
 import Header from './Header'
+import Tasks from '../routes/Tasks'
+import Categories from '../routes/Categories'
+import NoMatchRoute from '../routes/NoMatchRoute'
+
 
 import '../styles.css'
 
@@ -8,11 +12,12 @@ export default function App() {
   return (
     <div className='App'>
       <Header/>
-      <main>
-        <div className='container'>
-          <List />
-        </div>
-      </main>
+      <Routes>
+        <Route path='/' element={<Navigate to="tasks" replace />}/>
+        <Route path='tasks' element={<Tasks/>}/>
+        <Route path='categories' element={<Categories/>}/>
+        <Route path="*" element={<NoMatchRoute/>}/>
+      </Routes>
     </div>
   )
 }

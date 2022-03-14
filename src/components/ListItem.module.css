@@ -12,6 +12,10 @@ body {
     padding: 10px;
 }
 
+.listItem:last-child {
+    border-bottom: none;
+}
+
 .listItem:hover {
     background-color: rgba(37, 127, 234, 0.2);;
 }
@@ -19,16 +23,30 @@ body {
 .textHeader {
     display: flex;
     flex-wrap: nowrap;
+    align-items: center;
+    margin-bottom: 4px;
 }
 
 .title {
     margin-right: 10px;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 20px;
 }
 
-.descr {
-
+.description {
+    font-size: 18px;
+    line-height: 20px;
 }
 
 .category {
+    display: flex;
+    align-items: center;
+    color: var(--backgroundDark);
+    text-decoration: none;
+}
 
+.categoryImg {
+    max-width: 24px;
+    margin-right: 4px;
 }

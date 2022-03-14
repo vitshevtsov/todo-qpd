@@ -9,15 +9,23 @@
     color: white;
 }
 
-.header a {
+.headerLink {
     font-size: 24px;
     line-height: 40px;
+    text-decoration: none;
     color: var(--background);
 }
+/* 
+.link {
+    font-size: 24px;
+    line-height: 40px;
+    text-decoration: none;
+    color: var(--background);
+} */
 
-.header a:active {
+/* .activeLink {
     color: #8FB6FF;  
-}
+} */
 
 .divider {
     width: 2px;
@@ -36,6 +44,8 @@ align-items: center;
     font-size: 36px;
     line-height: 40px;
     margin: 24px 65px 24px 24px;
+    text-decoration: none;
+    color: white;
 }
 
 .btnPrimary {

@@ -7,10 +7,13 @@ return (
     <div className={styles.listItem}>
         <div>
             <div className={styles.textHeader}>
-                <div className={styles.title}>Title: {props.title}</div>
-                <div className='category'>Category: {props.category}</div>
+                <div className={styles.title}>{props.title}</div>
+                <a href='' className={styles.category}>
+                    <img src={require('../assets/iconFolderCat.png')}  alt='folder icon' className={styles.categoryImg}/>
+                    {props.category}
+                </a>
             </div>
-            <div className='descr'>Description: {props.description}</div>
+            <div className='description'>{props.description}</div>
             
         </div>
         <div className='item-btns'>
