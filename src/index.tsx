@@ -16,12 +16,11 @@ import App from './components/App';
 // const data = getData();
 // console.log(data);
 
-
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <App />
     </BrowserRouter>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );

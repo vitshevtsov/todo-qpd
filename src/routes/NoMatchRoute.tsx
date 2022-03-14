@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
 export default function NoMatchRoute() {
   return (
-    <main style={{ padding: "1rem" }}>
+    <main style={{ padding: '1rem' }}>
       <p>There's nothing here!</p>
     </main>
   );
