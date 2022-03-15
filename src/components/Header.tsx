@@ -14,8 +14,6 @@ export default function Header() {
   return (
     <header className={styles.header}>
       <div className={styles.logoAndNav}>
-        {/* <div className={styles.logo}>ToDo List</div> */}
-        ,
         <NavLink className={styles.logo} to="/tasks">ToDo List</NavLink>
         <NavLink
           style={({ isActive }) => ({
@@ -39,6 +37,7 @@ export default function Header() {
       </div>
 
       {addItemButton}
+
     </header>
   );
 }
