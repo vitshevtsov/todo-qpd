@@ -1,8 +1,9 @@
 import React from 'react';
 import List from '../components/List';
+import IListItem from '../types/data';
 
 export default function Tasks() {
-  const tasks = [
+  const tasks: IListItem[] = [
     {
       id: 1,
       name: 'Моя_задача1',
