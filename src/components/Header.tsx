@@ -1,14 +1,22 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import styles from './Header.module.css';
 
 export default function Header() {
+  const location = useLocation();
+  const isCategoriesPage = (location.pathname === '/categories');
+  let addItemButton;
+  if (isCategoriesPage) {
+    addItemButton = <button type="button" className={styles.btnPrimary}>Добавить категорию</button>;
+  } else {
+    addItemButton = <button type="button" className={styles.btnPrimary}>Добавить задачу</button>;
+  }
   return (
     <header className={styles.header}>
       <div className={styles.logoAndNav}>
         {/* <div className={styles.logo}>ToDo List</div> */}
         ,
-        <Link className={styles.logo} to="/">ToDo List</Link>
+        <NavLink className={styles.logo} to="/tasks">ToDo List</NavLink>
         <NavLink
           style={({ isActive }) => ({
             color: isActive ? '#8FB6FF' : '',
@@ -17,7 +25,6 @@ export default function Header() {
           className={styles.headerLink}
         >
           Tasks
-
         </NavLink>
         <div className={styles.divider}>|</div>
         <NavLink
@@ -28,10 +35,10 @@ export default function Header() {
           className={styles.headerLink}
         >
           Categories
-
         </NavLink>
       </div>
-      <button type="button" className={styles.btnPrimary}>Добавить задачу</button>
+
+      {addItemButton}
     </header>
   );
 }
