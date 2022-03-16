@@ -5,11 +5,18 @@
     --backgroundDark: #3F72AF;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 .App {
     background-color: var(--background);
     font-family: 'roboto';
     font-style: normal;
     font-weight: 400;
+    /* box-sizing: border-box; */
+    /* todo временный отступ: */
+    padding-bottom: 50px;
 }
 
 

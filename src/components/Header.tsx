@@ -24,7 +24,7 @@ export default function Header() {
         >
           Tasks
         </NavLink>
-        <div className={styles.divider}>|</div>
+        <div className={styles.divider} />
         <NavLink
           style={({ isActive }) => ({
             color: isActive ? '#8FB6FF' : '',
