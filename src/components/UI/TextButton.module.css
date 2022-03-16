@@ -1,0 +1,15 @@
+.btn {
+    width: 344px;
+    font-size: 20px;
+    line-height: 46px;
+    color: var(--backgroundDark);
+    background-color: transparent;
+    border: 2px solid var(--backgroundDark);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btnPrimary {
+    color: white;
+    background-color: var(--backgroundDark);
+}

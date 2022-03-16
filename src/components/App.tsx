@@ -9,8 +9,13 @@ import Dropdown from './UI/Dropdown';
 
 import '../styles.css';
 import TextArea from './UI/TextArea';
+import TextButton from './UI/TextButton';
+import ImgButton from './ImgButton';
+
+const closeIcon = require('../assets/iconClose.png');
 
 export default function App() {
+// todo механизм динамического размера для кнопок (мб div-обертка)
   return (
     <div className="App">
       <Header />
@@ -20,9 +25,13 @@ export default function App() {
         <Route path="categories" element={<Categories />} />
         <Route path="*" element={<NoMatchRoute />} />
       </Routes>
+
       <div className="addTaskForm">
+        <div className="closeIconWrapper">
+          <ImgButton src={closeIcon} />
+        </div>
         <h1 className="title">Создание задачи</h1>
-        <div className="row1">
+        <div className=" row row1">
           <NameInput
             placeholder="Введите имя задачи"
             label="Имя"
@@ -30,14 +39,16 @@ export default function App() {
           />
           <Dropdown />
         </div>
-        <div className="row2">
+        <div className=" row row2">
           <TextArea
             placeholder="Введите описание задачи"
             label="Описание"
           />
         </div>
-        <div className="row3" />
-
+        <div className="row row3">
+          <TextButton isPrimary text="Создать" />
+          <TextButton text="Закрыть" />
+        </div>
       </div>
     </div>
   );

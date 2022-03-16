@@ -1,15 +1,17 @@
 import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import styles from './Header.module.css';
+import TextButton from './UI/TextButton';
 
 export default function Header() {
   const location = useLocation();
   const isCategoriesPage = (location.pathname === '/categories');
   let addItemButton;
+  // todo ширина кнопок
   if (isCategoriesPage) {
-    addItemButton = <button type="button" className={styles.btnPrimary}>Добавить категорию</button>;
+    addItemButton = <TextButton isPrimary text="Добавить категорию" />;
   } else {
-    addItemButton = <button type="button" className={styles.btnPrimary}>Добавить задачу</button>;
+    addItemButton = <TextButton isPrimary text="Добавить задачу" />;
   }
   return (
     <header className={styles.header}>
