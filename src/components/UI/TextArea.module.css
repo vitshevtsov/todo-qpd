@@ -1,21 +1,28 @@
 .inputWrapper {
     position: relative;
-    width: 364px;
-    height: 46px;
 }
 
-.input {
+
+
+.textArea {
     font-size: 20px;
     line-height: 46px;
-    width: 100%;
-    height: 46px;
+    width: 752px;
+    height: 72px;
     padding: 0 0.5rem;
     border: 2px solid #3F72AF;
     border-radius: 4px;
     background-color: transparent;
+    appearance: none;
+    /* -webkit-appearance: none; */
+    font-family: inherit;
+    font-weight: inherit;
+    font-style: inherit;
+    resize: none;
+    /* todo кастомный скролл */
 }
 
-.input:focus {
+.textArea:focus {
         outline: 0;
         box-shadow: 0 0 0 0.2rem rgba(158, 158, 158, 0.25);
 }
@@ -28,12 +35,4 @@
     line-height: 20px;
     color: var(--backgroundDark);
     background-color: var(--background);
-}
-
-.labelRequiredSign {
-    color: #EC1D1D;
-}
-
-.label span {
-    color: #EC1D1D;
 }
