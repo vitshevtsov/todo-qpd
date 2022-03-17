@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import App from './components/App';
+// import { IModalContext, ModalContext } from './context/modalContext';
 // import ModalContext from './context/modalContext';
 
 // async function getData() {
@@ -16,13 +17,18 @@ import App from './components/App';
 
 // const data = getData();
 // console.log(data);
+// const initialModalContext: IModalContext = {
+//   isAddTaskOpen: false,
+//   isAddCategoryOpen: false,
+// };
 
 ReactDOM.render(
   <React.StrictMode>
+    {/* <ModalContext.Provider value={initialModalContext}> */}
     <BrowserRouter>
       <App />
     </BrowserRouter>
-
+    {/* </ModalContext.Provider> */}
   </React.StrictMode>,
   document.getElementById('root'),
 );
