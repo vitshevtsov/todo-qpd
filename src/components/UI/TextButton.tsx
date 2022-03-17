@@ -1,10 +1,17 @@
+/* eslint-disable react/require-default-props */
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import styles from './TextButton.module.css';
 
-export default function TextButton(props: any) {
+interface ITextButtonProps {
+  width: string;
+  isPrimary?: boolean;
+  text: string;
+}
+
+export default function TextButton({ width, isPrimary, text }: ITextButtonProps) {
   const primaryClassNames = [styles.btn, styles.btnPrimary].join(' ');
   return (
-    <button type="button" className={props.isPrimary ? primaryClassNames : styles.btn}>{props.text}</button>
+    <button type="button" style={{ width }} className={isPrimary ? primaryClassNames : styles.btn}>{text}</button>
   );
 }

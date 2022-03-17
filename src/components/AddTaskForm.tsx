@@ -1,7 +1,7 @@
 import React from 'react';
 
-export default function AddTaskForm() {
-  return (
-    <form />
-  );
-}
+const AddTaskForm: React.FC = () => (
+  <form />
+);
+
+export default AddTaskForm;

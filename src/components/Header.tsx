@@ -3,15 +3,15 @@ import { NavLink, useLocation } from 'react-router-dom';
 import styles from './Header.module.css';
 import TextButton from './UI/TextButton';
 
-export default function Header() {
+const Header: React.FC = () => {
   const location = useLocation();
   const isCategoriesPage = (location.pathname === '/categories');
   let addItemButton;
   // todo ширина кнопок
   if (isCategoriesPage) {
-    addItemButton = <TextButton isPrimary text="Добавить категорию" />;
+    addItemButton = <TextButton width="176px" isPrimary text="Добавить категорию" />;
   } else {
-    addItemButton = <TextButton isPrimary text="Добавить задачу" />;
+    addItemButton = <TextButton width="176px" isPrimary text="Добавить задачу" />;
   }
   return (
     <header className={styles.header}>
@@ -42,4 +42,6 @@ export default function Header() {
 
     </header>
   );
-}
+};
+
+export default Header;

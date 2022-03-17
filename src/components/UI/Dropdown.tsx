@@ -3,16 +3,16 @@ import React from 'react';
 import NameInput from './NameInput';
 import styles from './Dropdown.module.css';
 
-export default function Dropdown() {
-  return (
-    <div className={styles.dropdownWrapper}>
-      <NameInput
-        placeholder="Введите категорию"
-        label="Категория"
-      />
-    </div>
-  );
-}
+const Dropdown: React.FC = () => (
+  <div className={styles.dropdownWrapper}>
+    <NameInput
+      placeholder="Введите категорию"
+      label="Категория"
+    />
+  </div>
+);
+
+export default Dropdown;
 
 { /* <div class="dropdown-wrapper" v-click-outside="close">
     <div class="dropdown-toggle" @click="toggle">

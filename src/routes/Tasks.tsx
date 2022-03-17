@@ -2,7 +2,7 @@ import React from 'react';
 import List from '../components/List';
 import IListItem from '../types/data';
 
-export default function Tasks() {
+const Tasks: React.FC = () => {
   const tasks: IListItem[] = [
     {
       id: 1,
@@ -61,4 +61,6 @@ export default function Tasks() {
       </div>
     </main>
   );
-}
+};
+
+export default Tasks;

@@ -14,42 +14,42 @@ import ImgButton from './ImgButton';
 
 const closeIcon = require('../assets/iconClose.png');
 
-export default function App() {
-// todo механизм динамического размера для кнопок (мб div-обертка)
-  return (
-    <div className="App">
-      <Header />
-      <Routes>
-        <Route path="/" element={<Navigate to="tasks" replace />} />
-        <Route path="tasks" element={<Tasks />} />
-        <Route path="categories" element={<Categories />} />
-        <Route path="*" element={<NoMatchRoute />} />
-      </Routes>
+const App: React.FC = () => (
+  <div className="App">
+    <Header />
+    <Routes>
+      <Route path="/" element={<Navigate to="tasks" replace />} />
+      <Route path="tasks" element={<Tasks />} />
+      <Route path="categories" element={<Categories />} />
+      <Route path="*" element={<NoMatchRoute />} />
+    </Routes>
 
-      <div className="addTaskForm">
-        <div className="closeIconWrapper">
-          <ImgButton src={closeIcon} />
-        </div>
-        <h1 className="title">Создание задачи</h1>
-        <div className=" row row1">
-          <NameInput
-            placeholder="Введите имя задачи"
-            label="Имя"
-            isRequired
-          />
-          <Dropdown />
-        </div>
-        <div className=" row row2">
-          <TextArea
-            placeholder="Введите описание задачи"
-            label="Описание"
-          />
-        </div>
-        <div className="row row3">
-          <TextButton isPrimary text="Создать" />
-          <TextButton text="Закрыть" />
-        </div>
+    <div className="addTaskForm">
+      <div className="closeIconWrapper">
+        <ImgButton src={closeIcon} />
+      </div>
+      <h1 className="title">Создание задачи</h1>
+      <div className=" row row1">
+        <NameInput
+          placeholder="Введите имя задачи"
+          label="Имя"
+          isRequired
+        />
+        <Dropdown />
+      </div>
+      <div className=" row row2">
+        <TextArea
+          placeholder="Введите описание задачи"
+          label="Описание"
+        />
+      </div>
+      <div className="row row3">
+        <TextButton isPrimary text="Создать" width="200px" />
+        <TextButton text="Закрыть" width="120px" />
       </div>
     </div>
-  );
-}
+  </div>
+);
+
+export default App;
+// todo механизм динамического размера для кнопок (мб div-обертка)
