@@ -9,7 +9,7 @@ const Header: React.FC = () => {
   let addItemButton;
   // todo ширина кнопок
   if (isCategoriesPage) {
-    addItemButton = <TextButton width="176px" isPrimary text="Добавить категорию" />;
+    addItemButton = <TextButton width="216px" isPrimary text="Добавить категорию" />;
   } else {
     addItemButton = <TextButton width="176px" isPrimary text="Добавить задачу" />;
   }
