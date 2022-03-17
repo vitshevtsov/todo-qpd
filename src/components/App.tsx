@@ -6,8 +6,8 @@ import Categories from '../routes/Categories';
 import NoMatchRoute from '../routes/NoMatchRoute';
 import '../styles.css';
 import AddTaskForm from './AddTaskForm';
-import AddCategoryForm from './AddCategoryForm';
-import DeleteTask from './DeleteTask';
+// import AddCategoryForm from './AddCategoryForm';
+// import DeleteTask from './DeleteTask';
 
 const App: React.FC = () => (
   <div className="App">
@@ -20,8 +20,8 @@ const App: React.FC = () => (
     </Routes>
 
     <AddTaskForm />
-    <AddCategoryForm />
-    <DeleteTask />
+    {/* <AddCategoryForm />
+      <DeleteTask /> */}
 
   </div>
 );

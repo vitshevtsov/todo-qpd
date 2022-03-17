@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/require-default-props */
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
@@ -7,9 +8,12 @@ interface ITextButtonProps {
   width: string;
   isPrimary?: boolean;
   text: string;
+  onClick?: () => void;
 }
 
-export default function TextButton({ width, isPrimary, text }: ITextButtonProps) {
+export default function TextButton({
+  width, isPrimary, text, onClick,
+}: ITextButtonProps) {
   const primaryClassNames = [styles.btn, styles.btnPrimary].join(' ');
   return (
     <button type="button" style={{ width }} className={isPrimary ? primaryClassNames : styles.btn}>{text}</button>

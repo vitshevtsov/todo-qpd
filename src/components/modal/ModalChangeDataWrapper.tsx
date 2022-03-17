@@ -1,10 +1,14 @@
+/* eslint-disable max-len */
 /* eslint-disable react/require-default-props */
-import React from 'react';
+import React, { useEffect, useMemo } from 'react';
+import { createPortal } from 'react-dom';
 import ImgButton from '../ImgButton';
 import TextButton from '../UI/TextButton';
 import styles from './ModalChangeDataWrapper.module.css';
 
 const closeIcon = require('../../assets/iconClose.png');
+
+const modalRootEl = document.querySelector('#modal');
 
 interface IWrapper {
     title: string;
@@ -12,20 +16,35 @@ interface IWrapper {
     primaryButtonText: string;
 }
 
-const ModalChangeDataWrapper = ({ title, children, primaryButtonText }: IWrapper) => (
-  <div className={styles.wrapper}>
-    <div className={styles.closeIconWrapper}>
-      <ImgButton src={closeIcon} />
-    </div>
-    <h1 className={styles.title}>{title}</h1>
+const ModalChangeDataWrapper = ({ title, children, primaryButtonText }: IWrapper) => {
+  const el: HTMLDivElement = useMemo(() => document.createElement('div'), []);
+  useEffect(() => {
+    modalRootEl!.appendChild(el); // '!.' - non-null assertion. Info:  https://stackoverflow.com/questions/40349987/how-to-suppress-error-ts2533-object-is-possibly-null-or-undefined
+    return () => {
+      modalRootEl!.removeChild(el);
+    };
+  });
 
-    {children}
+  // if (isOpen) return portal else return null - нужно проверять в контексте, открыта ли модалка (boolean)
+  return createPortal(
+    (
+      <div className={styles.background}>
+        <div className={styles.wrapperContent}>
+          <div className={styles.closeIconWrapper}>
+            <ImgButton src={closeIcon} />
+          </div>
+          <h1 className={styles.title}>{title}</h1>
 
-    <div className={styles.rowButton}>
-      <TextButton isPrimary text={primaryButtonText} width="200px" />
-      <TextButton text="Закрыть" width="120px" />
-    </div>
-  </div>
-);
+          {children}
+
+          <div className={styles.rowButton}>
+            <TextButton isPrimary text={primaryButtonText} width="200px" />
+            <TextButton text="Закрыть" width="120px" />
+          </div>
+        </div>
+      </div>
+    ), el,
+  );
+};
 
 export default ModalChangeDataWrapper;
