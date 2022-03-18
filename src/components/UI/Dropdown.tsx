@@ -2,6 +2,7 @@
 import React from 'react';
 import NameInput from './NameInput';
 import styles from './Dropdown.module.css';
+import { categories } from '../../routes/Categories';
 
 const Dropdown: React.FC = () => (
   <div className={styles.dropdownWrapper}>
@@ -9,6 +10,9 @@ const Dropdown: React.FC = () => (
       placeholder="Введите категорию"
       label="Категория"
     />
+    {/* {categories.map(item => item)}</div> */}
+    <div className="dropdownToggle" />
+    <div className="dropdownItems" />
   </div>
 );
 
@@ -32,6 +36,7 @@ export default Dropdown;
                 @input="debouncedCountriesOfIssue"
               />
             </template>
+
             <template #dropdown-items>
               <div
                 v-for="item in filteredCountriesOfIssue"
