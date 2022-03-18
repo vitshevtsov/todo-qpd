@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { useLocation } from 'react-router-dom';
 import ImgButton from './ImgButton';
+import { ModalContext } from '../context/context';
 import styles from './ListItem.module.css';
 
 const folderIcon = require('../assets/iconFolderCat.png');
@@ -9,6 +11,17 @@ const deleteIcon = require('../assets/iconDelete.png');
 // todo убрать ошибку ниже
 // eslint-disable-next-line react/prop-types
 export default function ListItem({ title = '', category = '', description = '' }) {
+  const location = useLocation();
+  const isCategoriesPage = (location.pathname === '/categories');
+  const { openModal } = useContext(ModalContext);
+  const onClickEditTaskButton = () => {
+    if (isCategoriesPage) {
+      openModal.openEditCategory();
+      return;
+    }
+    openModal.openEditTask();
+  };
+
   return (
     <div className={styles.listItem}>
       <div>
@@ -23,7 +36,7 @@ export default function ListItem({ title = '', category = '', description = '' }
 
       </div>
       <div className={styles.itemBtns}>
-        <ImgButton src={editIcon} />
+        <ImgButton src={editIcon} onClickHandler={onClickEditTaskButton} />
         <ImgButton src={deleteIcon} />
       </div>
     </div>

@@ -33,6 +33,10 @@ const ModalChangeDataWrapper = ({ title, children, primaryButtonText }: IWrapper
         break;
       case 'Создание категории': closeModal.closeAddCategory();
         break;
+      case 'Редактирование задачи': closeModal.closeEditTask();
+        break;
+      case 'Редактирование категории': closeModal.closeEditCategory();
+        break;
     }
   };
 
