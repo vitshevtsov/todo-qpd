@@ -1,3 +1,4 @@
+/* eslint-disable default-case */
 /* eslint-disable max-len */
 /* eslint-disable react/require-default-props */
 import React, { useContext, useEffect, useMemo } from 'react';
@@ -27,7 +28,12 @@ const ModalChangeDataWrapper = ({ title, children, primaryButtonText }: IWrapper
 
   const { closeModal } = useContext(ModalContext);
   const onClickCloseButton = () => {
-    closeModal();
+    switch (title) {
+      case 'Создание задачи': closeModal.closeAddTask();
+        break;
+      case 'Создание категории': closeModal.closeAddCategory();
+        break;
+    }
   };
 
   return createPortal(

@@ -3,18 +3,22 @@
 /* eslint-disable react/jsx-filename-extension */
 import React, { useState } from 'react';
 import AddTaskForm from '../../components/AddTaskForm';
+import AddCategoryForm from '../../components/AddCategoryForm';
 import { ModalContext } from './ModalContext';
 // компоненты, находящиеся в Provider, смогут пользоваться методами контекста openModal, closeModal
 
 const ModalProvider = ({ children }) => {
-  const [modalOpened, setModalOpened] = useState(false);
+  const [addTaskIsOpened, setAddTaskIsOpened] = useState(false);
+  const [addCategoryIsOpened, setAddCategoryIsOpened] = useState(false);
 
-  const openModal = () => {
-    setModalOpened(true);
+  const openModal = {
+    openAddTask: () => setAddTaskIsOpened(true),
+    openAddCategory: () => setAddCategoryIsOpened(true),
   };
 
-  const closeModal = () => {
-    setModalOpened(false);
+  const closeModal = {
+    closeAddTask: () => setAddTaskIsOpened(false),
+    closeAddCategory: () => setAddCategoryIsOpened(false),
   };
 
   const valueModalProvider = {
@@ -24,7 +28,9 @@ const ModalProvider = ({ children }) => {
 
   return (
     <ModalContext.Provider value={valueModalProvider}>
-      {modalOpened && <AddTaskForm />}
+      {addTaskIsOpened && <AddTaskForm />}
+      {addCategoryIsOpened && <AddCategoryForm />}
+
       {children}
     </ModalContext.Provider>
   );

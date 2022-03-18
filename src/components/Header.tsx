@@ -10,12 +10,16 @@ const Header: React.FC = () => {
   const isCategoriesPage = (location.pathname === '/categories');
   const { openModal } = useContext(ModalContext);
   const onClickAddTaskButton = () => {
-    openModal();
+    if (isCategoriesPage) {
+      openModal.openAddCategory();
+      return;
+    }
+    openModal.openAddTask();
   };
 
   let addItemButton;
   if (isCategoriesPage) {
-    addItemButton = <TextButton width="216px" isPrimary text="Добавить категорию" />;
+    addItemButton = <TextButton width="216px" isPrimary text="Добавить категорию" onClickHandler={onClickAddTaskButton} />;
   } else {
     addItemButton = <TextButton width="176px" isPrimary text="Добавить задачу" onClickHandler={onClickAddTaskButton} />;
   }
@@ -31,7 +35,7 @@ const Header: React.FC = () => {
           to="/tasks"
           className={styles.headerLink}
         >
-          Tasks
+          Задачи
         </NavLink>
         <div className={styles.divider} />
         <NavLink
@@ -41,7 +45,7 @@ const Header: React.FC = () => {
           to="/categories"
           className={styles.headerLink}
         >
-          Categories
+          Категории
         </NavLink>
       </div>
 
