@@ -6,8 +6,6 @@ import Categories from '../routes/Categories';
 import NoMatchRoute from '../routes/NoMatchRoute';
 import '../styles.css';
 import ModalProvider from '../context/ModalContext/ModalContextProvider';
-// import AddCategoryForm from './AddCategoryForm';
-// import DeleteTask from './DeleteTask';
 
 const App: React.FC = () => (
   <ModalProvider>
@@ -19,10 +17,6 @@ const App: React.FC = () => (
         <Route path="categories" element={<Categories />} />
         <Route path="*" element={<NoMatchRoute />} />
       </Routes>
-
-      {/* <AddCategoryForm />
-      <DeleteTask /> */}
-
     </div>
   </ModalProvider>
 

@@ -30,13 +30,12 @@ const ModalChangeDataWrapper = ({ title, children, primaryButtonText }: IWrapper
     closeModal();
   };
 
-  // if (isOpen) return portal else return null - нужно проверять в контексте, открыта ли модалка (boolean)
   return createPortal(
     (
       <div className={styles.background}>
         <div className={styles.wrapperContent}>
           <div className={styles.closeIconWrapper}>
-            <ImgButton src={closeIcon} />
+            <ImgButton src={closeIcon} onClickHandler={onClickCloseButton} />
           </div>
           <h1 className={styles.title}>{title}</h1>
 

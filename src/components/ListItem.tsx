@@ -22,8 +22,7 @@ export default function ListItem({ title = '', category = '', description = '' }
         <div className="description">{description}</div>
 
       </div>
-      <div className="item-btns">
-
+      <div className={styles.itemBtns}>
         <ImgButton src={editIcon} />
         <ImgButton src={deleteIcon} />
       </div>

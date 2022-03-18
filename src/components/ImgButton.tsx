@@ -4,8 +4,8 @@ import styles from './ImgButton.module.css';
 
 export default function ImgButton(props: any) {
   return (
-    <a href={props.handler}>
+    <button type="button" onClick={props.onClickHandler} className={styles.btn}>
       <img src={props.src} alt={props.alt} className={styles.imgBtn} />
-    </a>
+    </button>
   );
 }

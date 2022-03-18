@@ -9,6 +9,10 @@
     box-sizing: border-box;
 }
 
+body {
+    margin: 0;
+}
+
 .App {
     background-color: var(--background);
     font-family: 'roboto';
