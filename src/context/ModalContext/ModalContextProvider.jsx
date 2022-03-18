@@ -7,6 +7,8 @@ import AddTaskForm from '../../components/AddTaskForm';
 import AddCategoryForm from '../../components/AddCategoryForm';
 import EditTaskForm from '../../components/EditTaskForm';
 import EditCategoryForm from '../../components/EditCategoryForm';
+import DeleteTask from '../../components/DeleteTask';
+import DeleteCategory from '../../components/DeleteCategory';
 
 import { ModalContext } from './ModalContext';
 // компоненты, находящиеся в Provider, смогут пользоваться методами контекста openModal, closeModal
@@ -16,12 +18,16 @@ const ModalProvider = ({ children }) => {
   const [addCategoryIsOpened, setAddCategoryIsOpened] = useState(false);
   const [editTaskIsOpened, setEditTaskIsOpened] = useState(false);
   const [editCategoryIsOpened, setEditCategoryIsOpened] = useState(false);
+  const [deleteTaskIsOpened, setDeleteTaskIsOpened] = useState(false);
+  const [deleteCategoryIsOpened, setDeleteCategoryIsOpened] = useState(false);
 
   const openModal = {
     openAddTask: () => setAddTaskIsOpened(true),
     openAddCategory: () => setAddCategoryIsOpened(true),
     openEditTask: () => setEditTaskIsOpened(true),
     openEditCategory: () => setEditCategoryIsOpened(true),
+    openDeleteTask: () => setDeleteTaskIsOpened(true),
+    openDeleteCategory: () => setDeleteCategoryIsOpened(true),
   };
 
   const closeModal = {
@@ -29,6 +35,8 @@ const ModalProvider = ({ children }) => {
     closeAddCategory: () => setAddCategoryIsOpened(false),
     closeEditTask: () => setEditTaskIsOpened(false),
     closeEditCategory: () => setEditCategoryIsOpened(false),
+    closeDeleteTask: () => setDeleteTaskIsOpened(false),
+    closeDeleteCategory: () => setDeleteCategoryIsOpened(false),
 
   };
 
@@ -43,6 +51,8 @@ const ModalProvider = ({ children }) => {
       {addCategoryIsOpened && <AddCategoryForm />}
       {editTaskIsOpened && <EditTaskForm />}
       {editCategoryIsOpened && <EditCategoryForm />}
+      {deleteTaskIsOpened && <DeleteTask />}
+      {deleteCategoryIsOpened && <DeleteCategory />}
 
       {children}
     </ModalContext.Provider>

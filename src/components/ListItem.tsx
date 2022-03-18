@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 import React, { useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import ImgButton from './ImgButton';
@@ -14,12 +15,20 @@ export default function ListItem({ title = '', category = '', description = '' }
   const location = useLocation();
   const isCategoriesPage = (location.pathname === '/categories');
   const { openModal } = useContext(ModalContext);
-  const onClickEditTaskButton = () => {
+  const onClickEditButton = () => {
     if (isCategoriesPage) {
       openModal.openEditCategory();
       return;
     }
     openModal.openEditTask();
+  };
+
+  const onClickDeleteButton = () => {
+    if (isCategoriesPage) {
+      openModal.openDeleteCategory();
+      return;
+    }
+    openModal.openDeleteTask();
   };
 
   return (
@@ -36,8 +45,8 @@ export default function ListItem({ title = '', category = '', description = '' }
 
       </div>
       <div className={styles.itemBtns}>
-        <ImgButton src={editIcon} onClickHandler={onClickEditTaskButton} />
-        <ImgButton src={deleteIcon} />
+        <ImgButton src={editIcon} onClickHandler={onClickEditButton} />
+        <ImgButton src={deleteIcon} onClickHandler={onClickDeleteButton} />
       </div>
     </div>
   );

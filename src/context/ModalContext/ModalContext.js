@@ -7,6 +7,8 @@ export const ModalContext = createContext({
     openAddCategory: () => {},
     openEditTask: () => {},
     openEditCategory: () => {},
+    openDeleteTask: () => {},
+    openDeleteCategory: () => {},
   },
 
   closeModal: {
@@ -14,5 +16,7 @@ export const ModalContext = createContext({
     closeAddCategory: () => {},
     closeEditTask: () => {},
     closeEditCategory: () => {},
+    closeDeleteTask: () => {},
+    closeDeleteCategory: () => {},
   },
 });
