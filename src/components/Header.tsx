@@ -1,19 +1,23 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
+import { ModalContext } from '../context/context';
 import styles from './Header.module.css';
 import TextButton from './UI/TextButton';
 
 const Header: React.FC = () => {
   const location = useLocation();
   const isCategoriesPage = (location.pathname === '/categories');
+  const { openModal } = useContext(ModalContext);
+  const onClickAddTaskButton = () => {
+    openModal();
+  };
 
   let addItemButton;
-  // todo ширина кнопок
   if (isCategoriesPage) {
     addItemButton = <TextButton width="216px" isPrimary text="Добавить категорию" />;
   } else {
-    addItemButton = <TextButton width="176px" isPrimary text="Добавить задачу" />;
+    addItemButton = <TextButton width="176px" isPrimary text="Добавить задачу" onClickHandler={onClickAddTaskButton} />;
   }
 
   return (

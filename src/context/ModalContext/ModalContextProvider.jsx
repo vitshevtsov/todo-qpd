@@ -1,10 +1,13 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/jsx-no-constructed-context-values */
 /* eslint-disable react/jsx-filename-extension */
-import React from 'react';
+import React, { useState } from 'react';
+import AddTaskForm from '../../components/AddTaskForm';
 import { ModalContext } from './ModalContext';
+// компоненты, находящиеся в Provider, смогут пользоваться методами контекста openModal, closeModal
 
-export const ModalProvider = ({ children }) => {
+const ModalProvider = ({ children }) => {
   const [modalOpened, setModalOpened] = useState(false);
-  const [modalContent, setModalContent] = useState(null);
 
   const openModal = () => {
     setModalOpened(true);
@@ -21,7 +24,10 @@ export const ModalProvider = ({ children }) => {
 
   return (
     <ModalContext.Provider value={valueModalProvider}>
+      {modalOpened && <AddTaskForm />}
       {children}
     </ModalContext.Provider>
   );
 };
+
+export default ModalProvider;

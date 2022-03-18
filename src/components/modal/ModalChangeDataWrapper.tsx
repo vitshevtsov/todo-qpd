@@ -1,7 +1,8 @@
 /* eslint-disable max-len */
 /* eslint-disable react/require-default-props */
-import React, { useEffect, useMemo } from 'react';
+import React, { useContext, useEffect, useMemo } from 'react';
 import { createPortal } from 'react-dom';
+import { ModalContext } from '../../context/context';
 import ImgButton from '../ImgButton';
 import TextButton from '../UI/TextButton';
 import styles from './ModalChangeDataWrapper.module.css';
@@ -9,7 +10,6 @@ import styles from './ModalChangeDataWrapper.module.css';
 const closeIcon = require('../../assets/iconClose.png');
 
 const modalRootEl = document.querySelector('#modal');
-
 interface IWrapper {
     title: string;
     children?: React.ReactChild | React.ReactNode;
@@ -25,6 +25,11 @@ const ModalChangeDataWrapper = ({ title, children, primaryButtonText }: IWrapper
     };
   });
 
+  const { closeModal } = useContext(ModalContext);
+  const onClickCloseButton = () => {
+    closeModal();
+  };
+
   // if (isOpen) return portal else return null - нужно проверять в контексте, открыта ли модалка (boolean)
   return createPortal(
     (
@@ -39,7 +44,7 @@ const ModalChangeDataWrapper = ({ title, children, primaryButtonText }: IWrapper
 
           <div className={styles.rowButton}>
             <TextButton isPrimary text={primaryButtonText} width="200px" />
-            <TextButton text="Закрыть" width="120px" />
+            <TextButton text="Закрыть" width="120px" onClickHandler={onClickCloseButton} />
           </div>
         </div>
       </div>

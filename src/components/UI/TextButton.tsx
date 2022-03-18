@@ -8,14 +8,14 @@ interface ITextButtonProps {
   width: string;
   isPrimary?: boolean;
   text: string;
-  onClick?: () => void;
+  onClickHandler?: () => void;
 }
 
 export default function TextButton({
-  width, isPrimary, text, onClick,
+  width, isPrimary, text, onClickHandler,
 }: ITextButtonProps) {
   const primaryClassNames = [styles.btn, styles.btnPrimary].join(' ');
   return (
-    <button type="button" style={{ width }} className={isPrimary ? primaryClassNames : styles.btn}>{text}</button>
+    <button type="button" style={{ width }} className={isPrimary ? primaryClassNames : styles.btn} onClick={onClickHandler}>{text}</button>
   );
 }
