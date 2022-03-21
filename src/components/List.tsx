@@ -5,7 +5,6 @@ import ListItem from './ListItem';
 
 export default function List(props: any) {
   // todo ошибка ниже
-  // (items => ...items)
   // eslint-disable-next-line react/destructuring-assignment
   const listItems = props.items.map((item: any) => (
     <ListItem

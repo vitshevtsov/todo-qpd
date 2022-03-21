@@ -17,7 +17,7 @@ body {
 }
 
 .listItem:hover {
-    background-color: rgba(37, 127, 234, 0.2);
+    background-color: var(--backgroundHover);
 }
 
 .textHeader {

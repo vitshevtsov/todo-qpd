@@ -6,19 +6,23 @@ import Categories from '../routes/Categories';
 import NoMatchRoute from '../routes/NoMatchRoute';
 import '../styles.css';
 import ModalProvider from '../context/ModalContext/ModalContextProvider';
+import DataProvider from '../context/DataContext/DataContextProvider';
 
 const App: React.FC = () => (
-  <ModalProvider>
-    <div className="App">
-      <Header />
-      <Routes>
-        <Route path="/" element={<Navigate to="tasks" replace />} />
-        <Route path="tasks" element={<Tasks />} />
-        <Route path="categories" element={<Categories />} />
-        <Route path="*" element={<NoMatchRoute />} />
-      </Routes>
-    </div>
-  </ModalProvider>
+  <DataProvider>
+    <ModalProvider>
+      <div className="App">
+        <Header />
+        <Routes>
+          <Route path="/" element={<Navigate to="tasks" replace />} />
+          <Route path="tasks" element={<Tasks />} />
+          <Route path="categories" element={<Categories />} />
+          <Route path="*" element={<NoMatchRoute />} />
+        </Routes>
+      </div>
+    </ModalProvider>
+  </DataProvider>
+
 );
 
 export default App;

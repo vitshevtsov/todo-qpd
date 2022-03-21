@@ -2,7 +2,8 @@
 import React, { useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import ImgButton from './ImgButton';
-import { ModalContext } from '../context/context';
+import { DataContext, ModalContext } from '../context/context';
+
 import styles from './ListItem.module.css';
 
 const folderIcon = require('../assets/iconFolderCat.png');
@@ -15,6 +16,12 @@ export default function ListItem({ title = '', category = '', description = '' }
   const location = useLocation();
   const isCategoriesPage = (location.pathname === '/categories');
   const { openModal } = useContext(ModalContext);
+  const { categories } = useContext(DataContext);
+
+  console.log(typeof category);
+  console.log(categories);
+  const categoryName = category ? 'est' : null;
+
   const onClickEditButton = () => {
     if (isCategoriesPage) {
       openModal.openEditCategory();
@@ -31,18 +38,21 @@ export default function ListItem({ title = '', category = '', description = '' }
     openModal.openDeleteTask();
   };
 
+  const categoryDiv = (
+    <div className={styles.category}>
+      <img src={folderIcon} alt="folder icon" className={styles.categoryImg} />
+      {typeof category === 'number' ? categoryName : ''}
+    </div>
+  );
+
   return (
     <div className={styles.listItem}>
       <div>
         <div className={styles.textHeader}>
           <div className={styles.title}>{title}</div>
-          <a href="/" className={styles.category}>
-            <img src={folderIcon} alt="folder icon" className={styles.categoryImg} />
-            {category}
-          </a>
+          {category && categoryDiv}
         </div>
         <div className="description">{description}</div>
-
       </div>
       <div className={styles.itemBtns}>
         <ImgButton src={editIcon} onClickHandler={onClickEditButton} />
