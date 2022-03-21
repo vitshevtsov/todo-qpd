@@ -3,6 +3,7 @@
 :root {
     --background: #DBE2EF;
     --backgroundDark: #3F72AF;
+    --backgroundHover: rgba(37, 127, 234, 0.2);
 }
 
 * {
