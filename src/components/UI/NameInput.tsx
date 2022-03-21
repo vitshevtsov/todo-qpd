@@ -15,6 +15,7 @@ export default function NameInput(props: any) {
         className={styles.input}
         readOnly={props.readonly}
         onClick={props.onClickHandler}
+        value={props.value}
       />
       { /* eslint-disable-next-line jsx-a11y/label-has-associated-control */ }
       <label htmlFor="name" className={styles.label}>{props.isRequired ? `${props.label}*` : props.label}</label>
