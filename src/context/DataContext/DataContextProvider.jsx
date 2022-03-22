@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 /* eslint-disable import/extensions */
 /* eslint-disable react/prop-types */
@@ -6,7 +8,7 @@
 import React, { useState, useEffect } from 'react';
 
 import { DataContext } from './DataContext';
-// компоненты, находящиеся в Provider, смогут пользоваться методами контекста openModal, closeModal
+// компоненты, находящиеся в Provider, смогут пользоваться данными контекста (массивы task, categories)
 
 const DataProvider = ({ children }) => {
   // состояние массивов задач и категорий
@@ -64,5 +66,4 @@ const DataProvider = ({ children }) => {
     </DataContext.Provider>
   );
 };
-
 export default DataProvider;

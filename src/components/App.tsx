@@ -9,6 +9,9 @@ import ModalProvider from '../context/ModalContext/ModalContextProvider';
 import DataProvider from '../context/DataContext/DataContextProvider';
 // import { addTask } from '../API/api';
 // import { addCategory } from '../API/api';
+// import { editTask } from '../API/api';
+// import { editCategory } from '../API/api';
+// import { deleteTask } from '../API/api';
 
 const App: React.FC = () => (
   <DataProvider>
@@ -27,6 +30,8 @@ const App: React.FC = () => (
 
 );
 
-// addCategory(9, 'Моя_задача9', 'Моя_задача9_Описание');
+// editTask(9, 'Моя_задача9', 'Моя_задача9_Описание');
+// editCategory(9, 'Категория9', 'Мое описание категории9');
+// deleteTask(9);
 
 export default App;
