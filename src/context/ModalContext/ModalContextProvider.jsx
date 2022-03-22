@@ -9,7 +9,6 @@ import EditTaskForm from '../../components/EditTaskForm';
 import EditCategoryForm from '../../components/EditCategoryForm';
 import DeleteTask from '../../components/DeleteTask';
 import DeleteCategory from '../../components/DeleteCategory';
-
 import { ModalContext } from './ModalContext';
 // компоненты, находящиеся в Provider, смогут пользоваться методами контекста openModal, closeModal
 
