@@ -43,37 +43,6 @@ const DataProvider = ({ children }) => {
       );
   }
 
-  function addTask() {
-
-  }
-
-  function addCategory() {
-
-  }
-
-  function editTask(id) {
-    // const url = 'https://example.com/profile';
-    // const data = { username: 'example' };
-
-    // try {
-    //   const response = await fetch(url, {
-    //     method: 'POST', // или 'PUT'
-    //     body: JSON.stringify(data), // данные могут быть 'строкой' или {объектом}!
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //   });
-    //   const json = await response.json();
-    //   console.log('Успех:', JSON.stringify(json));
-    // } catch (error) {
-    //   console.error('Ошибка:', error);
-    // }
-  }
-
-  function editCategory(id) {
-
-  }
-
   // Примечание: пустой массив зависимостей [] означает, что
   // этот useEffect будет запущен один раз
   // аналогично componentDidMount()
