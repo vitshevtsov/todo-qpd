@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 /* eslint-disable import/extensions */
 import React, { useContext } from 'react';
 import { useLocation } from 'react-router-dom';
@@ -10,17 +11,19 @@ const folderIcon = require('../assets/iconFolderCat.png');
 const editIcon = require('../assets/iconEdit.png');
 const deleteIcon = require('../assets/iconDelete.png');
 
+interface IDataContext {
+  tasks: any[],
+  categories: any[],
+}
 // todo убрать ошибку ниже
 // eslint-disable-next-line react/prop-types
 export default function ListItem({ title = '', category = '', description = '' }) {
   const location = useLocation();
   const isCategoriesPage = (location.pathname === '/categories');
   const { openModal } = useContext(ModalContext);
-  const { categories } = useContext(DataContext);
+  const { categories }:IDataContext = useContext(DataContext);
 
-  console.log(typeof category);
-  console.log(categories);
-  const categoryName = category ? 'est' : null;
+  const categoryName = (id: number) => categories[id - 1].name;
 
   const onClickEditButton = () => {
     if (isCategoriesPage) {
@@ -41,7 +44,7 @@ export default function ListItem({ title = '', category = '', description = '' }
   const categoryDiv = (
     <div className={styles.category}>
       <img src={folderIcon} alt="folder icon" className={styles.categoryImg} />
-      {typeof category === 'number' ? categoryName : ''}
+      {typeof category === 'number' ? categoryName(category) : ''}
     </div>
   );
 
