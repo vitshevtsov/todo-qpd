@@ -55,5 +55,6 @@ const Dropdown = (props: any) => {
     </div>
   );
 };
+// todo click outside
 
 export default Dropdown;

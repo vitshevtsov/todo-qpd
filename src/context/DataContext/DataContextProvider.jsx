@@ -19,7 +19,6 @@ const DataProvider = ({ children }) => {
       .then((res) => res.json())
       .then(
         (result) => {
-          console.log(result);
           setTasks(result);
         },
         (error) => {
@@ -31,7 +30,6 @@ const DataProvider = ({ children }) => {
       .then((res) => res.json())
       .then(
         (result) => {
-          console.log(result);
           setCategories(result);
         },
         (error) => {

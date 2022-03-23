@@ -23,14 +23,13 @@ async function addTaskToApi(id, name, description, categoryId) {
       },
     });
     const json = await response.json();
-    // getTasksFromApi();
     console.log('Успех:', JSON.stringify(json));
   } catch (error) {
     console.error('Ошибка:', error);
   }
 }
 
-async function addCategory(id, name, description) {
+async function addCategoryToApi(id, name, description) {
   const url = 'http://localhost:8089/api/ToDoList/AddCategory';
   const data = {
     id,
@@ -108,5 +107,5 @@ function deleteCategory(id) {
   fetch(`http://localhost:8089/api/ToDoList/RemoveCategory/${id}`);
 }
 export {
-  addTaskToApi, addCategory, editTask, editCategory, deleteTask, deleteCategory,
+  addTaskToApi, addCategoryToApi, editTask, editCategory, deleteTask, deleteCategory,
 };
