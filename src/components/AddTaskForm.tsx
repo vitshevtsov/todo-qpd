@@ -1,13 +1,20 @@
-import React, { useState } from 'react';
+/* eslint-disable import/no-cycle */
+/* eslint-disable import/extensions */
+import React, { useContext, useState } from 'react';
+import { DataContext, ModalContext } from '../context/context';
 import ModalChangeDataWrapper from './modal/ModalChangeDataWrapper';
 import Dropdown from './UI/Dropdown';
 import NameInput from './UI/NameInput';
 import TextArea from './UI/TextArea';
+import { addTaskToApi } from '../API/api';
 
 const AddTaskForm: React.FC = () => {
   const [name, setName] = useState('');
-  const [category, setCategory] = useState('');
+  const [category, setCategory] = useState({ name: '', id: '' });
   const [description, setDescription] = useState('');
+
+  const { closeModal } = useContext(ModalContext);
+  const { tasks } = useContext(DataContext);
 
   const handleOnChangeInput = (e: any) => {
     setName(e.target.value);
@@ -23,6 +30,8 @@ const AddTaskForm: React.FC = () => {
       category,
       description,
     });
+    addTaskToApi(tasks.length + 1, name, description, category.id);
+    closeModal.closeAddTask();
   };
 
   return (
@@ -35,7 +44,7 @@ const AddTaskForm: React.FC = () => {
           value={name}
           onChangeHandler={handleOnChangeInput}
         />
-        <Dropdown value={category} setValue={setCategory} />
+        <Dropdown value={category.name} setValue={setCategory} />
       </div>
       <div className=" row">
         <TextArea

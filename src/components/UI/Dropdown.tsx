@@ -28,18 +28,18 @@ const Dropdown = (props: any) => {
   };
 
   const onClickItemHandler = (e: any) => {
-    props.setValue(e.target.innerHTML);
+    props.setValue({ name: e.target.innerHTML, id: e.target.id });
     setIsOpened(!isOpened);
   };
 
   const clearValueHandler = () => {
-    props.setValue('');
+    props.setValue({ name: '', id: '' });
     setIsOpened(false);
   };
 
   const dropdownItems = (
     <ul className={styles.dropdownItems}>
-      {categories.map((item: any) => <li key={item.id} onClick={onClickItemHandler}>{item.name}</li>)}
+      {categories.map((item: any) => <li key={item.id} id={item.id} onClick={onClickItemHandler}>{item.name}</li>)}
     </ul>
   );
 

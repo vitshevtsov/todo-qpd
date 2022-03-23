@@ -32,6 +32,8 @@ const DataProvider = ({ children }) => {
   const valueDataProvider = {
     tasks,
     categories,
+    setTasks,
+    setCategories,
   };
 
   return (

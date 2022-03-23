@@ -27,7 +27,7 @@ function getCategoriesFromApi(handleResult) {
     );
 }
 
-async function addTask(id, name, description, categoryId) {
+async function addTaskToApi(id, name, description, categoryId) {
   const url = 'http://localhost:8089/api/ToDoList/AddTask';
   const data = {
     id,
@@ -130,5 +130,5 @@ function deleteCategory(id) {
   fetch(`http://localhost:8089/api/ToDoList/RemoveCategory/${id}`);
 }
 export {
-  getTasksFromApi, getCategoriesFromApi, addTask, addCategory, editTask, editCategory, deleteTask, deleteCategory,
+  getTasksFromApi, getCategoriesFromApi, addTaskToApi, addCategory, editTask, editCategory, deleteTask, deleteCategory,
 };

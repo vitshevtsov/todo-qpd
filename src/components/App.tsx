@@ -31,7 +31,7 @@ const App: React.FC = () => (
 );
 // const { setTasks } = useContext(DataContext);
 // addTask(8, 'Моя_задача8', 'Моя_задача8_Описание');
-// deleteTask(8);
+// deleteTask(9);
 // getTasksFromApi(setTasks);
 // console.log('list is updated');
 // editTask(9, 'Моя_задача9', 'Моя_задача9_Описание');
