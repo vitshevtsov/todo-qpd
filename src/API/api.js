@@ -1,31 +1,9 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable consistent-return */
 /* eslint-disable max-len */
 /* eslint-disable import/prefer-default-export */
-
-function getTasksFromApi(handleResult) {
-  fetch('http://localhost:8089/api/ToDoList/GetTasks')
-    .then((res) => res.json())
-    .then(
-      (result) => {
-        handleResult(result);
-      },
-      (error) => {
-        alert(error);
-      },
-    );
-}
-function getCategoriesFromApi(handleResult) {
-  fetch('http://localhost:8089/api/ToDoList/GetCategories')
-    .then((res) => res.json())
-    .then(
-      (result) => {
-        handleResult(result);
-      },
-      (error) => {
-        alert(error);
-      },
-    );
-}
+import React, { useContext, useEffect } from 'react';
+import { DataContext } from '../context/DataContext/DataContext';
 
 async function addTaskToApi(id, name, description, categoryId) {
   const url = 'http://localhost:8089/api/ToDoList/AddTask';
@@ -130,5 +108,5 @@ function deleteCategory(id) {
   fetch(`http://localhost:8089/api/ToDoList/RemoveCategory/${id}`);
 }
 export {
-  getTasksFromApi, getCategoriesFromApi, addTaskToApi, addCategory, editTask, editCategory, deleteTask, deleteCategory,
+  addTaskToApi, addCategory, editTask, editCategory, deleteTask, deleteCategory,
 };

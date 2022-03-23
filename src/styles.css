@@ -30,7 +30,7 @@ body {
 }
 
 /* todo заглушки для разрешений меньше минимальных */
-@media all and (max-width: 1439px) {
+/* @media all and (max-width: 1439px) {
     .App {
         display: none;
     }
@@ -40,7 +40,7 @@ body {
     .App {
         display: none;
     }
-}
+} */
 
 /* todo временные стили для children модалок - мб перенести в соответствующие компоненты модалок: */
 

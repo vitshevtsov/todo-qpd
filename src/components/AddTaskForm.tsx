@@ -14,7 +14,7 @@ const AddTaskForm: React.FC = () => {
   const [description, setDescription] = useState('');
 
   const { closeModal } = useContext(ModalContext);
-  const { tasks } = useContext(DataContext);
+  const { tasks, setTasks } = useContext(DataContext);
 
   const handleOnChangeInput = (e: any) => {
     setName(e.target.value);
@@ -25,12 +25,15 @@ const AddTaskForm: React.FC = () => {
   };
 
   const addNewTask = () => {
-    console.log({
+    const newTask = {
+      id: tasks.length + 1,
       name,
-      category,
       description,
-    });
+      categoryId: category.id,
+    };
+
     addTaskToApi(tasks.length + 1, name, description, category.id);
+    setTasks([...tasks, newTask]);
     closeModal.closeAddTask();
   };
 

@@ -1,16 +1,12 @@
-import React, { useContext, useEffect } from 'react';
-import { getTasksFromApi } from '../API/api';
+import React, { useContext } from 'react';
+// import { getTasksFromApi } from '../API/api';
 import List from '../components/List';
 import { DataContext } from '../context/context';
 // import IListItem from '../types/data';
 
 const Tasks: React.FC = () => {
-  const { tasks, setTasks } = useContext(DataContext);
+  const { tasks } = useContext(DataContext);
   // todo вернуть типизацию по IListItem
-  // useEffect(() => {
-  //   getTasksFromApi(setTasks);
-  //   console.log('fetch is done');
-  // }, []);
 
   return (
     <main>

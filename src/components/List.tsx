@@ -17,7 +17,6 @@ export default function List(props: any) {
       title={item.name}
       category={item.categoryId}
       description={item.description}
-      // onClick={onItemHandler}
     />
   ));
   return (

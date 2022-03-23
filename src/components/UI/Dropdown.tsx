@@ -12,23 +12,16 @@ import { DataContext } from '../../context/DataContext/DataContext';
 const dropdownArrowIcon = require('../../assets/iconDropdownArrow.png');
 const dropdownClearIcon = require('../../assets/iconClose.png');
 
-// interface IDropdownProps {
-//   value: string;
-//   setValue: (value: string) => void;
-//   children?: React.ReactChild | React.ReactNode;
-// }
-
 const Dropdown = (props: any) => {
   const { categories } = useContext(DataContext);
   const [isOpened, setIsOpened] = useState(false);
-  // const [inputValue, setInputValue] = useState('');
 
   const toggleItems = () => {
     setIsOpened(!isOpened);
   };
 
   const onClickItemHandler = (e: any) => {
-    props.setValue({ name: e.target.innerHTML, id: e.target.id });
+    props.setValue({ name: e.target.innerHTML, id: +e.target.id }); /** категория рендерится в списке задач, только если type id - number */
     setIsOpened(!isOpened);
   };
 

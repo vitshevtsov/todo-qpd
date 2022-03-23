@@ -2,9 +2,4 @@
 /* eslint-disable consistent-return */
 import { createContext } from 'react';
 
-export const DataContext = createContext({
-  tasks: [],
-  categories: [],
-  setTasks: () => {},
-  setCategories: () => {},
-});
+export const DataContext = createContext();
