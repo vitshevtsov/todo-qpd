@@ -7,7 +7,8 @@ import NoMatchRoute from '../routes/NoMatchRoute';
 import '../styles.css';
 import ModalProvider from '../context/ModalContext/ModalContextProvider';
 import DataProvider from '../context/DataContext/DataContextProvider';
-// import { addTask } from '../API/api';
+// import { getTasksFromApi } from '../API/api';
+// import { DataContext } from '../context/context';
 // import { addCategory } from '../API/api';
 // import { editTask } from '../API/api';
 // import { editCategory } from '../API/api';
@@ -27,11 +28,13 @@ const App: React.FC = () => (
       </div>
     </ModalProvider>
   </DataProvider>
-
 );
-
+// const { setTasks } = useContext(DataContext);
+// addTask(8, 'Моя_задача8', 'Моя_задача8_Описание');
+// deleteTask(8);
+// getTasksFromApi(setTasks);
+// console.log('list is updated');
 // editTask(9, 'Моя_задача9', 'Моя_задача9_Описание');
 // editCategory(9, 'Категория9', 'Мое описание категории9');
-// deleteTask(9);
 
 export default App;

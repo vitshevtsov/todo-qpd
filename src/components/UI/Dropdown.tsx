@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable max-len */
 /* eslint-disable import/no-named-as-default */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
@@ -11,22 +12,28 @@ import { DataContext } from '../../context/DataContext/DataContext';
 const dropdownArrowIcon = require('../../assets/iconDropdownArrow.png');
 const dropdownClearIcon = require('../../assets/iconClose.png');
 
-const Dropdown: React.FC = () => {
+// interface IDropdownProps {
+//   value: string;
+//   setValue: (value: string) => void;
+//   children?: React.ReactChild | React.ReactNode;
+// }
+
+const Dropdown = (props: any) => {
   const { categories } = useContext(DataContext);
   const [isOpened, setIsOpened] = useState(false);
-  const [inputValue, setInputValue] = useState('');
+  // const [inputValue, setInputValue] = useState('');
 
   const toggleItems = () => {
     setIsOpened(!isOpened);
   };
 
   const onClickItemHandler = (e: any) => {
-    setInputValue(e.target.innerHTML);
+    props.setValue(e.target.innerHTML);
     setIsOpened(!isOpened);
   };
 
   const clearValueHandler = () => {
-    setInputValue('');
+    props.setValue('');
     setIsOpened(false);
   };
 
@@ -36,7 +43,7 @@ const Dropdown: React.FC = () => {
     </ul>
   );
 
-  const dropdownIcon = inputValue
+  const dropdownIcon = props.value
     ? <img className={styles.closeIcon} src={dropdownClearIcon} alt="dropdown clear icon" onClick={clearValueHandler} />
     : <img className={styles.arrowIcon} src={dropdownArrowIcon} alt="dropdown arrow icon" />;
 
@@ -47,7 +54,7 @@ const Dropdown: React.FC = () => {
         label="Категория"
         readonly
         onClickHandler={toggleItems}
-        value={inputValue}
+        value={props.value}
       />
       {dropdownIcon}
       <div className="dropdownToggle" />

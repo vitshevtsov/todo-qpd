@@ -15,16 +15,19 @@ interface IWrapper {
     title: string;
     children?: React.ReactChild | React.ReactNode;
     primaryButtonText: string;
+    primaryButtonClickHandler?: () => void;
 }
 
-const ModalChangeDataWrapper = ({ title, children, primaryButtonText }: IWrapper) => {
+const ModalChangeDataWrapper = ({
+  title, children, primaryButtonText, primaryButtonClickHandler,
+}: IWrapper) => {
   const el: HTMLDivElement = useMemo(() => document.createElement('div'), []);
   useEffect(() => {
     modalRootEl!.appendChild(el); // '!.' - non-null assertion. Info:  https://stackoverflow.com/questions/40349987/how-to-suppress-error-ts2533-object-is-possibly-null-or-undefined
     return () => {
       modalRootEl!.removeChild(el);
     };
-  });
+  }, []);
 
   const { closeModal } = useContext(ModalContext);
   const onClickCloseButton = () => {
@@ -43,7 +46,7 @@ const ModalChangeDataWrapper = ({ title, children, primaryButtonText }: IWrapper
   return createPortal(
     (
       <div className={styles.background}>
-        <div className={styles.wrapperContent}>
+        <form className={styles.wrapperContent}>
           <div className={styles.closeIconWrapper}>
             <ImgButton src={closeIcon} onClickHandler={onClickCloseButton} />
           </div>
@@ -52,10 +55,10 @@ const ModalChangeDataWrapper = ({ title, children, primaryButtonText }: IWrapper
           {children}
 
           <div className={styles.rowButton}>
-            <TextButton isPrimary text={primaryButtonText} width="200px" />
+            <TextButton isPrimary text={primaryButtonText} width="200px" onClickHandler={primaryButtonClickHandler} />
             <TextButton text="Закрыть" width="120px" onClickHandler={onClickCloseButton} />
           </div>
-        </div>
+        </form>
       </div>
     ), el,
   );

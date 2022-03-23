@@ -6,9 +6,23 @@ import styles from './TextArea.module.css';
 export default function TextArea(props: any) {
   return (
     <div className={styles.inputWrapper}>
-      <textarea maxLength={1536} id="description" placeholder={props.placeholder} className={styles.textArea} />
+      <textarea
+        maxLength={1536}
+        id="description"
+        placeholder={props.placeholder}
+        className={styles.textArea}
+        value={props.value}
+        onChange={props.onChangeHandler}
+      />
       { /* eslint-disable-next-line jsx-a11y/label-has-associated-control */ }
-      <label htmlFor="description" className={styles.label}>{props.isRequired ? `${props.label}*` : props.label}</label>
+      <label
+        htmlFor="description"
+        className={styles.label}
+      >
+
+        {props.isRequired ? `${props.label}*` : props.label}
+
+      </label>
     </div>
   );
 }
