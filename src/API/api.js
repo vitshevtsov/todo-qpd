@@ -52,6 +52,7 @@ async function addCategoryToApi(id, name, description) {
   }
 }
 
+// todo ошибка на бэке - не сохраняется измененная категория
 async function editTaskAtApi(data) {
   const url = 'http://localhost:8089/api/ToDoList/UpdateTask';
   try {
@@ -70,13 +71,8 @@ async function editTaskAtApi(data) {
   }
 }
 
-async function editCategory(id, name, description) {
+async function editCategoryAtApi(data) {
   const url = 'http://localhost:8089/api/ToDoList/UpdateCategory';
-  const data = {
-    id,
-    name,
-    description,
-  };
 
   try {
     const response = await fetch(url, {
@@ -101,5 +97,5 @@ function deleteCategory(id) {
   fetch(`http://localhost:8089/api/ToDoList/RemoveCategory/${id}`);
 }
 export {
-  addTaskToApi, addCategoryToApi, editTaskAtApi, editCategory, deleteTask, deleteCategory,
+  addTaskToApi, addCategoryToApi, editTaskAtApi, editCategoryAtApi, deleteTask, deleteCategory,
 };

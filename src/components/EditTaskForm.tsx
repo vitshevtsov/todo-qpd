@@ -49,7 +49,7 @@ const EditTaskForm: React.FC = () => {
     };
     // console.log(taskToEdit.categoryId);
     // console.log({ ...editedTask });
-    editTaskAtApi({ ...editedTask });
+    editTaskAtApi(editedTask);
     // todo типизация коллбэка map
     setTasks(tasks.map((item: { id: any; name?: any; description?: any; categoryId?: any; }) => {
       if (item.id === openedItemId) {
