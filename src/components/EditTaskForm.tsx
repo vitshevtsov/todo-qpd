@@ -21,9 +21,9 @@ const EditTaskForm: React.FC = () => {
     name: (taskToEdit.categoryId) ? categories[taskToEdit.categoryId - 1].name : '',
     id: taskToEdit.categoryId,
   };
-  console.log(taskToEdit.categoryId);
+  // console.log(taskToEdit.categoryId);
 
-  console.log(categories[taskToEdit.categoryId - 1].name);
+  // console.log(categories[taskToEdit.categoryId - 1].name);
 
   const [name, setName] = useState(taskToEdit.name);
   const [category, setCategory] = useState(initCategoryState);
@@ -40,15 +40,16 @@ const EditTaskForm: React.FC = () => {
   };
 
   const editTask = () => {
+    console.log(category.id);
     const editedTask = {
       id: taskToEdit.id,
       name,
       description,
       categoryId: category.id,
     };
-    console.log(taskToEdit.categoryId);
-    console.log({ ...editedTask });
-    editTaskAtApi(editedTask);
+    // console.log(taskToEdit.categoryId);
+    // console.log({ ...editedTask });
+    editTaskAtApi({ ...editedTask });
     // todo типизация коллбэка map
     setTasks(tasks.map((item: { id: any; name?: any; description?: any; categoryId?: any; }) => {
       if (item.id === openedItemId) {

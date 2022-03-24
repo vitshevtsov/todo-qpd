@@ -52,21 +52,13 @@ async function addCategoryToApi(id, name, description) {
   }
 }
 
-async function editTaskAtApi({
-  id, name, description, categoryId,
-}) {
+async function editTaskAtApi(data) {
   const url = 'http://localhost:8089/api/ToDoList/UpdateTask';
-  const data = {
-    id,
-    name,
-    description,
-    categoryId,
-  };
-
   try {
+    console.log(data);
     const response = await fetch(url, {
-      method: 'POST', // или 'PUT'
-      body: JSON.stringify(data), // данные могут быть 'строкой' или {объектом}!
+      method: 'POST',
+      body: JSON.stringify(data),
       headers: {
         'Content-Type': 'application/json',
       },
