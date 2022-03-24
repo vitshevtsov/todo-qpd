@@ -15,22 +15,21 @@ body {
 }
 
 .App {
+    height: 100vh;
     background-color: var(--background);
     font-family: 'roboto';
     font-style: normal;
     font-weight: 400;
-    /* todo временный отступ: */
-    padding-bottom: 50px;
 }
-
 
 .container {
     max-width: 1000px;
     margin: 0 auto;
 }
 
-/* todo заглушки для разрешений меньше минимальных */
-/* @media all and (max-width: 1439px) {
+/* Программа скрывается при разрешении меньше допустимого. 
+В index.ts при разрешении экрана менее допустимого, отрисовывается заглушка вместо приложения */
+@media all and (max-width: 1439px) {
     .App {
         display: none;
     }
@@ -40,14 +39,11 @@ body {
     .App {
         display: none;
     }
-} */
+}
 
-/* todo временные стили для children модалок - мб перенести в соответствующие компоненты модалок: */
-
+/* Стили для children модалок */
 .row {
     display: flex;
-    /* flex-basis: 1; */
     column-gap: 24px;
     margin-bottom: 24px;
 }
-
