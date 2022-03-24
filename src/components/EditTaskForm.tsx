@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable import/no-cycle */
 /* eslint-disable import/extensions */
 /* eslint-disable implicit-arrow-linebreak */
@@ -48,9 +49,15 @@ const EditTaskForm: React.FC = () => {
     console.log(taskToEdit.categoryId);
     console.log({ ...editedTask });
     editTaskAtApi(editedTask);
-    setTasks(tasks.splice(openedItemId - 1, 1, editedTask));
+    // todo типизация коллбэка map
+    setTasks(tasks.map((item: { id: any; name?: any; description?: any; categoryId?: any; }) => {
+      if (item.id === openedItemId) {
+        return editedTask;
+      }
+      return item;
+    }));
     setOpenedItemId(null);
-    closeModal.closeAddTask();
+    closeModal.closeEditTask();
   };
 
   return (
