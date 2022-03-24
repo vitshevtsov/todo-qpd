@@ -89,13 +89,15 @@ async function editCategoryAtApi(data) {
   }
 }
 
-function deleteTask(id) {
+// todo обработка ошибок
+function deleteTaskFromApi(id) {
   fetch(`http://localhost:8089/api/ToDoList/RemoveTask/${id}`);
 }
 
-function deleteCategory(id) {
+// todo обработка ошибок
+function deleteCategoryFromApi(id) {
   fetch(`http://localhost:8089/api/ToDoList/RemoveCategory/${id}`);
 }
 export {
-  addTaskToApi, addCategoryToApi, editTaskAtApi, editCategoryAtApi, deleteTask, deleteCategory,
+  addTaskToApi, addCategoryToApi, editTaskAtApi, editCategoryAtApi, deleteTaskFromApi, deleteCategoryFromApi,
 };
