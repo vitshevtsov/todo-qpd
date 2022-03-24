@@ -23,7 +23,7 @@ const DeleteTask = () => {
 
   return (
     // todo в вопрос добавлять название задачи
-    <ModalConfirmAction title="Удаление задачи" question="Вы уверены, что хотите удалить задачу?" primaryButtonClickHandler={deleteTask} />
+    <ModalConfirmAction title="Удаление задачи" question={`Вы уверены, что хотите удалить задачу "${tasks.find((item: any) => item.id === openedItemId).name}"?`} primaryButtonClickHandler={deleteTask} />
   );
 };
 

@@ -24,7 +24,7 @@ const DeleteCategory = () => {
 
   return (
     // todo в вопрос добавлять название категории
-    <ModalConfirmAction title="Удаление категории" question="Вы уверены, что хотите удалить категорию?" primaryButtonClickHandler={deleteCategory} />
+    <ModalConfirmAction title="Удаление категории" question={`Вы уверены, что хотите удалить категорию "${categories.find((item: any) => item.id === openedItemId).name}"?`} primaryButtonClickHandler={deleteCategory} />
   );
 };
 

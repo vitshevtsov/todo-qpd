@@ -13,7 +13,7 @@
 
 .wrapperContent {
     width: 800px;
-    height: 376px;
+    min-height: 376px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
