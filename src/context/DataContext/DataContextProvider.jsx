@@ -13,6 +13,11 @@ const DataProvider = ({ children }) => {
   // состояние массивов задач и категорий
   const [tasks, setTasks] = useState([]);
   const [categories, setCategories] = useState([]);
+
+  // состояние, хранящее id элемента, на котором кликнули кнопку
+  // "редактировать" или "удалить"
+  const [openedItemId, setOpenedItemId] = useState(null);
+
   // получаем списки задач и категорий с api и сохраняем в состояние
   useEffect(() => {
     fetch('http://localhost:8089/api/ToDoList/GetTasks')
@@ -38,16 +43,13 @@ const DataProvider = ({ children }) => {
       );
   }, []);
 
-  // состояние, хранящее id элемента, на котором кликнули кнопку
-  // "редактировать" или "удалить"
-  const [openedTaskId, setOpenedTaskId] = useState(null);
-  const [openedCategoryId, setOpenedCategoryId] = useState(null);
-
   const valueDataProvider = {
     tasks,
     categories,
     setTasks,
     setCategories,
+    openedItemId,
+    setOpenedItemId,
   };
 
   return (

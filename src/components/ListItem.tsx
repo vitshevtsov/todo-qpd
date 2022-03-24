@@ -14,10 +14,10 @@ const folderIcon = require('../assets/iconFolderCat.png');
 const editIcon = require('../assets/iconEdit.png');
 const deleteIcon = require('../assets/iconDelete.png');
 
-interface IDataContext {
-  tasks: any[],
-  categories: any[],
-}
+// interface IDataContext {
+//   tasks: any[],
+//   categories: any[],
+// }
 
 interface IListItemProps {
   id: number,
@@ -33,28 +33,30 @@ export default function ListItem({
   const location = useLocation();
   const isCategoriesPage = (location.pathname === '/categories');
   const { openModal } = useContext(ModalContext);
-  const { categories }:IDataContext = useContext(DataContext);
+  const { categories, setOpenedItemId } = useContext(DataContext);
 
   const onClickEditButton = (id: number) => {
     if (isCategoriesPage) {
       console.log(id);
-
-      // console.log(e.target.closest(styles.title));
+      setOpenedItemId(id);
       openModal.openEditCategory();
       return;
     }
     console.log(id);
+    setOpenedItemId(id);
     openModal.openEditTask();
   };
 
   const onClickDeleteButton = (id: number) => {
     if (isCategoriesPage) {
-      openModal.openDeleteCategory();
       console.log(id);
+      setOpenedItemId(id);
+      openModal.openDeleteCategory();
       return;
     }
-    openModal.openDeleteTask();
     console.log(id);
+    setOpenedItemId(id);
+    openModal.openDeleteTask();
   };
 
   const getCategoryName = (id: number) => categories[id - 1]?.name;
@@ -77,7 +79,7 @@ export default function ListItem({
       </div>
       <div className={styles.itemBtns}>
         <ImgButton src={editIcon} onClickHandler={() => onClickEditButton(id)} />
-        <ImgButton src={deleteIcon} onClickHandler={onClickDeleteButton} />
+        <ImgButton src={deleteIcon} onClickHandler={() => onClickDeleteButton(id)} />
       </div>
     </div>
   );

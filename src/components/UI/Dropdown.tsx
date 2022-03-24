@@ -21,11 +21,13 @@ const Dropdown = (props: any) => {
   };
 
   const onClickItemHandler = (e: any) => {
+    // todo объект в переменную
     props.setValue({ name: e.target.innerHTML, id: +e.target.id }); /** категория рендерится в списке задач, только если type id - number */
     setIsOpened(!isOpened);
   };
 
   const clearValueHandler = () => {
+    // todo объект в переменную
     props.setValue({ name: '', id: '' });
     setIsOpened(false);
   };

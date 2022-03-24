@@ -9,8 +9,12 @@ import TextArea from './UI/TextArea';
 import { addTaskToApi } from '../API/api';
 
 const AddTaskForm: React.FC = () => {
+  const initCategoryState = {
+    name: '',
+    id: '',
+  };
   const [name, setName] = useState('');
-  const [category, setCategory] = useState({ name: '', id: '' });
+  const [category, setCategory] = useState(initCategoryState);
   const [description, setDescription] = useState('');
 
   const { closeModal } = useContext(ModalContext);
