@@ -4,11 +4,8 @@ import React from 'react';
 import styles from './NameInput.module.css';
 
 export default function NameInput(props: any) {
-  // const [name, setName] = useState('');
-  // const handleOnChange = (e: any) => {
-  //   setName(e.target.value);
-  //   console.log(name);
-  // };
+  const errorDiv = <div className={styles.errorDiv}>{props.error}</div>;
+
   // todo знак обязательности красным
   return (
     <div className={styles.inputWrapper}>
@@ -22,9 +19,11 @@ export default function NameInput(props: any) {
         onClick={props.onClickHandler}
         value={props.value}
         onChange={props.onChangeHandler}
+        onFocus={props.isRequired && props.onFocusHandler}
       />
       { /* eslint-disable-next-line jsx-a11y/label-has-associated-control */ }
       <label htmlFor="name" className={styles.label}>{props.isRequired ? `${props.label}*` : props.label}</label>
+      {props.isDirty && errorDiv}
     </div>
   );
 }

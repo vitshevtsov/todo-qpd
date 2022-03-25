@@ -5,14 +5,9 @@
 import React, { useContext, useEffect } from 'react';
 import { DataContext } from '../context/DataContext/DataContext';
 
-async function addTaskToApi(id, name, description, categoryId) {
+async function addTaskToApi(data) {
   const url = 'http://localhost:8089/api/ToDoList/AddTask';
-  const data = {
-    id,
-    name,
-    description,
-    categoryId,
-  };
+  console.log(data);
 
   try {
     const response = await fetch(url, {
@@ -29,13 +24,9 @@ async function addTaskToApi(id, name, description, categoryId) {
   }
 }
 
-async function addCategoryToApi(id, name, description) {
+async function addCategoryToApi(data) {
   const url = 'http://localhost:8089/api/ToDoList/AddCategory';
-  const data = {
-    id,
-    name,
-    description,
-  };
+  console.log(data);
 
   try {
     const response = await fetch(url, {

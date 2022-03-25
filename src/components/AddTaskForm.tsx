@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+/* eslint-disable no-unused-vars */
 /* eslint-disable import/no-cycle */
 /* eslint-disable import/extensions */
 import React, { useContext, useState } from 'react';
@@ -14,6 +16,9 @@ const AddTaskForm: React.FC = () => {
     id: '',
   };
   const [name, setName] = useState('');
+  const [nameIsDirty, setNameIsDirty] = useState(false);
+  const [nameError, setNameError] = useState('Поле обязательно для заполнения');
+
   const [category, setCategory] = useState(initCategoryState);
   const [description, setDescription] = useState('');
 
@@ -22,6 +27,15 @@ const AddTaskForm: React.FC = () => {
 
   const handleOnChangeInput = (e: any) => {
     setName(e.target.value);
+    if (e.target.value) {
+      setNameError('');
+    } else {
+      setNameError('Поле обязательно для заполнения');
+    }
+  };
+
+  const handleOnFocusInput = (e: any) => {
+    setNameIsDirty(true);
   };
 
   const handleOnChangeTextArea = (e: any) => {
@@ -29,16 +43,21 @@ const AddTaskForm: React.FC = () => {
   };
 
   const addNewTask = () => {
-    const newTask = {
-      id: tasks.length + 1,
-      name,
-      description,
-      categoryId: category.id,
-    };
+    if (name) {
+      const newTask = {
+        id: 0,
+        name,
+        description,
+        categoryId: category.id,
+      };
 
-    addTaskToApi(tasks.length + 1, name, description, category.id);
-    setTasks([...tasks, newTask]);
-    closeModal.closeAddTask();
+      addTaskToApi(newTask);
+      setTasks([...tasks, newTask]);
+      closeModal.closeAddTask();
+    } else {
+      setNameIsDirty(true);
+      setNameError('Поле обязательно для заполнения');
+    }
   };
 
   return (
@@ -48,8 +67,11 @@ const AddTaskForm: React.FC = () => {
           placeholder="Введите имя задачи"
           label="Имя"
           isRequired
+          isDirty={nameIsDirty}
+          error={nameError}
           value={name}
           onChangeHandler={handleOnChangeInput}
+          onFocusHandler={handleOnFocusInput}
         />
         <Dropdown value={category.name} setValue={setCategory} />
       </div>

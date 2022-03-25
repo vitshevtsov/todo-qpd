@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-// import { getTasksFromApi } from '../API/api';
 import List from '../components/List';
 import { DataContext } from '../context/context';
 // import IListItem from '../types/data';

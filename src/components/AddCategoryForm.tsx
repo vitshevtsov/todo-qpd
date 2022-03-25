@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable import/no-cycle */
 /* eslint-disable import/extensions */
 import React, { useContext, useState } from 'react';
@@ -11,12 +12,23 @@ import TextArea from './UI/TextArea';
 const AddCategoryForm: React.FC = () => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
+  const [nameIsDirty, setNameIsDirty] = useState(false);
+  const [nameError, setNameError] = useState('Поле обязательно для заполнения');
 
   const { closeModal } = useContext(ModalContext);
   const { categories, setCategories } = useContext(DataContext);
 
   const handleOnChangeInput = (e: any) => {
     setName(e.target.value);
+    if (e.target.value) {
+      setNameError('');
+    } else {
+      setNameError('Поле обязательно для заполнения');
+    }
+  };
+
+  const handleOnFocusInput = (e: any) => {
+    setNameIsDirty(true);
   };
 
   const handleOnChangeTextArea = (e: any) => {
@@ -24,15 +36,20 @@ const AddCategoryForm: React.FC = () => {
   };
 
   const addNewCategory = () => {
-    const newCategory = {
-      id: categories.length + 1,
-      name,
-      description,
-    };
+    if (name) {
+      const newCategory = {
+        id: 0,
+        name,
+        description,
+      };
 
-    addCategoryToApi(categories.length + 1, name, description);
-    setCategories([...categories, newCategory]);
-    closeModal.closeAddCategory();
+      addCategoryToApi(newCategory);
+      setCategories([...categories, newCategory]);
+      closeModal.closeAddCategory();
+    } else {
+      setNameIsDirty(true);
+      setNameError('Поле обязательно для заполнения');
+    }
   };
 
   return (
@@ -42,8 +59,11 @@ const AddCategoryForm: React.FC = () => {
           placeholder="Введите имя категории"
           label="Имя"
           isRequired
+          isDirty={nameIsDirty}
+          error={nameError}
           value={name}
           onChangeHandler={handleOnChangeInput}
+          onFocusHandler={handleOnFocusInput}
         />
       </div>
       <div className=" row">

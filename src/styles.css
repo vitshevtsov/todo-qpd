@@ -15,7 +15,7 @@ body {
 }
 
 .App {
-    height: 100vh;
+    height: 100%;
     background-color: var(--background);
     font-family: 'roboto';
     font-style: normal;
