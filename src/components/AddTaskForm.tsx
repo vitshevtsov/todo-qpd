@@ -42,18 +42,28 @@ const AddTaskForm: React.FC = () => {
     setDescription(e.target.value);
   };
 
-  const addNewTask = () => {
+  const addNewTask = async () => {
     if (name) {
-      const newTask = {
-        id: 0,
-        name,
-        description,
-        categoryId: category.id,
-      };
+      const newTask = (category.id)
+        ? {
+          id: 0,
+          name,
+          description,
+          categoryId: category.id,
+        }
+        : {
+          id: 0,
+          name,
+          description,
+        };
 
-      addTaskToApi(newTask);
-      setTasks([...tasks, newTask]);
-      closeModal.closeAddTask();
+      const responseFromApi = await addTaskToApi(newTask);
+      if (responseFromApi) {
+        setTasks([...tasks, responseFromApi]);
+        closeModal.closeAddTask();
+      } else {
+        alert('Произошла ошибка. Попробуйте позднее');
+      }
     } else {
       setNameIsDirty(true);
       setNameError('Поле обязательно для заполнения');
