@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 /* eslint-disable no-shadow */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
@@ -22,13 +23,13 @@ const deleteIcon = require('../assets/iconDelete.png');
 interface IListItemProps {
   id: number,
   title: string,
-  category: number | '',
+  category?: number,
   description: string,
 }
 // todo убрать ошибку ниже
 // eslint-disable-next-line react/prop-types
 export default function ListItem({
-  id, title, category = '', description,
+  id, title, category, description,
 }: IListItemProps) {
   const location = useLocation();
   const isCategoriesPage = (location.pathname === '/categories');
@@ -59,12 +60,18 @@ export default function ListItem({
     openModal.openDeleteTask();
   };
 
-  const getCategoryName = (id: number) => categories[id - 1]?.name;
-
+  const getCategoryName = (id: number) => {
+    if (id !== 0) {
+      console.log(categories);
+      console.log(categories.find((item:any) => item.id === id)?.name);
+      return categories.find((item:any) => item.id === id)?.name;
+    }
+    return '';
+  };
   const categoryDiv = (
     <div className={styles.category}>
       <img src={folderIcon} alt="folder icon" className={styles.categoryImg} />
-      {typeof category === 'number' ? getCategoryName(category) : ''}
+      {(category && categories) && getCategoryName(category)}
     </div>
   );
 
@@ -73,7 +80,7 @@ export default function ListItem({
       <div>
         <div className={styles.textHeader}>
           <div className={styles.title}>{title}</div>
-          {category && categoryDiv}
+          {(category && category !== 0) && categoryDiv}
         </div>
         <div className="description">{description}</div>
       </div>

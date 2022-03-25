@@ -1,14 +1,17 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable consistent-return */
 /* eslint-disable max-len */
 /* eslint-disable import/prefer-default-export */
 import axios from 'axios';
-import React, { useContext, useEffect } from 'react';
-import { DataContext } from '../context/DataContext/DataContext';
 
-// async function getAllData() {
-//   const responseTasks = await axios.get('http://localhost:8089/api/ToDoList/GetTasks')
-// }
+async function getAllData() {
+  try {
+    const responseTasks = await axios.get('http://localhost:8089/api/ToDoList/GetTasks');
+    const responseCategories = await axios.get('http://localhost:8089/api/ToDoList/GetCategories');
+    return [responseTasks.data, responseCategories.data];
+  } catch (error) {
+    console.error('Ошибка:', error);
+  }
+}
 
 async function addTaskToApi(data) {
   const url = 'http://localhost:8089/api/ToDoList/AddTask';
@@ -65,5 +68,5 @@ function deleteCategoryFromApi(id) {
   axios.get(`http://localhost:8089/api/ToDoList/RemoveCategory/${id}`);
 }
 export {
-  addTaskToApi, addCategoryToApi, editTaskAtApi, editCategoryAtApi, deleteTaskFromApi, deleteCategoryFromApi,
+  getAllData, addTaskToApi, addCategoryToApi, editTaskAtApi, editCategoryAtApi, deleteTaskFromApi, deleteCategoryFromApi,
 };

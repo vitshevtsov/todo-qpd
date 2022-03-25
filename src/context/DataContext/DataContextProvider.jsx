@@ -6,6 +6,7 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
 /* eslint-disable react/jsx-filename-extension */
 import React, { useState, useEffect } from 'react';
+import { getAllData } from '../../API/api';
 import { DataContext } from './DataContext';
 // компоненты, находящиеся в Provider, смогут пользоваться данными контекста (массивы task, categories)
 
@@ -19,28 +20,10 @@ const DataProvider = ({ children }) => {
   const [openedItemId, setOpenedItemId] = useState(null);
 
   // получаем списки задач и категорий с api и сохраняем в состояние
-  useEffect(() => {
-    fetch('http://localhost:8089/api/ToDoList/GetTasks')
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          setTasks(result);
-        },
-        (error) => {
-          alert(error);
-        },
-      );
-
-    fetch('http://localhost:8089/api/ToDoList/GetCategories')
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          setCategories(result);
-        },
-        (error) => {
-          alert(error);
-        },
-      );
+  useEffect(async () => {
+    const [fetchedTasks, fetchedCategories] = await getAllData();
+    setTasks(fetchedTasks);
+    setCategories(fetchedCategories);
   }, []);
 
   const valueDataProvider = {
