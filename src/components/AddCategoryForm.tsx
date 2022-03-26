@@ -58,6 +58,7 @@ const AddCategoryForm: React.FC = () => {
         <NameInput
           placeholder="Введите имя категории"
           label="Имя"
+          maxLength={255}
           isRequired
           isDirty={nameIsDirty}
           error={nameError}
@@ -70,6 +71,7 @@ const AddCategoryForm: React.FC = () => {
         <TextArea
           placeholder="Введите описание категории"
           label="Описание"
+          maxLength={512}
           value={description}
           onChangeHandler={handleOnChangeTextArea}
         />

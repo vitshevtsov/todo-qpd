@@ -4,7 +4,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable consistent-return */
 /* eslint-disable import/extensions */
-import React, { useContext } from 'react';
+import React, { useContext, useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
 import ImgButton from './ImgButton';
 import { DataContext, ModalContext } from '../context/context';
@@ -34,7 +34,7 @@ export default function ListItem({
   const location = useLocation();
   const isCategoriesPage = (location.pathname === '/categories');
   const { openModal } = useContext(ModalContext);
-  const { categories, setOpenedItemId } = useContext(DataContext);
+  const { tasks, categories, setOpenedItemId } = useContext(DataContext);
 
   const onClickEditButton = (id: number) => {
     if (isCategoriesPage) {
@@ -60,21 +60,21 @@ export default function ListItem({
     openModal.openDeleteTask();
   };
 
-  const getCategoryName = (id: number) => {
+  const getCategoryName = (id: number | undefined) => {
     console.log('сработала getCategoryName');
-
-    if (id !== 0) {
+    if (id && (id !== 0)) {
       // todo убрать перерендер каждое открытие списка
-      // console.log(categories);
+      console.log(categories);
       // console.log(categories.find((item:any) => item.id === id)?.name);
       return categories.find((item:any) => item.id === id)?.name;
     }
     return '';
   };
+  const memoizedCategoryName = useMemo(() => getCategoryName(category), [tasks, categories]);
   const categoryDiv = (
     <div className={styles.category}>
       <img src={folderIcon} alt="folder icon" className={styles.categoryImg} />
-      {!!(category && categories) && getCategoryName(category)}
+      {!!(category && categories) && memoizedCategoryName}
     </div>
   );
 

@@ -7,7 +7,7 @@ export default function TextArea(props: any) {
   return (
     <div className={styles.inputWrapper}>
       <textarea
-        maxLength={1536}
+        maxLength={props.maxLength}
         id="description"
         placeholder={props.placeholder}
         className={styles.textArea}

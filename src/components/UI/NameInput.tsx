@@ -13,7 +13,7 @@ export default function NameInput(props: any) {
         type="text"
         id="name"
         placeholder={props.placeholder}
-        maxLength={255}
+        maxLength={props.maxLength}
         className={styles.input}
         readOnly={props.readonly}
         onClick={props.onClickHandler}

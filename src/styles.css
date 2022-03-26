@@ -27,17 +27,34 @@ body {
     margin: 0 auto;
 }
 
+.nonSupportedScreen {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    color: var(--backgroundDark);
+    background-color: var(--background);
+
+}
+
 /* Программа скрывается при разрешении меньше допустимого. 
 В index.ts при разрешении экрана менее допустимого, отрисовывается заглушка вместо приложения */
 @media all and (max-width: 1439px) {
     .App {
         display: none;
     }
+    .nonSupportedScreen {
+        display: flex;
+    }
 }
 
 @media all and (max-height: 899px) {
     .App {
         display: none;
+    }
+    .nonSupportedScreen {
+        display: flex;
     }
 }
 

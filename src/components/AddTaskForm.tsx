@@ -76,6 +76,7 @@ const AddTaskForm: React.FC = () => {
         <NameInput
           placeholder="Введите имя задачи"
           label="Имя"
+          maxLength={255}
           isRequired
           isDirty={nameIsDirty}
           error={nameError}
@@ -89,6 +90,7 @@ const AddTaskForm: React.FC = () => {
         <TextArea
           placeholder="Введите описание задачи"
           label="Описание"
+          maxLength={1536}
           value={description}
           onChangeHandler={handleOnChangeTextArea}
         />
