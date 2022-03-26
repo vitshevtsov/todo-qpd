@@ -4,13 +4,13 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable import/extensions */
 import React, { useContext } from 'react';
-import { deleteCategoryFromApi } from '../API/api';
+import { deleteCategoryFromApi, editTaskAtApi } from '../API/api';
 import { DataContext, ModalContext } from '../context/context';
 import ModalConfirmAction from './modal/ModalConfirmAction';
 
 const DeleteCategory = () => {
   const {
-    categories, setCategories, openedItemId, setOpenedItemId,
+    tasks, setTasks, categories, setCategories, openedItemId, setOpenedItemId,
   } = useContext(DataContext);
   const { closeModal } = useContext(ModalContext);
 
@@ -18,6 +18,27 @@ const DeleteCategory = () => {
     deleteCategoryFromApi(openedItemId);
     // todo типизация коллбэка map
     setCategories(categories.filter((item: { id: any; name?: any; description?: any;}) => item.id !== openedItemId));
+
+    // в forEach меняем задачи, в которых выбрана удаляемая категория, ставим categoryId:0
+    tasks.forEach((item: any) => {
+      if (item.categoryId === openedItemId) {
+        const editedTask = {
+          ...item,
+          categoryId: 0,
+        };
+        console.log(editedTask);
+        // console.log({ ...editedTask });
+        editTaskAtApi(editedTask);
+        // todo типизация коллбэка map
+        setTasks(tasks.map((task: { id: any; name?: any; description?: any; categoryId?: any; }) => {
+          if (task.id === openedItemId) {
+            return editedTask;
+          }
+          return task;
+        }));
+      }
+    });
+
     setOpenedItemId(null);
     closeModal.closeDeleteCategory();
   };

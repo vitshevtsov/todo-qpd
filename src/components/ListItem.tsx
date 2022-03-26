@@ -61,9 +61,12 @@ export default function ListItem({
   };
 
   const getCategoryName = (id: number) => {
+    console.log('сработала getCategoryName');
+
     if (id !== 0) {
-      console.log(categories);
-      console.log(categories.find((item:any) => item.id === id)?.name);
+      // todo убрать перерендер каждое открытие списка
+      // console.log(categories);
+      // console.log(categories.find((item:any) => item.id === id)?.name);
       return categories.find((item:any) => item.id === id)?.name;
     }
     return '';
@@ -71,7 +74,7 @@ export default function ListItem({
   const categoryDiv = (
     <div className={styles.category}>
       <img src={folderIcon} alt="folder icon" className={styles.categoryImg} />
-      {(category && categories) && getCategoryName(category)}
+      {!!(category && categories) && getCategoryName(category)}
     </div>
   );
 
@@ -80,7 +83,7 @@ export default function ListItem({
       <div>
         <div className={styles.textHeader}>
           <div className={styles.title}>{title}</div>
-          {(category && category !== 0) && categoryDiv}
+          {!!(category && category !== 0) && categoryDiv}
         </div>
         <div className="description">{description}</div>
       </div>
