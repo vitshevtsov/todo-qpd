@@ -6,7 +6,7 @@
 import React, { useContext } from 'react';
 import { deleteTaskFromApi } from '../API/api';
 import { DataContext, ModalContext } from '../context/context';
-import ModalConfirmAction from './modal/ModalConfirmAction';
+import ModalConfirmActionWrapper from './modal/ModalConfirmActionWrapper';
 
 const DeleteTask = () => {
   const {
@@ -23,7 +23,7 @@ const DeleteTask = () => {
 
   return (
     // todo в вопрос добавлять название задачи
-    <ModalConfirmAction title="Удаление задачи" question={`Вы уверены, что хотите удалить задачу "${tasks.find((item: any) => item.id === openedItemId).name}"?`} primaryButtonClickHandler={deleteTask} />
+    <ModalConfirmActionWrapper title="Удаление задачи" question={`Вы уверены, что хотите удалить задачу "${tasks.find((item: any) => item.id === openedItemId).name}"?`} primaryButtonClickHandler={deleteTask} />
   );
 };
 

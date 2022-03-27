@@ -35,7 +35,18 @@
             {
                 "namedComponents": ["function-expression", "function-declaration", "arrow-function"]
             }
-        ]
+        ],
+        "consistent-return": "off",
+        "max-len": ["error", {
+          "code": 120,
+          "tabWidth": 2,
+          "ignoreComments": true,
+          "ignoreTrailingComments": true,
+          "ignoreUrls": true,
+          "ignoreRegExpLiterals": true,
+          "ignoreStrings": true,
+          "ignoreTemplateLiterals": true
+        }]
     },
     "settings": {
         "import/resolver": {

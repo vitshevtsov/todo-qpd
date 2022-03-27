@@ -6,7 +6,7 @@
 import React, { useContext } from 'react';
 import { deleteCategoryFromApi, editTaskAtApi } from '../API/api';
 import { DataContext, ModalContext } from '../context/context';
-import ModalConfirmAction from './modal/ModalConfirmAction';
+import ModalConfirmActionWrapper from './modal/ModalConfirmActionWrapper';
 
 const DeleteCategory = () => {
   const {
@@ -45,7 +45,7 @@ const DeleteCategory = () => {
 
   return (
     // todo в вопрос добавлять название категории
-    <ModalConfirmAction title="Удаление категории" question={`Вы уверены, что хотите удалить категорию "${categories.find((item: any) => item.id === openedItemId).name}"?`} primaryButtonClickHandler={deleteCategory} />
+    <ModalConfirmActionWrapper title="Удаление категории" question={`Вы уверены, что хотите удалить категорию "${categories.find((item: any) => item.id === openedItemId).name}"?`} primaryButtonClickHandler={deleteCategory} />
   );
 };
 

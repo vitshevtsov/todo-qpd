@@ -49,7 +49,7 @@ body {
 /* Программа скрывается при разрешении меньше допустимого. 
 В index.ts при разрешении экрана менее допустимого, отрисовывается заглушка вместо приложения */
 @media all and (max-width: 1439px) {
-    .App {
+    .app {
         display: none;
     }
     .nonSupportedScreen {
@@ -58,7 +58,7 @@ body {
 }
 
 @media all and (max-height: 899px) {
-    .App {
+    .app {
         display: none;
     }
     .nonSupportedScreen {

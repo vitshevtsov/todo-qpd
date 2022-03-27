@@ -1,6 +1,4 @@
 /* eslint-disable default-case */
-/* eslint-disable max-len */
-/* eslint-disable react/require-default-props */
 import React, { useContext, useEffect, useMemo } from 'react';
 import { createPortal } from 'react-dom';
 import { DataContext, ModalContext } from '../../context/context';
@@ -15,7 +13,7 @@ interface IWrapper {
     title: string;
     children?: React.ReactChild | React.ReactNode;
     primaryButtonText: string;
-    primaryButtonClickHandler?: () => void;
+    primaryButtonClickHandler: () => void;
 }
 
 const ModalChangeDataWrapper = ({
@@ -23,7 +21,8 @@ const ModalChangeDataWrapper = ({
 }: IWrapper) => {
   const el: HTMLDivElement = useMemo(() => document.createElement('div'), []);
   useEffect(() => {
-    modalRootEl!.appendChild(el); // '!.' - non-null assertion. Info:  https://stackoverflow.com/questions/40349987/how-to-suppress-error-ts2533-object-is-possibly-null-or-undefined
+    // '!.' - non-null assertion. Info:  https://stackoverflow.com/questions/40349987/how-to-suppress-error-ts2533-object-is-possibly-null-or-undefined
+    modalRootEl!.appendChild(el);
     return () => {
       modalRootEl!.removeChild(el);
     };
