@@ -45,6 +45,7 @@ const Dropdown = (props: any) => {
   return (
     <div className={styles.dropdownWrapper}>
       <NameInput
+        width={props.width}
         placeholder="Выберите категорию"
         label="Категория"
         readonly

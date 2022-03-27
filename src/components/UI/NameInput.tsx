@@ -10,6 +10,7 @@ export default function NameInput(props: any) {
   return (
     <div className={styles.inputWrapper}>
       <input
+        style={{ width: props.width }}
         type="text"
         id="name"
         placeholder={props.placeholder}

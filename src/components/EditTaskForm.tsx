@@ -63,6 +63,7 @@ const EditTaskForm: React.FC = () => {
     <ModalChangeDataWrapper title="Редактирование задачи" primaryButtonText="Сохранить" primaryButtonClickHandler={editTask}>
       <div className="row">
         <NameInput
+          width="364px"
           placeholder=""
           label="Имя"
           maxLength={255}
@@ -70,7 +71,7 @@ const EditTaskForm: React.FC = () => {
           value={name}
           onChangeHandler={handleOnChangeInput}
         />
-        <Dropdown value={category.name} setValue={setCategory} />
+        <Dropdown width="364px" value={category.name} setValue={setCategory} />
       </div>
       <div className=" row">
         <TextArea

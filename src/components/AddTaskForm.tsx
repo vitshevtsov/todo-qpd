@@ -75,6 +75,7 @@ const AddTaskForm: React.FC = () => {
     <ModalChangeDataWrapper title="Создание задачи" primaryButtonText="Создать" primaryButtonClickHandler={addNewTask}>
       <div className="row">
         <NameInput
+          width="364px"
           placeholder="Введите имя задачи"
           label="Имя"
           maxLength={255}
@@ -85,7 +86,7 @@ const AddTaskForm: React.FC = () => {
           onChangeHandler={handleOnChangeInput}
           onFocusHandler={handleOnFocusInput}
         />
-        <Dropdown value={category.name} setValue={setCategory} />
+        <Dropdown width="364px" value={category.name} setValue={setCategory} />
       </div>
       <div className=" row">
         <TextArea

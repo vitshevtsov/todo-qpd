@@ -48,6 +48,7 @@ const EditCategoryForm: React.FC = () => {
     <ModalChangeDataWrapper title="Редактирование категории" primaryButtonText="Сохранить" primaryButtonClickHandler={editCategory}>
       <div className="row">
         <NameInput
+          width="752px"
           placeholder=""
           label="Имя"
           maxLength={255}

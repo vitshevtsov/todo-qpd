@@ -57,6 +57,7 @@ const AddCategoryForm: React.FC = () => {
     <ModalChangeDataWrapper title="Создание категории" primaryButtonText="Создать" primaryButtonClickHandler={addNewCategory}>
       <div className="row">
         <NameInput
+          width="752px"
           placeholder="Введите имя категории"
           label="Имя"
           maxLength={255}
