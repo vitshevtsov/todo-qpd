@@ -65,6 +65,7 @@ const EditTaskForm: React.FC = () => {
         <NameInput
           placeholder=""
           label="Имя"
+          maxLength={255}
           isRequired
           value={name}
           onChangeHandler={handleOnChangeInput}
@@ -75,6 +76,7 @@ const EditTaskForm: React.FC = () => {
         <TextArea
           placeholder=""
           label="Описание"
+          maxLength={1536}
           value={description}
           onChangeHandler={handleOnChangeTextArea}
         />

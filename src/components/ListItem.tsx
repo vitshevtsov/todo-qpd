@@ -85,7 +85,7 @@ export default function ListItem({
           <div className={styles.title}>{title}</div>
           {!!(category && category !== 0) && categoryDiv}
         </div>
-        <div className="description">{description}</div>
+        <div className={styles.description}>{description}</div>
       </div>
       <div className={styles.itemBtns}>
         <ImgButton src={editIcon} onClickHandler={() => onClickEditButton(id)} />

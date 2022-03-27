@@ -50,6 +50,7 @@ const EditCategoryForm: React.FC = () => {
         <NameInput
           placeholder=""
           label="Имя"
+          maxLength={255}
           isRequired
           value={name}
           onChangeHandler={handleOnChangeInput}
@@ -59,6 +60,7 @@ const EditCategoryForm: React.FC = () => {
         <TextArea
           placeholder=""
           label="Описание"
+          maxLength={512}
           value={description}
           onChangeHandler={handleOnChangeTextArea}
         />
