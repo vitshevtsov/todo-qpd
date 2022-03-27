@@ -28,7 +28,7 @@ const Dropdown = (props: any) => {
 
   const clearValueHandler = () => {
     // todo объект в переменную
-    props.setValue({ name: '', id: '' });
+    props.setValue({ name: '', id: 0 });
     setIsOpened(false);
   };
 

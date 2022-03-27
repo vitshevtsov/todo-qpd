@@ -3,7 +3,7 @@
 /* eslint-disable react/require-default-props */
 import React, { useContext, useEffect, useMemo } from 'react';
 import { createPortal } from 'react-dom';
-import { ModalContext } from '../../context/context';
+import { DataContext, ModalContext } from '../../context/context';
 import ImgButton from '../ImgButton';
 import TextButton from '../UI/TextButton';
 import styles from './ModalChangeDataWrapper.module.css';
@@ -30,7 +30,9 @@ const ModalChangeDataWrapper = ({
   }, []);
 
   const { closeModal } = useContext(ModalContext);
+  const { setOpenedItemId } = useContext(DataContext);
   const onClickCloseButton = () => {
+    setOpenedItemId(null);
     switch (title) {
       case 'Создание задачи': closeModal.closeAddTask();
         break;

@@ -40,15 +40,12 @@ const EditTaskForm: React.FC = () => {
   };
 
   const editTask = () => {
-    console.log(category.id);
     const editedTask = {
       id: taskToEdit.id,
       name,
       description,
       categoryId: category.id,
     };
-    // console.log(taskToEdit.categoryId);
-    // console.log({ ...editedTask });
     editTaskAtApi(editedTask);
     // todo типизация коллбэка map
     setTasks(tasks.map((item: { id: any; name?: any; description?: any; categoryId?: any; }) => {

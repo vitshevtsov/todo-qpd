@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useContext, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import { ModalContext } from '../context/context';
+import { DataContext, ModalContext } from '../context/context';
 import styles from './Header.module.css';
 import TextButton from './UI/TextButton';
 
@@ -10,11 +10,14 @@ const Header: React.FC = () => {
   const location = useLocation();
   const isCategoriesPage = (location.pathname === '/categories');
   const { openModal } = useContext(ModalContext);
+  const { setOpenedItemId } = useContext(DataContext);
   const onClickAddTaskButton = () => {
     if (isCategoriesPage) {
+      setOpenedItemId(0);
       openModal.openAddCategory();
       return;
     }
+    setOpenedItemId(0);
     openModal.openAddTask();
   };
 

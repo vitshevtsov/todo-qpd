@@ -13,7 +13,7 @@ import { addTaskToApi } from '../API/api';
 const AddTaskForm: React.FC = () => {
   const initCategoryState = {
     name: '',
-    id: '',
+    id: 0,
   };
   const [name, setName] = useState('');
   const [nameIsDirty, setNameIsDirty] = useState(false);
@@ -23,7 +23,7 @@ const AddTaskForm: React.FC = () => {
   const [description, setDescription] = useState('');
 
   const { closeModal } = useContext(ModalContext);
-  const { tasks, setTasks } = useContext(DataContext);
+  const { tasks, setTasks, setOpenedItemId } = useContext(DataContext);
 
   const handleOnChangeInput = (e: any) => {
     setName(e.target.value);
@@ -60,6 +60,7 @@ const AddTaskForm: React.FC = () => {
       const responseFromApi = await addTaskToApi(newTask);
       if (responseFromApi) {
         setTasks([...tasks, responseFromApi]);
+        setOpenedItemId(null);
         closeModal.closeAddTask();
       } else {
         alert('Произошла ошибка. Попробуйте позднее');

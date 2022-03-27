@@ -16,7 +16,7 @@ const AddCategoryForm: React.FC = () => {
   const [nameError, setNameError] = useState('Поле обязательно для заполнения');
 
   const { closeModal } = useContext(ModalContext);
-  const { categories, setCategories } = useContext(DataContext);
+  const { categories, setCategories, setOpenedItemId } = useContext(DataContext);
 
   const handleOnChangeInput = (e: any) => {
     setName(e.target.value);
@@ -45,6 +45,7 @@ const AddCategoryForm: React.FC = () => {
 
       addCategoryToApi(newCategory);
       setCategories([...categories, newCategory]);
+      setOpenedItemId(null);
       closeModal.closeAddCategory();
     } else {
       setNameIsDirty(true);
