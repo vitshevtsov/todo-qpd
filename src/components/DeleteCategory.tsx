@@ -18,14 +18,17 @@ const DeleteCategory = () => {
 
     // в forEach меняем задачи, в которых выбрана удаляемая категория, ставим categoryId:0
     tasks.forEach((item: any) => {
+      console.log(item.categoryId === openedItemId);
       if (item.categoryId === openedItemId) {
         const editedTask = {
           ...item,
           categoryId: 0,
         };
+        console.log(editedTask);
         editTaskAtApi(editedTask);
         setTasks(tasks.map((task: IListItem) => {
-          if (task.id === openedItemId) {
+          if (task.categoryId === openedItemId) {
+            console.log('here');
             return editedTask;
           }
           return task;

@@ -35,7 +35,8 @@ async function addCategoryToApi(data: IListItem) {
 async function editTaskAtApi(data: IListItem) {
   const url = 'http://localhost:8089/api/ToDoList/UpdateTask';
   try {
-    await axios.post(url, data);
+    const response = await axios.post(url, data);
+    console.log(response);
   } catch (error) {
     console.error('Ошибка:', error);
   }
