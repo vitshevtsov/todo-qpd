@@ -30,7 +30,7 @@ const Dropdown = ({ setValue, value, width }: IDropdownProps) => {
 
   // типизация события e: React.MouseEvent<HTMLLIElement> не работает, ругается на наличие innerHTML и id
   const onClickItemHandler = (e: any) => {
-    setValue({ name: e.target.innerHTML, id: +e.target.id }); /** категория рендерится в списке задач, только если type id - number */
+    setValue({ name: e.target.innerHTML, id: +e.target.id });
     setIsOpened(!isOpened);
   };
 
