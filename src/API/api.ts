@@ -23,7 +23,8 @@ async function addTaskToApi(data: object) {
 async function addCategoryToApi(data: object) {
   const url = 'http://localhost:8089/api/ToDoList/AddCategory';
   try {
-    await axios.post(url, data);
+    const response = await axios.post(url, data);
+    return response.data;
   } catch (error) {
     console.error('Ошибка:', error);
   }
@@ -48,7 +49,6 @@ async function editCategoryAtApi(data: object) {
   }
 }
 
-// todo обработка ошибок
 function deleteTaskFromApi(id: number) {
   try {
     axios.get(`http://localhost:8089/api/ToDoList/RemoveTask/${id}`);
@@ -57,7 +57,6 @@ function deleteTaskFromApi(id: number) {
   }
 }
 
-// todo обработка ошибок
 function deleteCategoryFromApi(id: number) {
   try {
     axios.get(`http://localhost:8089/api/ToDoList/RemoveCategory/${id}`);

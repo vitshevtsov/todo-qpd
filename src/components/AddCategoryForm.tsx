@@ -34,7 +34,7 @@ const AddCategoryForm: React.FC = () => {
     setDescription(e.target.value);
   };
 
-  const addNewCategory = () => {
+  const addNewCategory = async () => {
     if (name) {
       const newCategory = {
         id: 0,
@@ -42,10 +42,14 @@ const AddCategoryForm: React.FC = () => {
         description,
       };
 
-      addCategoryToApi(newCategory);
-      setCategories([...categories, newCategory]);
-      setOpenedItemId(null);
-      closeModal.closeAddCategory();
+      const responseFromApi = await addCategoryToApi(newCategory);
+      if (responseFromApi) {
+        setCategories([...categories, responseFromApi]);
+        setOpenedItemId(null);
+        closeModal.closeAddCategory();
+      } else {
+        alert('Произошла ошибка. Попробуйте позднее');
+      }
     } else {
       setNameIsDirty(true);
       setNameError('Поле обязательно для заполнения');
