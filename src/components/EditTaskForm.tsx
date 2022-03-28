@@ -1,7 +1,5 @@
-/* eslint-disable no-param-reassign */
 /* eslint-disable import/no-cycle */
 /* eslint-disable import/extensions */
-/* eslint-disable implicit-arrow-linebreak */
 import React, { useContext, useState } from 'react';
 import { editTaskAtApi } from '../API/api';
 import { DataContext, ModalContext } from '../context/context';
@@ -9,57 +7,70 @@ import ModalChangeDataWrapper from './modal/ModalChangeDataWrapper';
 import Dropdown from './UI/Dropdown';
 import NameInput from './UI/NameInput';
 import TextArea from './UI/TextArea';
+import IListItem from '../types/data';
 
 const EditTaskForm: React.FC = () => {
   const {
     tasks, setTasks, categories, openedItemId, setOpenedItemId,
   } = useContext(DataContext);
-  const taskToEdit = tasks.find((item: any) => item.id === openedItemId);
+  const taskToEdit = tasks.find((item: IListItem) => item.id === openedItemId);
 
   const initCategoryState = {
-    // todo проверить корректно ли выводится категория (мб заменить на arr.find)
-    name: (taskToEdit.categoryId) ? categories[taskToEdit.categoryId - 1].name : '',
+    name: (taskToEdit.categoryId) ? categories.find((item : IListItem) => taskToEdit.categoryId === item.id)?.name : '',
     id: taskToEdit.categoryId,
   };
-  // console.log(taskToEdit.categoryId);
-
-  // console.log(categories[taskToEdit.categoryId - 1].name);
 
   const [name, setName] = useState(taskToEdit.name);
+  const [nameIsDirty, setNameIsDirty] = useState(false);
+  const [nameError, setNameError] = useState('Поле обязательно для заполнения');
+
   const [category, setCategory] = useState(initCategoryState);
   const [description, setDescription] = useState(taskToEdit.description);
 
   const { closeModal } = useContext(ModalContext);
 
-  const handleOnChangeInput = (e: any) => {
+  const handleOnChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
+    if (e.target.value) {
+      setNameError('');
+    } else {
+      setNameError('Поле обязательно для заполнения');
+    }
   };
 
-  const handleOnChangeTextArea = (e: any) => {
+  const handleOnFocusInput = () => {
+    setNameIsDirty(true);
+  };
+
+  const handleOnChangeTextArea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setDescription(e.target.value);
   };
 
   const editTask = () => {
-    const editedTask = {
-      id: taskToEdit.id,
-      name,
-      description,
-      categoryId: category.id,
-    };
-    editTaskAtApi(editedTask);
-    // todo типизация коллбэка map
-    setTasks(tasks.map((item: { id: any; name?: any; description?: any; categoryId?: any; }) => {
-      if (item.id === openedItemId) {
-        return editedTask;
-      }
-      return item;
-    }));
-    setOpenedItemId(null);
-    closeModal.closeEditTask();
+    if (name) {
+      const editedTask = {
+        id: taskToEdit.id,
+        name,
+        description,
+        categoryId: category.id,
+      };
+
+      editTaskAtApi(editedTask);
+      setTasks(tasks.map((item: IListItem) => {
+        if (item.id === openedItemId) {
+          return editedTask;
+        }
+        return item;
+      }));
+      setOpenedItemId(null);
+      closeModal.closeEditTask();
+    } else {
+      setNameIsDirty(true);
+      setNameError('Поле обязательно для заполнения');
+    }
   };
 
   return (
-  // todo должен принимать id из функции обработчика клика
     <ModalChangeDataWrapper title="Редактирование задачи" primaryButtonText="Сохранить" primaryButtonClickHandler={editTask}>
       <div className="row">
         <NameInput
@@ -68,8 +79,11 @@ const EditTaskForm: React.FC = () => {
           label="Имя"
           maxLength={255}
           isRequired
+          isDirty={nameIsDirty}
+          error={nameError}
           value={name}
           onChangeHandler={handleOnChangeInput}
+          onFocusHandler={handleOnFocusInput}
         />
         <Dropdown width="364px" value={category.name} setValue={setCategory} />
       </div>

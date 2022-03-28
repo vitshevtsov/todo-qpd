@@ -1,12 +1,10 @@
-/* eslint-disable max-len */
-/* eslint-disable no-undef */
-/* eslint-disable no-unused-expressions */
 /* eslint-disable import/no-cycle */
 /* eslint-disable import/extensions */
 import React, { useContext } from 'react';
 import { deleteCategoryFromApi, editTaskAtApi } from '../API/api';
 import { DataContext, ModalContext } from '../context/context';
 import ModalConfirmActionWrapper from './modal/ModalConfirmActionWrapper';
+import IListItem from '../types/data';
 
 const DeleteCategory = () => {
   const {
@@ -16,8 +14,7 @@ const DeleteCategory = () => {
 
   const deleteCategory = () => {
     deleteCategoryFromApi(openedItemId);
-    // todo типизация коллбэка map
-    setCategories(categories.filter((item: { id: any; name?: any; description?: any;}) => item.id !== openedItemId));
+    setCategories(categories.filter((item: IListItem) => item.id !== openedItemId));
 
     // в forEach меняем задачи, в которых выбрана удаляемая категория, ставим categoryId:0
     tasks.forEach((item: any) => {
@@ -27,8 +24,7 @@ const DeleteCategory = () => {
           categoryId: 0,
         };
         editTaskAtApi(editedTask);
-        // todo типизация коллбэка map
-        setTasks(tasks.map((task: { id: any; name?: any; description?: any; categoryId?: any; }) => {
+        setTasks(tasks.map((task: IListItem) => {
           if (task.id === openedItemId) {
             return editedTask;
           }
@@ -42,7 +38,11 @@ const DeleteCategory = () => {
   };
 
   return (
-    <ModalConfirmActionWrapper title="Удаление категории" question={`Вы уверены, что хотите удалить категорию "${categories.find((item: any) => item.id === openedItemId).name}"?`} primaryButtonClickHandler={deleteCategory} />
+    <ModalConfirmActionWrapper
+      title="Удаление категории"
+      question={`Вы уверены, что хотите удалить категорию "${categories.find((item: IListItem) => item.id === openedItemId).name}"?`}
+      primaryButtonClickHandler={deleteCategory}
+    />
   );
 };
 

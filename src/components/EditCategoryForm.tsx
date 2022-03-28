@@ -6,23 +6,24 @@ import { DataContext, ModalContext } from '../context/context';
 import ModalChangeDataWrapper from './modal/ModalChangeDataWrapper';
 import NameInput from './UI/NameInput';
 import TextArea from './UI/TextArea';
+import IListItem from '../types/data';
 
 const EditCategoryForm: React.FC = () => {
   const {
     categories, setCategories, openedItemId, setOpenedItemId,
   } = useContext(DataContext);
-  const categoryToEdit = categories.find((item: any) => item.id === openedItemId);
+  const categoryToEdit = categories.find((item: IListItem) => item.id === openedItemId);
 
   const [name, setName] = useState(categoryToEdit.name);
   const [description, setDescription] = useState(categoryToEdit.description);
 
   const { closeModal } = useContext(ModalContext);
 
-  const handleOnChangeInput = (e: any) => {
+  const handleOnChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
   };
 
-  const handleOnChangeTextArea = (e: any) => {
+  const handleOnChangeTextArea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setDescription(e.target.value);
   };
 
@@ -33,8 +34,7 @@ const EditCategoryForm: React.FC = () => {
       description,
     };
     editCategoryAtApi(editedCategory);
-    // todo типизация коллбэка map
-    setCategories(categories.map((item: { id: any; name?: any; description?: any;}) => {
+    setCategories(categories.map((item: IListItem) => {
       if (item.id === openedItemId) {
         return editedCategory;
       }

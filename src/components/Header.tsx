@@ -1,6 +1,5 @@
 /* eslint-disable import/extensions */
-/* eslint-disable no-unused-vars */
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { DataContext, ModalContext } from '../context/context';
 import styles from './Header.module.css';
@@ -11,6 +10,7 @@ const Header: React.FC = () => {
   const isCategoriesPage = (location.pathname === '/categories');
   const { openModal } = useContext(ModalContext);
   const { setOpenedItemId } = useContext(DataContext);
+
   const onClickAddTaskButton = () => {
     if (isCategoriesPage) {
       setOpenedItemId(0);
