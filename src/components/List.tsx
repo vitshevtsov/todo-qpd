@@ -12,8 +12,8 @@ export default function List(props: IListProps) {
     <ListItem
       key={item.id}
       id={item.id}
-      title={item.name}
-      category={item.categoryId}
+      name={item.name}
+      categoryId={item.categoryId}
       description={item.description}
     />
   ));

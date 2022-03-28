@@ -16,11 +16,22 @@ const EditCategoryForm: React.FC = () => {
 
   const [name, setName] = useState(categoryToEdit.name);
   const [description, setDescription] = useState(categoryToEdit.description);
+  const [nameIsDirty, setNameIsDirty] = useState(false);
+  const [nameError, setNameError] = useState('Поле обязательно для заполнения');
 
   const { closeModal } = useContext(ModalContext);
 
   const handleOnChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
+    if (e.target.value) {
+      setNameError('');
+    } else {
+      setNameError('Поле обязательно для заполнения');
+    }
+  };
+
+  const handleOnFocusInput = () => {
+    setNameIsDirty(true);
   };
 
   const handleOnChangeTextArea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -28,20 +39,25 @@ const EditCategoryForm: React.FC = () => {
   };
 
   const editCategory = () => {
-    const editedCategory = {
-      id: categoryToEdit.id,
-      name,
-      description,
-    };
-    editCategoryAtApi(editedCategory);
-    setCategories(categories.map((item: IListItem) => {
-      if (item.id === openedItemId) {
-        return editedCategory;
-      }
-      return item;
-    }));
-    setOpenedItemId(null);
-    closeModal.closeEditCategory();
+    if (name) {
+      const editedCategory = {
+        id: categoryToEdit.id,
+        name,
+        description,
+      };
+      editCategoryAtApi(editedCategory);
+      setCategories(categories.map((item: IListItem) => {
+        if (item.id === openedItemId) {
+          return editedCategory;
+        }
+        return item;
+      }));
+      setOpenedItemId(null);
+      closeModal.closeEditCategory();
+    } else {
+      setNameIsDirty(true);
+      setNameError('Поле обязательно для заполнения');
+    }
   };
 
   return (
@@ -53,8 +69,11 @@ const EditCategoryForm: React.FC = () => {
           label="Имя"
           maxLength={255}
           isRequired
+          isDirty={nameIsDirty}
+          error={nameError}
           value={name}
           onChangeHandler={handleOnChangeInput}
+          onFocusHandler={handleOnFocusInput}
         />
       </div>
       <div className=" row">
