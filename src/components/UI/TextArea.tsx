@@ -1,5 +1,5 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/require-default-props */
-/* eslint-disable no-lone-blocks */
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import styles from './TextArea.module.css';
@@ -8,7 +8,7 @@ interface ITextAreaProps {
   maxLength?: number;
   placeholder: string;
   value: string;
-  onChangeHandler: any;
+  onChangeHandler: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   label: string;
 }
 

@@ -25,7 +25,7 @@ const AddTaskForm: React.FC = () => {
   const { closeModal } = useContext(ModalContext);
   const { tasks, setTasks, setOpenedItemId } = useContext(DataContext);
 
-  const handleOnChangeInput = (e: any) => {
+  const handleOnChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
     if (e.target.value) {
       setNameError('');
@@ -34,11 +34,11 @@ const AddTaskForm: React.FC = () => {
     }
   };
 
-  const handleOnFocusInput = (e: any) => {
+  const handleOnFocusInput = () => {
     setNameIsDirty(true);
   };
 
-  const handleOnChangeTextArea = (e: any) => {
+  const handleOnChangeTextArea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setDescription(e.target.value);
   };
 

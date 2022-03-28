@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable import/no-cycle */
 /* eslint-disable import/extensions */
 import React, { useContext, useState } from 'react';
@@ -18,7 +17,7 @@ const AddCategoryForm: React.FC = () => {
   const { closeModal } = useContext(ModalContext);
   const { categories, setCategories, setOpenedItemId } = useContext(DataContext);
 
-  const handleOnChangeInput = (e: any) => {
+  const handleOnChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
     if (e.target.value) {
       setNameError('');
@@ -27,11 +26,11 @@ const AddCategoryForm: React.FC = () => {
     }
   };
 
-  const handleOnFocusInput = (e: any) => {
+  const handleOnFocusInput = () => {
     setNameIsDirty(true);
   };
 
-  const handleOnChangeTextArea = (e: any) => {
+  const handleOnChangeTextArea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setDescription(e.target.value);
   };
 

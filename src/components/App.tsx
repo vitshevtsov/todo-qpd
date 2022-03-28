@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import React, { useContext } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Header from './Header';

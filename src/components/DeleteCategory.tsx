@@ -26,8 +26,6 @@ const DeleteCategory = () => {
           ...item,
           categoryId: 0,
         };
-        console.log(editedTask);
-        // console.log({ ...editedTask });
         editTaskAtApi(editedTask);
         // todo типизация коллбэка map
         setTasks(tasks.map((task: { id: any; name?: any; description?: any; categoryId?: any; }) => {
@@ -44,7 +42,6 @@ const DeleteCategory = () => {
   };
 
   return (
-    // todo в вопрос добавлять название категории
     <ModalConfirmActionWrapper title="Удаление категории" question={`Вы уверены, что хотите удалить категорию "${categories.find((item: any) => item.id === openedItemId).name}"?`} primaryButtonClickHandler={deleteCategory} />
   );
 };

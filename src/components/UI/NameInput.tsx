@@ -1,25 +1,26 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/require-default-props */
 /* eslint-disable no-lone-blocks */
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import styles from './NameInput.module.css';
 
-interface INameInputprops {
+interface INameInputProps {
   error?: string;
   width: string;
   placeholder: string;
   maxLength?: number;
   readonly?: boolean;
-  onClickHandler?: any;
-  onChangeHandler?: any;
-  onFocusHandler?: any;
+  onClickHandler?: (e: React.MouseEvent<HTMLInputElement>) => void;
+  onChangeHandler?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onFocusHandler?: any; // не могу прописать тип из-за условной отрисовки (стр. 40 ниже)
   value: string;
   isRequired?: boolean;
   label: string;
   isDirty?: boolean;
 }
 
-export default function NameInput(props: INameInputprops) {
+export default function NameInput(props: INameInputProps) {
   const errorDiv = <div className={styles.errorDiv}>{props.error}</div>;
   const requiredSign = <div className={styles.requiredSign}> *</div>;
 
