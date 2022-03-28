@@ -9,11 +9,20 @@ import NameInput from './UI/NameInput';
 import TextArea from './UI/TextArea';
 import IListItem from '../types/data';
 
-interface ICategoryProps {
+interface ICategoryState {
   name: string;
   id: number;
 }
 
+/**
+ * Компонент, конфигурирующий модальное окно редактирования задачи
+ *
+ * Хранит состояние полей имени, описания, категории (интерфейс ICategoryState), boolean isDirty для отслеживания валидации,
+ * nameError для вывода ошибок валидации
+ *
+ * возвращает обертку для модальных окон ModalChangeDataWrapper, содержащую пропсы
+ * и UI-компоненты, необходимые для редактирования задачи
+ */
 const EditTaskForm: React.FC = () => {
   const {
     tasks, setTasks, categories, openedItemId, setOpenedItemId,
@@ -29,7 +38,7 @@ const EditTaskForm: React.FC = () => {
   const [nameIsDirty, setNameIsDirty] = useState(false);
   const [nameError, setNameError] = useState('Поле обязательно для заполнения');
 
-  const [category, setCategory] = useState<ICategoryProps>(initCategoryState as ICategoryProps);
+  const [category, setCategory] = useState<ICategoryState>(initCategoryState as ICategoryState);
   const [description, setDescription] = useState(taskToEdit!.description);
 
   const { closeModal } = useContext(ModalContext);
@@ -51,6 +60,10 @@ const EditTaskForm: React.FC = () => {
     setDescription(e.target.value);
   };
 
+  /**
+ * Функция при условии пройденной валидации редактирует задачу в api,
+ * и сохраняет изменения в state (не дожидаясь ответа сервера, тк id не меняется)
+ */
   const editTask = () => {
     if (name) {
       const editedTask = {

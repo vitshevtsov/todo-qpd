@@ -1,5 +1,4 @@
 /* eslint-disable no-unused-vars */
-/* eslint-disable react/require-default-props */
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import styles from './ImgButton.module.css';
@@ -7,7 +6,7 @@ import styles from './ImgButton.module.css';
 interface IImgButtonProps {
   onClickHandler: (e: React.MouseEvent<HTMLButtonElement>) => void;
   src: string;
-  alt?: string;
+  alt: string;
 }
 
 export default function ImgButton(props: IImgButtonProps) {

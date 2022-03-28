@@ -8,6 +8,15 @@ import ModalChangeDataWrapper from './modal/ModalChangeDataWrapper';
 import NameInput from './UI/NameInput';
 import TextArea from './UI/TextArea';
 
+/**
+ * Компонент, конфигурирующий модальное окно добавления новой категории
+ *
+ * Хранит состояние полей имени, описания, boolean isDirty для отслеживания валидации,
+ * nameError для вывода ошибок валидации
+ *
+ * возвращает обертку для модальных окон ModalChangeDataWrapper, содержащую пропсы
+ * и UI-компоненты, необходимые для добавления новой категории
+ */
 const AddCategoryForm: React.FC = () => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
@@ -34,6 +43,10 @@ const AddCategoryForm: React.FC = () => {
     setDescription(e.target.value);
   };
 
+  /**
+ * Функция при условии пройденной валидации добавляет новую категорию в api,
+ * полученный с сервера ответ сохраняет в state
+ */
   const addNewCategory = async () => {
     if (name) {
       const newCategory = {

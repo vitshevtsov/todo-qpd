@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/require-default-props */
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
@@ -7,7 +8,7 @@ interface ITextButtonProps {
   width: string;
   isPrimary?: boolean;
   text: string;
-  onClickHandler?: () => void;
+  onClickHandler?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 export default function TextButton({

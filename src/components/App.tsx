@@ -10,7 +10,7 @@ import { DataContext } from '../context/context';
 
 const App: React.FC = () => {
   const { openedItemId } = useContext(DataContext);
-  const appClassNames = (openedItemId !== null) // при открытом модальном окне openedItemId = 0 (для новых задач) или id (редактирование / удаление)
+  const appClassNames = (openedItemId !== null) // при открытом модальном окне openedItemId = 0 (для новых задач) или = id (редактирование / удаление)
     ? ['app', 'appWithOpenModal'].join(' ')
     : 'app';
 

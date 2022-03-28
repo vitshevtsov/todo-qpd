@@ -6,6 +6,11 @@ import { DataContext, ModalContext } from '../context/context';
 import ModalConfirmActionWrapper from './modal/ModalConfirmActionWrapper';
 import IListItem from '../types/data';
 
+/**
+ * Компонент, конфигурирующий модальное окно удаления категории
+ * возвращает обертку для модальных окон ModalConfirmActionWrapper, содержащую пропсы,
+ * необходимые для удаления категории
+ */
 const DeleteCategory: React.FC = () => {
   const {
     tasks, setTasks, categories, setCategories, openedItemId, setOpenedItemId,
@@ -18,19 +23,16 @@ const DeleteCategory: React.FC = () => {
     }
     setCategories(categories.filter((item: IListItem) => item.id !== openedItemId));
 
-    // в forEach меняем задачи, в которых выбрана удаляемая категория, ставим categoryId:0
+    // в forEach меняем задачи, в которых выбрана удаляемая категория, ставим им categoryId:0, затем меняем в state с помощью map
     tasks.forEach((item: any) => {
-      console.log(item.categoryId === openedItemId);
       if (item.categoryId === openedItemId) {
         const editedTask = {
           ...item,
           categoryId: 0,
         };
-        console.log(editedTask);
         editTaskAtApi(editedTask);
         setTasks(tasks.map((task: IListItem) => {
           if (task.categoryId === openedItemId) {
-            console.log('here');
             return editedTask;
           }
           return task;

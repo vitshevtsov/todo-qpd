@@ -54,7 +54,11 @@ const ModalChangeDataWrapper = ({
       <div className={styles.background}>
         <form className={styles.wrapperContent}>
           <div className={styles.closeIconWrapper}>
-            <ImgButton src={closeIcon} onClickHandler={onClickCloseButton} />
+            <ImgButton
+              src={closeIcon}
+              alt="close icon"
+              onClickHandler={onClickCloseButton}
+            />
           </div>
           <h1 className={styles.title}>{title}</h1>
 

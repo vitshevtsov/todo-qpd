@@ -9,12 +9,20 @@ import EditCategoryForm from '../../components/EditCategoryForm';
 import DeleteTaskForm from '../../components/DeleteTaskForm';
 import DeleteCategoryForm from '../../components/DeleteCategoryForm';
 import { ModalContext } from './ModalContext';
-// компоненты, находящиеся в Provider, смогут пользоваться методами контекста openModal, closeModal
 
 interface IModalProviderProps {
   children: React.ReactChild | React.ReactNode;
 }
 
+/**
+ * Компонент, возвращающий провайдер контекста модалок. Компоненты, находящиеся в Provider (подписчики),
+ *  смогут пользоваться данными контекста. Хранит состояние всех видов модалок (boolean).
+ *
+ * В контексте хранятся объекты openModal, closeModal, содержащие методы для открытия / закрытия модалок
+ * (в соответствии с названиями методов)
+ *
+ * возвращает провайдер с переданным значением и слотом для children
+ */
 const ModalProvider = ({ children }: IModalProviderProps) => {
   const [addTaskIsOpened, setAddTaskIsOpened] = useState(false);
   const [addCategoryIsOpened, setAddCategoryIsOpened] = useState(false);

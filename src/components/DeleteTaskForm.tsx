@@ -6,11 +6,17 @@ import { DataContext, ModalContext } from '../context/context';
 import ModalConfirmActionWrapper from './modal/ModalConfirmActionWrapper';
 import IListItem from '../types/data';
 
+/**
+ * Компонент, конфигурирующий модальное окно удаления задачи
+ * возвращает обертку для модальных окон ModalConfirmActionWrapper, содержащую пропсы,
+ * необходимые для удаления задачи
+ */
 const DeleteTask: React.FC = () => {
   const {
     tasks, setTasks, openedItemId, setOpenedItemId,
   } = useContext(DataContext);
   const { closeModal } = useContext(ModalContext);
+
   const deleteTask = () => {
     if (openedItemId !== null) {
       deleteTaskFromApi(openedItemId);

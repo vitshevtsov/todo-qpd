@@ -8,6 +8,15 @@ import NameInput from './UI/NameInput';
 import TextArea from './UI/TextArea';
 import IListItem from '../types/data';
 
+/**
+ * Компонент, конфигурирующий модальное окно редактирования категории
+ *
+ * Хранит состояние полей имени, описания, boolean isDirty для отслеживания валидации,
+ * nameError для вывода ошибок валидации
+ *
+ * возвращает обертку для модальных окон ModalChangeDataWrapper, содержащую пропсы
+ * и UI-компоненты, необходимые для редактирования категории
+ */
 const EditCategoryForm: React.FC = () => {
   const {
     categories, setCategories, openedItemId, setOpenedItemId,
@@ -38,6 +47,10 @@ const EditCategoryForm: React.FC = () => {
     setDescription(e.target.value);
   };
 
+  /**
+ * Функция при условии пройденной валидации редактирует категорию в api,
+ * и сохраняет изменения в state (не дожидаясь ответа сервера, тк id не меняется)
+ */
   const editCategory = () => {
     if (name) {
       const editedCategory = {

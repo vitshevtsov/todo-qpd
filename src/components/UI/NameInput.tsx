@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/require-default-props */
-/* eslint-disable no-lone-blocks */
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import styles from './NameInput.module.css';

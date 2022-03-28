@@ -60,8 +60,16 @@ export default function ListItem({
         <div className={styles.description}>{description}</div>
       </div>
       <div className={styles.itemBtns}>
-        <ImgButton src={editIcon} onClickHandler={() => onClickEditButton(id)} />
-        <ImgButton src={deleteIcon} onClickHandler={() => onClickDeleteButton(id)} />
+        <ImgButton
+          src={editIcon}
+          alt="edit icon"
+          onClickHandler={() => onClickEditButton(id)}
+        />
+        <ImgButton
+          src={deleteIcon}
+          alt="delete icon"
+          onClickHandler={() => onClickDeleteButton(id)}
+        />
       </div>
     </div>
   );

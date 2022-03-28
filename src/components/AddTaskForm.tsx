@@ -10,6 +10,15 @@ import NameInput from './UI/NameInput';
 import TextArea from './UI/TextArea';
 import { addTaskToApi } from '../API/api';
 
+/**
+ * Компонент, конфигурирующий модальное окно добавления новой задачи
+ *
+ * Хранит состояние полей имени, описания, категории, boolean isDirty для отслеживания валидации,
+ * nameError для вывода ошибок валидации
+ *
+ * возвращает обертку для модальных окон ModalChangeDataWrapper, содержащую пропсы
+ * и UI-компоненты, необходимые для добавления новой задачи
+ */
 const AddTaskForm: React.FC = () => {
   const initCategoryState = {
     name: '',
@@ -42,6 +51,10 @@ const AddTaskForm: React.FC = () => {
     setDescription(e.target.value);
   };
 
+  /**
+ * Функция при условии пройденной валидации добавляет новую задачу в api,
+ * полученный с сервера ответ сохраняет в state
+ */
   const addNewTask = async () => {
     if (name) {
       const newTask = (category.id)
