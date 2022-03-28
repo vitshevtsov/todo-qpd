@@ -6,7 +6,7 @@ import { DataContext, ModalContext } from '../context/context';
 import ModalConfirmActionWrapper from './modal/ModalConfirmActionWrapper';
 import IListItem from '../types/data';
 
-const DeleteTask = () => {
+const DeleteTask: React.FC = () => {
   const {
     tasks, setTasks, openedItemId, setOpenedItemId,
   } = useContext(DataContext);

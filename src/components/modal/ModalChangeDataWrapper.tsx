@@ -2,7 +2,7 @@
 import React, { useContext, useEffect, useMemo } from 'react';
 import { createPortal } from 'react-dom';
 import { DataContext, ModalContext } from '../../context/context';
-import ImgButton from '../ImgButton';
+import ImgButton from '../UI/ImgButton';
 import TextButton from '../UI/TextButton';
 import styles from './ModalChangeDataWrapper.module.css';
 

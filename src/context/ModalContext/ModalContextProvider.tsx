@@ -6,8 +6,8 @@ import AddTaskForm from '../../components/AddTaskForm';
 import AddCategoryForm from '../../components/AddCategoryForm';
 import EditTaskForm from '../../components/EditTaskForm';
 import EditCategoryForm from '../../components/EditCategoryForm';
-import DeleteTask from '../../components/DeleteTask';
-import DeleteCategory from '../../components/DeleteCategory';
+import DeleteTaskForm from '../../components/DeleteTaskForm';
+import DeleteCategoryForm from '../../components/DeleteCategoryForm';
 import { ModalContext } from './ModalContext';
 // компоненты, находящиеся в Provider, смогут пользоваться методами контекста openModal, closeModal
 
@@ -53,8 +53,8 @@ const ModalProvider = ({ children }: IModalProviderProps) => {
       {addCategoryIsOpened && <AddCategoryForm />}
       {editTaskIsOpened && <EditTaskForm />}
       {editCategoryIsOpened && <EditCategoryForm />}
-      {deleteTaskIsOpened && <DeleteTask />}
-      {deleteCategoryIsOpened && <DeleteCategory />}
+      {deleteTaskIsOpened && <DeleteTaskForm />}
+      {deleteCategoryIsOpened && <DeleteCategoryForm />}
 
       {children}
     </ModalContext.Provider>

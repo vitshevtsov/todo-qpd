@@ -1,16 +1,13 @@
-/* eslint-disable max-len */
-/* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
-/* eslint-disable import/extensions */
-/* eslint-disable react/prop-types */
-/* eslint-disable react/jsx-no-constructed-context-values */
-/* eslint-disable react/jsx-filename-extension */
 import React, { useState, useEffect } from 'react';
 import { getAllData } from '../../API/api';
 import { DataContext } from './DataContext';
 // компоненты, находящиеся в Provider, смогут пользоваться данными контекста (массивы task, categories)
 
-const DataProvider = ({ children }) => {
+interface IDataProviderProps {
+  children: React.ReactChild | React.ReactNode;
+}
+
+const DataProvider = ({ children }: IDataProviderProps) => {
   // состояние массивов задач и категорий
   const [tasks, setTasks] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -20,10 +17,17 @@ const DataProvider = ({ children }) => {
   const [openedItemId, setOpenedItemId] = useState(null);
 
   // получаем списки задач и категорий с api и сохраняем в состояние
-  useEffect(async () => {
-    const [fetchedTasks, fetchedCategories] = await getAllData();
-    setTasks(fetchedTasks);
-    setCategories(fetchedCategories);
+  useEffect(() => {
+    const fetchData = async () => {
+      const fetchedData: any[] | undefined = await getAllData();
+      if (fetchedData) {
+        setTasks(fetchedData[0]);
+        setCategories(fetchedData[1]);
+      } else {
+        console.error('Please repeat fetching data');
+      }
+    };
+    fetchData();
   }, []);
 
   const valueDataProvider = {
