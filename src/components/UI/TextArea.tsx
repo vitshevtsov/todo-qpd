@@ -1,9 +1,18 @@
+/* eslint-disable react/require-default-props */
 /* eslint-disable no-lone-blocks */
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import styles from './TextArea.module.css';
 
-export default function TextArea(props: any) {
+interface ITextAreaProps {
+  maxLength?: number;
+  placeholder: string;
+  value: string;
+  onChangeHandler: any;
+  label: string;
+}
+
+export default function TextArea(props: ITextAreaProps) {
   return (
     <div className={styles.inputWrapper}>
       <textarea
@@ -14,14 +23,11 @@ export default function TextArea(props: any) {
         value={props.value}
         onChange={props.onChangeHandler}
       />
-      { /* eslint-disable-next-line jsx-a11y/label-has-associated-control */ }
       <label
         htmlFor="description"
         className={styles.label}
       >
-
-        {props.isRequired ? `${props.label}*` : props.label}
-
+        {props.label}
       </label>
     </div>
   );

@@ -4,7 +4,9 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable no-lone-blocks */
-import React, { useContext, useState } from 'react';
+import React, {
+  Dispatch, SetStateAction, useContext, useState,
+} from 'react';
 import NameInput from './NameInput';
 import styles from './Dropdown.module.css';
 import { DataContext } from '../../context/DataContext/DataContext';
@@ -12,7 +14,13 @@ import { DataContext } from '../../context/DataContext/DataContext';
 const dropdownArrowIcon = require('../../assets/iconDropdownArrow.png');
 const dropdownClearIcon = require('../../assets/iconClose.png');
 
-const Dropdown = (props: any) => {
+interface IDropdownProps {
+  setValue: Dispatch<SetStateAction<{ name: string; id: number; }>>;
+  value: string;
+  width: string;
+}
+
+const Dropdown = ({ setValue, value, width }: IDropdownProps) => {
   const { categories } = useContext(DataContext);
   const [isOpened, setIsOpened] = useState(false);
 
@@ -20,37 +28,36 @@ const Dropdown = (props: any) => {
     setIsOpened(!isOpened);
   };
 
+  // todo типизация события
   const onClickItemHandler = (e: any) => {
-    // todo объект в переменную
-    props.setValue({ name: e.target.innerHTML, id: +e.target.id }); /** категория рендерится в списке задач, только если type id - number */
+    setValue({ name: e.target.innerHTML, id: +e.target.id }); /** категория рендерится в списке задач, только если type id - number */
     setIsOpened(!isOpened);
   };
 
   const clearValueHandler = () => {
-    // todo объект в переменную
-    props.setValue({ name: '', id: 0 });
+    setValue({ name: '', id: 0 });
     setIsOpened(false);
   };
 
   const dropdownItems = (
     <ul className={styles.dropdownItems}>
-      {categories.map((item: any) => <li key={item.id} id={item.id} onClick={onClickItemHandler}>{item.name}</li>)}
+      {categories.map((item: {id: string | undefined, name: string}) => <li key={item.id} id={item.id} onClick={onClickItemHandler}>{item.name}</li>)}
     </ul>
   );
 
-  const dropdownIcon = props.value
+  const dropdownIcon = value
     ? <img className={styles.closeIcon} src={dropdownClearIcon} alt="dropdown clear icon" onClick={clearValueHandler} />
     : <img className={styles.arrowIcon} src={dropdownArrowIcon} alt="dropdown arrow icon" />;
 
   return (
     <div className={styles.dropdownWrapper}>
       <NameInput
-        width={props.width}
+        width={width}
         placeholder="Выберите категорию"
         label="Категория"
         readonly
         onClickHandler={toggleItems}
-        value={props.value}
+        value={value}
       />
       {dropdownIcon}
       <div className="dropdownToggle" />

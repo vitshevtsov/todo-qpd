@@ -1,6 +1,5 @@
 .inputWrapper {
     position: relative;
-    /* width: 364px; */
     height: 46px;
 }
 
@@ -24,6 +23,7 @@
     position: absolute;
     top: -10px;
     left: 12px;
+    display: flex;
     font-size: 18px;
     line-height: 20px;
     color: var(--backgroundDark);
@@ -35,11 +35,6 @@
     color: #EC1D1D;
 }
 
-/* todo: */
-/* .labelRequiredSign {
+.requiredSign {
     color: #EC1D1D;
 }
-
-.label span {
-    color: #EC1D1D;
-} */

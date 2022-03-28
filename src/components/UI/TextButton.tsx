@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable react/require-default-props */
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';

@@ -12,12 +12,10 @@
     border-radius: 4px;
     background-color: transparent;
     appearance: none;
-    /* -webkit-appearance: none; */
     font-family: inherit;
     font-weight: inherit;
     font-style: inherit;
     resize: none;
-    /* todo кастомный скролл */
 }
 
 .textArea:focus {
