@@ -6,15 +6,20 @@ import ImgButton from '../UI/ImgButton';
 import TextButton from '../UI/TextButton';
 import styles from './ModalConfirmActionWrapper.module.css';
 
+interface IConfirmActionWrapper {
+  title: string;
+  question: string;
+  primaryButtonClickHandler: () => void;
+}
+
 const closeIcon = require('../../assets/iconClose.png');
 
 const modalRootEl = document.querySelector('#modal');
-interface IConfirmActionWrapper {
-    title: string;
-    question: string;
-    primaryButtonClickHandler: () => void;
-}
 
+/**
+ * Компонент-обертка для модальных окон, при монтировании создает портал
+ *  в div #modal вне app, при размонтировании - удаляет.
+ */
 const ModalConfirmAction = ({ title, question, primaryButtonClickHandler }: IConfirmActionWrapper) => {
   const el: HTMLDivElement = useMemo(() => document.createElement('div'), []);
   useEffect(() => {
@@ -23,7 +28,7 @@ const ModalConfirmAction = ({ title, question, primaryButtonClickHandler }: ICon
     return () => {
       modalRootEl!.removeChild(el);
     };
-  });
+  }, []);
 
   const { closeModal } = useContext(ModalContext);
   const { setOpenedItemId } = useContext(DataContext);

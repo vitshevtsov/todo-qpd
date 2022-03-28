@@ -6,16 +6,21 @@ import ImgButton from '../UI/ImgButton';
 import TextButton from '../UI/TextButton';
 import styles from './ModalChangeDataWrapper.module.css';
 
+interface IWrapper {
+  title: string;
+  children?: React.ReactChild | React.ReactNode;
+  primaryButtonText: string;
+  primaryButtonClickHandler: () => void;
+}
+
 const closeIcon = require('../../assets/iconClose.png');
 
 const modalRootEl = document.querySelector('#modal');
-interface IWrapper {
-    title: string;
-    children?: React.ReactChild | React.ReactNode;
-    primaryButtonText: string;
-    primaryButtonClickHandler: () => void;
-}
 
+/**
+ * Компонент-обертка для модальных окон, при монтировании создает портал
+ *  в div #modal вне app, при размонтировании - удаляет.
+ */
 const ModalChangeDataWrapper = ({
   title, children, primaryButtonText, primaryButtonClickHandler,
 }: IWrapper) => {

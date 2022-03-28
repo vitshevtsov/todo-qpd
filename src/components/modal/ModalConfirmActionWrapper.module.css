@@ -17,7 +17,7 @@
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    position: relative; /* для кнопки закрытия */
+    position: relative;
     padding: 24px;
     background-color: var(--background);
     box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.5);

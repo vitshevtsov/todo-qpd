@@ -1,9 +1,5 @@
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable max-len */
-/* eslint-disable import/no-named-as-default */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable no-lone-blocks */
 import React, {
   Dispatch, SetStateAction, useContext, useState,
 } from 'react';
@@ -12,14 +8,14 @@ import styles from './Dropdown.module.css';
 import { DataContext } from '../../context/DataContext/DataContext';
 import IListItem from '../../types/data';
 
-const dropdownArrowIcon = require('../../assets/iconDropdownArrow.png');
-const dropdownClearIcon = require('../../assets/iconClose.png');
-
 interface IDropdownProps {
   setValue: Dispatch<SetStateAction<{ name: string; id: number; }>>;
   value: string;
   width: string;
 }
+
+const dropdownArrowIcon = require('../../assets/iconDropdownArrow.png');
+const dropdownClearIcon = require('../../assets/iconClose.png');
 
 const Dropdown = ({ setValue, value, width }: IDropdownProps) => {
   const { categories } = useContext(DataContext);
@@ -29,9 +25,8 @@ const Dropdown = ({ setValue, value, width }: IDropdownProps) => {
     setIsOpened(!isOpened);
   };
 
-  // типизация события e: React.MouseEvent<HTMLLIElement> не работает, ругается на наличие innerHTML и id
-  const onClickItemHandler = (e: any) => {
-    setValue({ name: e.target.innerHTML, id: +e.target.id });
+  const onClickItemHandler = (e: React.MouseEvent<HTMLLIElement>) => {
+    setValue({ name: e.currentTarget.innerHTML, id: +e.currentTarget.id });
     setIsOpened(!isOpened);
   };
 
@@ -66,6 +61,5 @@ const Dropdown = ({ setValue, value, width }: IDropdownProps) => {
     </div>
   );
 };
-// todo click outside
 
 export default Dropdown;

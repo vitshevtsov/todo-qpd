@@ -1,6 +1,10 @@
 import axios from 'axios';
 import IListItem from '../types/data';
 
+/**
+ * Функция получения с бэка массивов задач и категорий.
+ * Возвращает массив, содержащий полученные массивы задач / категорий
+ */
 async function getAllData() {
   try {
     const responseTasks = await axios.get('http://localhost:8089/api/ToDoList/GetTasks');
@@ -11,6 +15,11 @@ async function getAllData() {
   }
 }
 
+/**
+ * Функция добавления новой задачи в БД.
+ * Возвращает ответ сервера, содержащий инфо о новой задаче (в т.ч. id),
+ * результат обрабатывается в месте вызова (сетится в состояние)
+ */
 async function addTaskToApi(data: IListItem) {
   const url = 'http://localhost:8089/api/ToDoList/AddTask';
   try {
@@ -21,6 +30,11 @@ async function addTaskToApi(data: IListItem) {
   }
 }
 
+/**
+ * Функция добавления новой категории в БД.
+ * Возвращает ответ сервера, содержащий инфо о новой категории (в т.ч. id),
+ * результат обрабатывается в месте вызова (сетится в состояние)
+ */
 async function addCategoryToApi(data: IListItem) {
   const url = 'http://localhost:8089/api/ToDoList/AddCategory';
   try {
@@ -31,6 +45,10 @@ async function addCategoryToApi(data: IListItem) {
   }
 }
 
+/**
+ * Функция редактирования задачи в БД.
+ * Отправляет post запрос с измененными данными, ничего не возвращает
+ */
 // todo ошибка на бэке - не сохраняется измененная категория
 async function editTaskAtApi(data: IListItem) {
   const url = 'http://localhost:8089/api/ToDoList/UpdateTask';
@@ -42,6 +60,10 @@ async function editTaskAtApi(data: IListItem) {
   }
 }
 
+/**
+ * Функция редактирования категории в БД.
+ * Отправляет post запрос с измененными данными, ничего не возвращает
+ */
 async function editCategoryAtApi(data: IListItem) {
   const url = 'http://localhost:8089/api/ToDoList/UpdateCategory';
   try {
@@ -51,6 +73,10 @@ async function editCategoryAtApi(data: IListItem) {
   }
 }
 
+/**
+ * Функция удаления задачи из БД.
+ * Отправляет get запрос с id удаляемой задачи, ничего не возвращает
+ */
 function deleteTaskFromApi(id: number) {
   try {
     axios.get(`http://localhost:8089/api/ToDoList/RemoveTask/${id}`);
@@ -59,6 +85,10 @@ function deleteTaskFromApi(id: number) {
   }
 }
 
+/**
+ * Функция удаления категории из БД.
+ * Отправляет get запрос с id удаляемой категории, ничего не возвращает
+ */
 function deleteCategoryFromApi(id: number) {
   try {
     axios.get(`http://localhost:8089/api/ToDoList/RemoveCategory/${id}`);
@@ -66,6 +96,7 @@ function deleteCategoryFromApi(id: number) {
     console.error('Ошибка:', error);
   }
 }
+
 export {
   getAllData, addTaskToApi, addCategoryToApi, editTaskAtApi,
   editCategoryAtApi, deleteTaskFromApi, deleteCategoryFromApi,
