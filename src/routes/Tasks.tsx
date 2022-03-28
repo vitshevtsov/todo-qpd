@@ -1,11 +1,9 @@
 import React, { useContext } from 'react';
 import List from '../components/List';
 import { DataContext } from '../context/context';
-// import IListItem from '../types/data';
 
 const Tasks: React.FC = () => {
   const { tasks } = useContext(DataContext);
-  // todo вернуть типизацию по IListItem
 
   return (
     <main>

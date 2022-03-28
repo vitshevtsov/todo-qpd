@@ -36,7 +36,6 @@ const DataProvider = ({ children }) => {
   };
 
   return (
-    //   todo мб лоадер
     <DataContext.Provider value={valueDataProvider}>
       {children}
     </DataContext.Provider>
