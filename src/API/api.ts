@@ -1,4 +1,5 @@
 import axios from 'axios';
+import IListItem from '../types/data';
 
 async function getAllData() {
   try {
@@ -10,7 +11,7 @@ async function getAllData() {
   }
 }
 
-async function addTaskToApi(data: object) {
+async function addTaskToApi(data: IListItem) {
   const url = 'http://localhost:8089/api/ToDoList/AddTask';
   try {
     const response = await axios.post(url, data);
@@ -20,7 +21,7 @@ async function addTaskToApi(data: object) {
   }
 }
 
-async function addCategoryToApi(data: object) {
+async function addCategoryToApi(data: IListItem) {
   const url = 'http://localhost:8089/api/ToDoList/AddCategory';
   try {
     const response = await axios.post(url, data);
@@ -31,7 +32,7 @@ async function addCategoryToApi(data: object) {
 }
 
 // todo ошибка на бэке - не сохраняется измененная категория
-async function editTaskAtApi(data: object) {
+async function editTaskAtApi(data: IListItem) {
   const url = 'http://localhost:8089/api/ToDoList/UpdateTask';
   try {
     await axios.post(url, data);
@@ -40,7 +41,7 @@ async function editTaskAtApi(data: object) {
   }
 }
 
-async function editCategoryAtApi(data: object) {
+async function editCategoryAtApi(data: IListItem) {
   const url = 'http://localhost:8089/api/ToDoList/UpdateCategory';
   try {
     await axios.post(url, data);
