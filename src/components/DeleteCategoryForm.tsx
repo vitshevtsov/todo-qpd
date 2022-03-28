@@ -13,7 +13,9 @@ const DeleteCategory: React.FC = () => {
   const { closeModal } = useContext(ModalContext);
 
   const deleteCategory = () => {
-    deleteCategoryFromApi(openedItemId);
+    if (openedItemId !== null) {
+      deleteCategoryFromApi(openedItemId);
+    }
     setCategories(categories.filter((item: IListItem) => item.id !== openedItemId));
 
     // в forEach меняем задачи, в которых выбрана удаляемая категория, ставим categoryId:0
@@ -43,7 +45,7 @@ const DeleteCategory: React.FC = () => {
   return (
     <ModalConfirmActionWrapper
       title="Удаление категории"
-      question={`Вы уверены, что хотите удалить категорию "${categories.find((item: IListItem) => item.id === openedItemId).name}"?`}
+      question={`Вы уверены, что хотите удалить категорию "${categories.find((item: IListItem) => item.id === openedItemId)!.name}"?`}
       primaryButtonClickHandler={deleteCategory}
     />
   );

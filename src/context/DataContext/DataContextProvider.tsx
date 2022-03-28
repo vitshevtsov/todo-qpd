@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getAllData } from '../../API/api';
 import { DataContext } from './DataContext';
 // компоненты, находящиеся в Provider, смогут пользоваться данными контекста (массивы task, categories)
+import IListItem from '../../types/data';
 
 interface IDataProviderProps {
   children: React.ReactChild | React.ReactNode;
@@ -9,12 +10,12 @@ interface IDataProviderProps {
 
 const DataProvider = ({ children }: IDataProviderProps) => {
   // состояние массивов задач и категорий
-  const [tasks, setTasks] = useState([]);
-  const [categories, setCategories] = useState([]);
+  const [tasks, setTasks] = useState<IListItem[] | never[]>([]);
+  const [categories, setCategories] = useState<IListItem[] | never[]>([]);
 
   // состояние, хранящее id элемента, на котором кликнули кнопку
   // "редактировать" или "удалить"
-  const [openedItemId, setOpenedItemId] = useState(null);
+  const [openedItemId, setOpenedItemId] = useState<number | null>(null);
 
   // получаем списки задач и категорий с api и сохраняем в состояние
   useEffect(() => {

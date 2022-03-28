@@ -12,7 +12,9 @@ const DeleteTask: React.FC = () => {
   } = useContext(DataContext);
   const { closeModal } = useContext(ModalContext);
   const deleteTask = () => {
-    deleteTaskFromApi(openedItemId);
+    if (openedItemId !== null) {
+      deleteTaskFromApi(openedItemId);
+    }
     setTasks(tasks.filter((item: IListItem) => item.id !== openedItemId));
     setOpenedItemId(null);
     closeModal.closeDeleteTask();
@@ -21,7 +23,7 @@ const DeleteTask: React.FC = () => {
   return (
     <ModalConfirmActionWrapper
       title="Удаление задачи"
-      question={`Вы уверены, что хотите удалить задачу "${tasks.find((item: IListItem) => item.id === openedItemId).name}"?`}
+      question={`Вы уверены, что хотите удалить задачу "${tasks.find((item: IListItem) => item.id === openedItemId)!.name}"?`}
       primaryButtonClickHandler={deleteTask}
     />
   );

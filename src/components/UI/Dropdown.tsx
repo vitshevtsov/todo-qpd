@@ -10,6 +10,7 @@ import React, {
 import NameInput from './NameInput';
 import styles from './Dropdown.module.css';
 import { DataContext } from '../../context/DataContext/DataContext';
+import IListItem from '../../types/data';
 
 const dropdownArrowIcon = require('../../assets/iconDropdownArrow.png');
 const dropdownClearIcon = require('../../assets/iconClose.png');
@@ -41,7 +42,7 @@ const Dropdown = ({ setValue, value, width }: IDropdownProps) => {
 
   const dropdownItems = (
     <ul className={styles.dropdownItems}>
-      {categories.map((item: {id: string | undefined, name: string}) => <li key={item.id} id={item.id} onClick={onClickItemHandler}>{item.name}</li>)}
+      {categories.map((item: IListItem) => <li key={item.id} id={`${item.id}`} onClick={onClickItemHandler}>{item.name}</li>)}
     </ul>
   );
 

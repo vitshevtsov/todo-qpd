@@ -14,8 +14,8 @@ const EditCategoryForm: React.FC = () => {
   } = useContext(DataContext);
   const categoryToEdit = categories.find((item: IListItem) => item.id === openedItemId);
 
-  const [name, setName] = useState(categoryToEdit.name);
-  const [description, setDescription] = useState(categoryToEdit.description);
+  const [name, setName] = useState(categoryToEdit!.name);
+  const [description, setDescription] = useState(categoryToEdit!.description);
   const [nameIsDirty, setNameIsDirty] = useState(false);
   const [nameError, setNameError] = useState('Поле обязательно для заполнения');
 
@@ -41,7 +41,7 @@ const EditCategoryForm: React.FC = () => {
   const editCategory = () => {
     if (name) {
       const editedCategory = {
-        id: categoryToEdit.id,
+        id: categoryToEdit!.id,
         name,
         description,
       };

@@ -1,21 +1,16 @@
 /* eslint-disable import/prefer-default-export */
-import { createContext } from 'react';
-// import IListitem from '../../types/data';
+import React, { createContext } from 'react';
+// import Categories from '../../routes/Categories';
+import IListItem from '../../types/data';
 
 interface IDataContext {
-    tasks: any;
-    categories: any;
-    setTasks: any;
-    setCategories: any;
-    openedItemId: any;
-    setOpenedItemId: any;
+
+tasks: IListItem[] | never[];
+categories: IListItem[] | never[];
+setTasks: React.Dispatch<React.SetStateAction<IListItem[] | never[]>>;
+setCategories: React.Dispatch<React.SetStateAction<IListItem[] | never[]>>;
+openedItemId: number | null;
+setOpenedItemId: React.Dispatch<React.SetStateAction<number | null>>;
 }
-// todo доработать типизацию. Такая всё ломает:
-// tasks: IListitem[];
-// categories: IListitem[];
-// setTasks: React.Dispatch<React.SetStateAction<IListitem[]>>;
-// setCategories: React.Dispatch<React.SetStateAction<IListitem[]>>;
-// openedItemId: number | null;
-// setOpenedItemId: React.Dispatch<React.SetStateAction<number | null>>;
 
 export const DataContext = createContext<IDataContext>({} as IDataContext);

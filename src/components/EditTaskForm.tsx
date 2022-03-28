@@ -9,6 +9,11 @@ import NameInput from './UI/NameInput';
 import TextArea from './UI/TextArea';
 import IListItem from '../types/data';
 
+interface ICategoryProps {
+  name: string;
+  id: number;
+}
+
 const EditTaskForm: React.FC = () => {
   const {
     tasks, setTasks, categories, openedItemId, setOpenedItemId,
@@ -16,16 +21,16 @@ const EditTaskForm: React.FC = () => {
   const taskToEdit = tasks.find((item: IListItem) => item.id === openedItemId);
 
   const initCategoryState = {
-    name: (taskToEdit.categoryId) ? categories.find((item : IListItem) => taskToEdit.categoryId === item.id)?.name : '',
-    id: taskToEdit.categoryId,
+    name: (taskToEdit!.categoryId) ? categories.find((item : IListItem) => taskToEdit!.categoryId === item.id)?.name : '',
+    id: taskToEdit!.categoryId,
   };
 
-  const [name, setName] = useState(taskToEdit.name);
+  const [name, setName] = useState(taskToEdit!.name);
   const [nameIsDirty, setNameIsDirty] = useState(false);
   const [nameError, setNameError] = useState('Поле обязательно для заполнения');
 
-  const [category, setCategory] = useState(initCategoryState);
-  const [description, setDescription] = useState(taskToEdit.description);
+  const [category, setCategory] = useState<ICategoryProps>(initCategoryState as ICategoryProps);
+  const [description, setDescription] = useState(taskToEdit!.description);
 
   const { closeModal } = useContext(ModalContext);
 
@@ -49,7 +54,7 @@ const EditTaskForm: React.FC = () => {
   const editTask = () => {
     if (name) {
       const editedTask = {
-        id: taskToEdit.id,
+        id: taskToEdit!.id,
         name,
         description,
         categoryId: category.id,
