@@ -9,10 +9,7 @@ import EditCategoryForm from '../../components/EditCategoryForm';
 import DeleteTaskForm from '../../components/DeleteTaskForm';
 import DeleteCategoryForm from '../../components/DeleteCategoryForm';
 import { ModalContext } from './ModalContext';
-
-interface IModalProviderProps {
-  children: React.ReactChild | React.ReactNode;
-}
+import { IModalProviderProps } from '../../types/data';
 
 /**
  * Компонент, возвращающий провайдер контекста модалок. Компоненты, находящиеся в Provider (подписчики),

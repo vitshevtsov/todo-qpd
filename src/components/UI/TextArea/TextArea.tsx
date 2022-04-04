@@ -3,14 +3,7 @@
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import styles from './TextArea.module.css';
-
-interface ITextAreaProps {
-  maxLength?: number;
-  placeholder: string;
-  value: string;
-  onChangeHandler: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  label: string;
-}
+import { ITextAreaProps } from '../../../types/data';
 
 export default function TextArea(props: ITextAreaProps) {
   return (

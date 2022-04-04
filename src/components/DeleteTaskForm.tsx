@@ -3,7 +3,7 @@
 import React, { useContext } from 'react';
 import { deleteTaskFromApi } from '../API/api';
 import { DataContext, ModalContext } from '../context/context';
-import ModalConfirmActionWrapper from './modal/ModalConfirmActionWrapper';
+import ModalConfirmActionWrapper from './modal/ModalConfirmAction/ModalConfirmActionWrapper';
 import IListItem from '../types/data';
 
 /**

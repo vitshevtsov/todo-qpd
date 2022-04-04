@@ -3,7 +3,7 @@
 import React, { useContext, useState } from 'react';
 import { editCategoryAtApi } from '../API/api';
 import { DataContext, ModalContext } from '../context/context';
-import ModalChangeDataWrapper from './modal/ModalChangeDataWrapper';
+import ModalChangeDataWrapper from './modal/ModalChangeDataWrapper/ModalChangeDataWrapper';
 import NameInput from './UI/NameInput/NameInput';
 import TextArea from './UI/TextArea/TextArea';
 import IListItem from '../types/data';

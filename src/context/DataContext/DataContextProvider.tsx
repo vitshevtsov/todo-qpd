@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { getAllData } from '../../API/api';
 import { DataContext } from './DataContext';
-import IListItem from '../../types/data';
+import IListItem, { IDataProviderProps } from '../../types/data';
 
-interface IDataProviderProps {
-  children: React.ReactChild | React.ReactNode;
-}
 /**
  * Компонент, возвращающий провайдер контекста данных. Компоненты, находящиеся в Provider (подписчики),
  *  смогут пользоваться данными контекста

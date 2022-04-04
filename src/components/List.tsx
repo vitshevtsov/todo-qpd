@@ -1,11 +1,7 @@
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import ListItem from './ListItem';
-import IListItem from '../types/data';
-
-interface IListProps {
-  items: IListItem[];
-}
+import IListItem, { IListProps } from '../types/data';
 
 export default function List(props: IListProps) {
   const listItems = props.items.map((item: IListItem) => (

@@ -1,14 +1,5 @@
 /* eslint-disable import/prefer-default-export */
-import React, { createContext } from 'react';
-import IListItem from '../../types/data';
-
-interface IDataContext {
-    tasks: IListItem[] | never[];
-    categories: IListItem[] | never[];
-    setTasks: React.Dispatch<React.SetStateAction<IListItem[] | never[]>>;
-    setCategories: React.Dispatch<React.SetStateAction<IListItem[] | never[]>>;
-    openedItemId: number | null;
-    setOpenedItemId: React.Dispatch<React.SetStateAction<number | null>>;
-}
+import { createContext } from 'react';
+import { IDataContext } from '../../types/data';
 
 export const DataContext = createContext<IDataContext>({} as IDataContext);

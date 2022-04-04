@@ -3,13 +3,7 @@
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import styles from './TextButton.module.css';
-
-interface ITextButtonProps {
-  width: string;
-  isPrimary?: boolean;
-  text: string;
-  onClickHandler?: (e: React.MouseEvent<HTMLButtonElement>) => void;
-}
+import { ITextButtonProps } from '../../../types/data';
 
 export default function TextButton({
   width, isPrimary, text, onClickHandler,

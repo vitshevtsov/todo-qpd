@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
-type Url = string;
-type GetUrl = (id: number) => string;
+import { Url, GetUrl } from '../types/data';
 
 const getTasksUrl: Url = 'http://localhost:8089/api/ToDoList/GetTasks';
 const getCategoriesUrl: Url = 'http://localhost:8089/api/ToDoList/GetCategories';

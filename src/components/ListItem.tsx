@@ -52,14 +52,14 @@ export default function ListItem({
 
   return (
     <div className={styles.listItem}>
-      <div>
+      <div className={styles.itemLeftSide}>
         <div className={styles.textHeader}>
           <div className={styles.title}>{name}</div>
           {!!(categoryId && categoryId !== 0) && categoryDiv}
         </div>
         <div className={styles.description}>{description}</div>
       </div>
-      <div className={styles.itemBtns}>
+      <div className={styles.itemRightSide}>
         <ImgButton
           src={editIcon}
           alt="edit icon"

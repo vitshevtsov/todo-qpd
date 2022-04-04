@@ -1,18 +1,13 @@
 /* eslint-disable default-case */
 import React, { useContext, useEffect, useMemo } from 'react';
 import { createPortal } from 'react-dom';
-import { DataContext, ModalContext } from '../../context/context';
-import ImgButton from '../UI/ImgButton/ImgButton';
-import TextButton from '../UI/TextButton/TextButton';
-import styles from './ModalConfirmActionWrapper.module.css';
+import { DataContext, ModalContext } from '../../../context/context';
+import ImgButton from '../../UI/ImgButton/ImgButton';
+import TextButton from '../../UI/TextButton/TextButton';
+import styles from './ModalChangeDataWrapper.module.css';
+import { IChangeDataWrapper as IWrapper } from '../../../types/data';
 
-interface IConfirmActionWrapper {
-  title: string;
-  question: string;
-  primaryButtonClickHandler: () => void;
-}
-
-const closeIcon = require('../../assets/iconClose.png');
+const closeIcon = require('../../../assets/iconClose.png');
 
 const modalRootEl = document.querySelector('#modal');
 
@@ -20,7 +15,9 @@ const modalRootEl = document.querySelector('#modal');
  * Компонент-обертка для модальных окон, при монтировании создает портал
  *  в div #modal вне app, при размонтировании - удаляет.
  */
-const ModalConfirmAction = ({ title, question, primaryButtonClickHandler }: IConfirmActionWrapper) => {
+const ModalChangeDataWrapper = ({
+  title, children, primaryButtonText, primaryButtonClickHandler,
+}: IWrapper) => {
   const el: HTMLDivElement = useMemo(() => document.createElement('div'), []);
   useEffect(() => {
     // '!.' - non-null assertion. Info:  https://stackoverflow.com/questions/40349987/how-to-suppress-error-ts2533-object-is-possibly-null-or-undefined
@@ -35,9 +32,13 @@ const ModalConfirmAction = ({ title, question, primaryButtonClickHandler }: ICon
   const onClickCloseButton = () => {
     setOpenedItemId(null);
     switch (title) {
-      case 'Удаление задачи': closeModal.closeDeleteTask();
+      case 'Создание задачи': closeModal.closeAddTask();
         break;
-      case 'Удаление категории': closeModal.closeDeleteCategory();
+      case 'Создание категории': closeModal.closeAddCategory();
+        break;
+      case 'Редактирование задачи': closeModal.closeEditTask();
+        break;
+      case 'Редактирование категории': closeModal.closeEditCategory();
         break;
     }
   };
@@ -45,7 +46,7 @@ const ModalConfirmAction = ({ title, question, primaryButtonClickHandler }: ICon
   return createPortal(
     (
       <div className={styles.background}>
-        <div className={styles.wrapperContent}>
+        <form className={styles.wrapperContent}>
           <div className={styles.closeIconWrapper}>
             <ImgButton
               src={closeIcon}
@@ -55,17 +56,16 @@ const ModalConfirmAction = ({ title, question, primaryButtonClickHandler }: ICon
           </div>
           <h1 className={styles.title}>{title}</h1>
 
-          <p className={styles.question}>{question}</p>
+          {children}
 
           <div className={styles.rowButton}>
-            <TextButton isPrimary text="Да" width="120px" onClickHandler={primaryButtonClickHandler} />
-            <TextButton text="Нет" width="120px" onClickHandler={onClickCloseButton} />
+            <TextButton isPrimary text={primaryButtonText} width="200px" onClickHandler={primaryButtonClickHandler} />
+            <TextButton text="Закрыть" width="120px" onClickHandler={onClickCloseButton} />
           </div>
-        </div>
+        </form>
       </div>
-
     ), el,
   );
 };
 
-export default ModalConfirmAction;
+export default ModalChangeDataWrapper;

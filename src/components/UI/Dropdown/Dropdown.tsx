@@ -1,18 +1,12 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, {
-  Dispatch, SetStateAction, useContext, useState,
+  useContext, useState,
 } from 'react';
 import NameInput from '../NameInput/NameInput';
 import styles from './Dropdown.module.css';
 import { DataContext } from '../../../context/DataContext/DataContext';
-import IListItem from '../../../types/data';
-
-interface IDropdownProps {
-  setValue: Dispatch<SetStateAction<{ name: string; id: number; }>>;
-  value: string;
-  width: string;
-}
+import IListItem, { IDropdownProps } from '../../../types/data';
 
 const dropdownArrowIcon = require('../../../assets/iconDropdownArrow.png');
 const dropdownClearIcon = require('../../../assets/iconClose.png');

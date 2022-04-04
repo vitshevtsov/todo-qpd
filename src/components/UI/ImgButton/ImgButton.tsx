@@ -2,12 +2,7 @@
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import styles from './ImgButton.module.css';
-
-interface IImgButtonProps {
-  onClickHandler: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  src: string;
-  alt: string;
-}
+import { IImgButtonProps } from '../../../types/data';
 
 export default function ImgButton(props: IImgButtonProps) {
   return (

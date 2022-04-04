@@ -4,7 +4,7 @@
 /* eslint-disable import/extensions */
 import React, { useContext, useState } from 'react';
 import { DataContext, ModalContext } from '../context/context';
-import ModalChangeDataWrapper from './modal/ModalChangeDataWrapper';
+import ModalChangeDataWrapper from './modal/ModalChangeDataWrapper/ModalChangeDataWrapper';
 import Dropdown from './UI/Dropdown/Dropdown';
 import NameInput from './UI/NameInput/NameInput';
 import TextArea from './UI/TextArea/TextArea';

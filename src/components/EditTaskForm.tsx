@@ -3,16 +3,11 @@
 import React, { useContext, useState } from 'react';
 import { editTaskAtApi } from '../API/api';
 import { DataContext, ModalContext } from '../context/context';
-import ModalChangeDataWrapper from './modal/ModalChangeDataWrapper';
+import ModalChangeDataWrapper from './modal/ModalChangeDataWrapper/ModalChangeDataWrapper';
 import Dropdown from './UI/Dropdown/Dropdown';
 import NameInput from './UI/NameInput/NameInput';
 import TextArea from './UI/TextArea/TextArea';
-import IListItem from '../types/data';
-
-interface ICategoryState {
-  name: string;
-  id: number;
-}
+import IListItem, { ICategoryState } from '../types/data';
 
 /**
  * Компонент, конфигурирующий модальное окно редактирования задачи
