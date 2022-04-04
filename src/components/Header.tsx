@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { DataContext, ModalContext } from '../context/context';
 import styles from './Header.module.css';
-import TextButton from './UI/TextButton';
+import TextButton from './UI/TextButton/TextButton';
 
 const Header: React.FC = () => {
   const location = useLocation();

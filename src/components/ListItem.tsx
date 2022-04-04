@@ -1,7 +1,7 @@
 /* eslint-disable no-shadow */
 import React, { useContext, useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
-import ImgButton from './UI/ImgButton';
+import ImgButton from './UI/ImgButton/ImgButton';
 import { DataContext, ModalContext } from '../context/context';
 import IListItem from '../types/data';
 import styles from './ListItem.module.css';

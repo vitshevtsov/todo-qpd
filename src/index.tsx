@@ -11,7 +11,6 @@ ReactDOM.render(
         <App />
       </DataProvider>
     </BrowserRouter>
-    <div className="nonSupportedScreen">Извините, разрешение Вашего экрана не поддерживается</div>
   </React.StrictMode>,
   document.getElementById('root'),
 );

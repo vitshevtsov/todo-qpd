@@ -2,8 +2,8 @@
 import React, { useContext, useEffect, useMemo } from 'react';
 import { createPortal } from 'react-dom';
 import { DataContext, ModalContext } from '../../context/context';
-import ImgButton from '../UI/ImgButton';
-import TextButton from '../UI/TextButton';
+import ImgButton from '../UI/ImgButton/ImgButton';
+import TextButton from '../UI/TextButton/TextButton';
 import styles from './ModalChangeDataWrapper.module.css';
 
 interface IWrapper {

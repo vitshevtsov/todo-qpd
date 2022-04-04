@@ -5,9 +5,9 @@
 import React, { useContext, useState } from 'react';
 import { DataContext, ModalContext } from '../context/context';
 import ModalChangeDataWrapper from './modal/ModalChangeDataWrapper';
-import Dropdown from './UI/Dropdown';
-import NameInput from './UI/NameInput';
-import TextArea from './UI/TextArea';
+import Dropdown from './UI/Dropdown/Dropdown';
+import NameInput from './UI/NameInput/NameInput';
+import TextArea from './UI/TextArea/TextArea';
 import { addTaskToApi } from '../API/api';
 
 /**

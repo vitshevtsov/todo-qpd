@@ -3,10 +3,10 @@
 import React, {
   Dispatch, SetStateAction, useContext, useState,
 } from 'react';
-import NameInput from './NameInput';
+import NameInput from '../NameInput/NameInput';
 import styles from './Dropdown.module.css';
-import { DataContext } from '../../context/DataContext/DataContext';
-import IListItem from '../../types/data';
+import { DataContext } from '../../../context/DataContext/DataContext';
+import IListItem from '../../../types/data';
 
 interface IDropdownProps {
   setValue: Dispatch<SetStateAction<{ name: string; id: number; }>>;
@@ -14,8 +14,8 @@ interface IDropdownProps {
   width: string;
 }
 
-const dropdownArrowIcon = require('../../assets/iconDropdownArrow.png');
-const dropdownClearIcon = require('../../assets/iconClose.png');
+const dropdownArrowIcon = require('../../../assets/iconDropdownArrow.png');
+const dropdownClearIcon = require('../../../assets/iconClose.png');
 
 const Dropdown = ({ setValue, value, width }: IDropdownProps) => {
   const { categories } = useContext(DataContext);

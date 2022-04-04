@@ -5,8 +5,8 @@ import { addCategoryToApi } from '../API/api';
 import { ModalContext } from '../context/context';
 import { DataContext } from '../context/DataContext/DataContext';
 import ModalChangeDataWrapper from './modal/ModalChangeDataWrapper';
-import NameInput from './UI/NameInput';
-import TextArea from './UI/TextArea';
+import NameInput from './UI/NameInput/NameInput';
+import TextArea from './UI/TextArea/TextArea';
 
 /**
  * Компонент, конфигурирующий модальное окно добавления новой категории

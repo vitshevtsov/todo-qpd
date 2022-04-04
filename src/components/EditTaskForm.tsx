@@ -4,9 +4,9 @@ import React, { useContext, useState } from 'react';
 import { editTaskAtApi } from '../API/api';
 import { DataContext, ModalContext } from '../context/context';
 import ModalChangeDataWrapper from './modal/ModalChangeDataWrapper';
-import Dropdown from './UI/Dropdown';
-import NameInput from './UI/NameInput';
-import TextArea from './UI/TextArea';
+import Dropdown from './UI/Dropdown/Dropdown';
+import NameInput from './UI/NameInput/NameInput';
+import TextArea from './UI/TextArea/TextArea';
 import IListItem from '../types/data';
 
 interface ICategoryState {
@@ -36,7 +36,7 @@ const EditTaskForm: React.FC = () => {
 
   const [name, setName] = useState(taskToEdit!.name);
   const [nameIsDirty, setNameIsDirty] = useState(false);
-  const [nameError, setNameError] = useState('Поле обязательно для заполнения');
+  const [nameError, setNameError] = useState('');
 
   const [category, setCategory] = useState<ICategoryState>(initCategoryState as ICategoryState);
   const [description, setDescription] = useState(taskToEdit!.description);

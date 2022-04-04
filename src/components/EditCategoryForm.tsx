@@ -4,8 +4,8 @@ import React, { useContext, useState } from 'react';
 import { editCategoryAtApi } from '../API/api';
 import { DataContext, ModalContext } from '../context/context';
 import ModalChangeDataWrapper from './modal/ModalChangeDataWrapper';
-import NameInput from './UI/NameInput';
-import TextArea from './UI/TextArea';
+import NameInput from './UI/NameInput/NameInput';
+import TextArea from './UI/TextArea/TextArea';
 import IListItem from '../types/data';
 
 /**
@@ -26,7 +26,7 @@ const EditCategoryForm: React.FC = () => {
   const [name, setName] = useState(categoryToEdit!.name);
   const [description, setDescription] = useState(categoryToEdit!.description);
   const [nameIsDirty, setNameIsDirty] = useState(false);
-  const [nameError, setNameError] = useState('Поле обязательно для заполнения');
+  const [nameError, setNameError] = useState('');
 
   const { closeModal } = useContext(ModalContext);
 

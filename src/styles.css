@@ -17,7 +17,7 @@ body {
 }
 
 .app {
-    height: 100%;
+    min-height: 100vh;
     background-color: var(--background);
     font-family: 'roboto';
     font-style: normal;
@@ -44,26 +44,6 @@ body {
     color: var(--backgroundDark);
     background-color: var(--background);
 
-}
-
-/* App скрывается при разрешении меньше допустимого. 
-В index.tsx при разрешении экрана менее допустимого, отрисовывается заглушка nonSupportedScreen вместо App */
-@media all and (max-width: 1439px) {
-    .app {
-        display: none;
-    }
-    .nonSupportedScreen {
-        display: flex;
-    }
-}
-
-@media all and (max-height: 899px) {
-    .app {
-        display: none;
-    }
-    .nonSupportedScreen {
-        display: flex;
-    }
 }
 
 .row {
