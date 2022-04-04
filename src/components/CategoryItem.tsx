@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import ImgButton from './UI/ImgButton/ImgButton';
 import { DataContext, ModalContext } from '../context/context';
 import IListItem from '../types/data';
-import styles from './ListItem.module.css';
+import styles from './CategoryItem.module.css';
 
 const folderIcon = require('../assets/iconFolderCat.png');
 const editIcon = require('../assets/iconEdit.png');

@@ -69,7 +69,8 @@ export interface ICategoryState {
   }
 
 export interface IListProps {
-    items: IListItem[];
+    items: any[];
+    renderItem: (item: any) => React.ReactChild | React.ReactNode;
   }
 
 export type Url = string;
