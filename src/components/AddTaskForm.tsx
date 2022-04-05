@@ -8,7 +8,6 @@ import ModalChangeDataWrapper from './modal/ModalChangeDataWrapper/ModalChangeDa
 import Dropdown from './UI/Dropdown/Dropdown';
 import NameInput from './UI/NameInput/NameInput';
 import TextArea from './UI/TextArea/TextArea';
-// import { addTaskToApi } from '../API/api';
 import { ITaskItem } from '../types/data';
 
 /**
@@ -52,7 +51,7 @@ const AddTaskForm: React.FC = () => {
   const handleOnChangeTextArea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setDescription(e.target.value);
   };
-  console.log('render');
+
   /**
  * Функция при условии пройденной валидации добавляет новую задачу в api,
  * полученный с сервера ответ сохраняет в state

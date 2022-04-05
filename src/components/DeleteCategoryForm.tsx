@@ -1,8 +1,8 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable import/extensions */
 import React, { useContext } from 'react';
-import { deleteCategoryFromApi, editTaskAtApi } from '../API/api';
-import { DataContext, ModalContext } from '../context/context';
+import { deleteCategoryFromApi } from '../API/api';
+import { DataContext, ModalContext, ServiceContext } from '../context/context';
 import ModalConfirmActionWrapper from './modal/ModalConfirmAction/ModalConfirmActionWrapper';
 import { ITaskItem, ICategoryItem } from '../types/data';
 
@@ -16,6 +16,7 @@ const DeleteCategory: React.FC = () => {
     tasks, setTasks, categories, setCategories, openedItemId, setOpenedItemId,
   } = useContext(DataContext);
   const { closeModal } = useContext(ModalContext);
+  const { taskService } = useContext(ServiceContext);
 
   /**
  * Функция удаляет категорию в api,
@@ -34,7 +35,8 @@ const DeleteCategory: React.FC = () => {
               ...item,
               categoryId: 0,
             };
-            editTaskAtApi(editedTask);
+            // todo сделать проверку ответа с сервера
+            taskService.editTask(editedTask);
             setTasks(tasks.map((task: ITaskItem) => {
               if (task.categoryId === openedItemId) {
                 return editedTask;

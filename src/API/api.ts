@@ -1,8 +1,7 @@
 import { ITaskItem, ICategoryItem } from '../types/data';
 import TaskRequestService from './TaskRequestService';
 import {
-  allTasksUrl, allCategoriesUrl, addTaskUrl, addCategoryUrl,
-  editTaskUrl, editCategoryUrl, getDeleteTaskUrl, getDeleteCategoryUrl,
+  allTasksUrl, allCategoriesUrl, addTaskUrl, addCategoryUrl, editCategoryUrl, getDeleteTaskUrl, getDeleteCategoryUrl,
 } from '../constants/url';
 
 /**
@@ -38,17 +37,6 @@ async function addCategoryToApi(data: ICategoryItem) {
 }
 
 /**
- * Функция редактирования задачи в БД.
- * Отправляет post запрос с измененными данными, возвращает ответ класса,
- * отвечающего за манипуляции с данными
- */
-// todo ошибка на бэке - не сохраняется измененная категория
-async function editTaskAtApi(data: ITaskItem) {
-  const result = await TaskRequestService.postRequest(editTaskUrl, data);
-  return result;
-}
-
-/**
  * Функция редактирования категории в БД.
  * Отправляет post запрос с измененными данными, возвращает ответ класса,
  * отвечающего за манипуляции с данными
@@ -79,6 +67,6 @@ async function deleteCategoryFromApi(id: number) {
 }
 
 export {
-  getAllData, addTaskToApi, addCategoryToApi, editTaskAtApi,
+  getAllData, addTaskToApi, addCategoryToApi,
   editCategoryAtApi, deleteTaskFromApi, deleteCategoryFromApi,
 };
