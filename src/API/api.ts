@@ -1,5 +1,5 @@
 import { ITaskItem, ICategoryItem } from '../types/data';
-import RequestService from './RequestService';
+import TaskRequestService from './TaskRequestService';
 import {
   allTasksUrl, allCategoriesUrl, addTaskUrl, addCategoryUrl,
   editTaskUrl, editCategoryUrl, getDeleteTaskUrl, getDeleteCategoryUrl,
@@ -10,8 +10,8 @@ import {
  * Возвращает массив, содержащий полученные массивы задач / категорий
  */
 async function getAllData() {
-  const tasks = await RequestService.getRequest(allTasksUrl);
-  const categories = await RequestService.getRequest(allCategoriesUrl);
+  const tasks = await TaskRequestService.getRequest(allTasksUrl);
+  const categories = await TaskRequestService.getRequest(allCategoriesUrl);
   return [tasks, categories];
 }
 
@@ -22,7 +22,7 @@ async function getAllData() {
  * результат обрабатывается в месте вызова (сетится в состояние)
  */
 async function addTaskToApi(data: ITaskItem) {
-  const result = await RequestService.postRequest(addTaskUrl, data);
+  const result = await TaskRequestService.postRequest(addTaskUrl, data);
   return result;
 }
 
@@ -33,7 +33,7 @@ async function addTaskToApi(data: ITaskItem) {
  * результат обрабатывается в месте вызова (сетится в состояние)
  */
 async function addCategoryToApi(data: ICategoryItem) {
-  const result = await RequestService.postRequest(addCategoryUrl, data);
+  const result = await TaskRequestService.postRequest(addCategoryUrl, data);
   return result;
 }
 
@@ -44,7 +44,7 @@ async function addCategoryToApi(data: ICategoryItem) {
  */
 // todo ошибка на бэке - не сохраняется измененная категория
 async function editTaskAtApi(data: ITaskItem) {
-  const result = await RequestService.postRequest(editTaskUrl, data);
+  const result = await TaskRequestService.postRequest(editTaskUrl, data);
   return result;
 }
 
@@ -54,7 +54,7 @@ async function editTaskAtApi(data: ITaskItem) {
  * отвечающего за манипуляции с данными
  */
 async function editCategoryAtApi(data: ICategoryItem) {
-  const result = await RequestService.postRequest(editCategoryUrl, data);
+  const result = await TaskRequestService.postRequest(editCategoryUrl, data);
   return result;
 }
 
@@ -64,7 +64,7 @@ async function editCategoryAtApi(data: ICategoryItem) {
  * отвечающего за манипуляции с данными
  */
 async function deleteTaskFromApi(id: number) {
-  const result = await RequestService.getRequest(getDeleteTaskUrl(id));
+  const result = await TaskRequestService.getRequest(getDeleteTaskUrl(id));
   return result;
 }
 
@@ -74,7 +74,7 @@ async function deleteTaskFromApi(id: number) {
  * отвечающего за манипуляции с данными
  */
 async function deleteCategoryFromApi(id: number) {
-  const result = await RequestService.getRequest(getDeleteCategoryUrl(id));
+  const result = await TaskRequestService.getRequest(getDeleteCategoryUrl(id));
   return result;
 }
 

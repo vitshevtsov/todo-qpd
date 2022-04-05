@@ -3,12 +3,12 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable import/extensions */
 import React, { useContext, useState } from 'react';
-import { DataContext, ModalContext } from '../context/context';
+import { DataContext, ModalContext, ServiceContext } from '../context/context';
 import ModalChangeDataWrapper from './modal/ModalChangeDataWrapper/ModalChangeDataWrapper';
 import Dropdown from './UI/Dropdown/Dropdown';
 import NameInput from './UI/NameInput/NameInput';
 import TextArea from './UI/TextArea/TextArea';
-import { addTaskToApi } from '../API/api';
+// import { addTaskToApi } from '../API/api';
 import { ITaskItem } from '../types/data';
 
 /**
@@ -34,6 +34,7 @@ const AddTaskForm: React.FC = () => {
 
   const { closeModal } = useContext(ModalContext);
   const { tasks, setTasks, setOpenedItemId } = useContext(DataContext);
+  const { taskService } = useContext(ServiceContext);
 
   const handleOnChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
@@ -65,7 +66,7 @@ const AddTaskForm: React.FC = () => {
         categoryId: category.id,
       };
 
-      const responseFromApi = await addTaskToApi(newTask);
+      const responseFromApi = await taskService.addTask(newTask);
       if (responseFromApi) {
         closeModal.closeAddTask();
         setTasks([...tasks, responseFromApi]);

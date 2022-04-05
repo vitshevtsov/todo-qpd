@@ -14,6 +14,20 @@ export interface ICategoryItem {
     description: string;
     }
 
+export interface ITaskService {
+      getTasks: () => Promise<any>;
+      addTask: (newTask: ITaskItem) => Promise<any>;
+      editTask: (taskToEdit: ITaskItem) => Promise<any>;
+      deleteTask: (id: number) => Promise<any>;
+    }
+
+export interface ICategoryService {
+      getTasks: () => ICategoryItem[];
+      addTask: (newTask: ICategoryItem) => ICategoryItem;
+      editTask: (taskToEdit: ICategoryItem) => ICategoryItem;
+      deleteTask: (id: number) => ICategoryItem;
+    }
+
 export interface IChangeDataWrapper {
     title: string;
     children?: React.ReactChild | React.ReactNode;
@@ -93,7 +107,7 @@ export interface IDataContext {
   setOpenedItemId: React.Dispatch<React.SetStateAction<number | null>>;
 }
 
-export interface IDataProviderProps {
+export interface IProviderProps {
   children: React.ReactChild | React.ReactNode;
 }
 
@@ -114,8 +128,4 @@ export interface IModalContext {
       closeDeleteTask: () => void;
       closeDeleteCategory: () => void;
   };
-}
-
-export interface IModalProviderProps {
-  children: React.ReactChild | React.ReactNode;
 }
