@@ -6,12 +6,14 @@ import React, {
 import NameInput from '../NameInput/NameInput';
 import styles from './Dropdown.module.css';
 import { DataContext } from '../../../context/DataContext/DataContext';
-import IListItem, { IDropdownProps } from '../../../types/data';
+import { ICategoryItem, IDropdownProps } from '../../../types/data';
 
 const dropdownArrowIcon = require('../../../assets/iconDropdownArrow.png');
 const dropdownClearIcon = require('../../../assets/iconClose.png');
 
-const Dropdown = ({ setValue, value, width }: IDropdownProps) => {
+const Dropdown = ({
+  setValue, value, width, placeholder, label,
+}: IDropdownProps) => {
   const { categories } = useContext(DataContext);
   const [isOpened, setIsOpened] = useState(false);
 
@@ -31,7 +33,7 @@ const Dropdown = ({ setValue, value, width }: IDropdownProps) => {
 
   const dropdownItems = (
     <ul className={styles.dropdownItems}>
-      {categories.map((item: IListItem) => <li key={item.id} id={`${item.id}`} onClick={onClickItemHandler}>{item.name}</li>)}
+      {categories.map((item: ICategoryItem) => <li key={item.id} id={`${item.id}`} onClick={onClickItemHandler}>{item.name}</li>)}
     </ul>
   );
 
@@ -43,8 +45,8 @@ const Dropdown = ({ setValue, value, width }: IDropdownProps) => {
     <div className={styles.dropdownWrapper}>
       <NameInput
         width={width}
-        placeholder="Выберите категорию"
-        label="Категория"
+        placeholder={placeholder}
+        label={label}
         readonly
         onClickHandler={toggleItems}
         value={value}

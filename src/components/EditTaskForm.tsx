@@ -7,7 +7,7 @@ import ModalChangeDataWrapper from './modal/ModalChangeDataWrapper/ModalChangeDa
 import Dropdown from './UI/Dropdown/Dropdown';
 import NameInput from './UI/NameInput/NameInput';
 import TextArea from './UI/TextArea/TextArea';
-import IListItem, { ICategoryState } from '../types/data';
+import { ITaskItem, ICategoryItem, ICategoryState } from '../types/data';
 
 /**
  * Компонент, конфигурирующий модальное окно редактирования задачи
@@ -22,10 +22,10 @@ const EditTaskForm: React.FC = () => {
   const {
     tasks, setTasks, categories, openedItemId, setOpenedItemId,
   } = useContext(DataContext);
-  const taskToEdit = tasks.find((item: IListItem) => item.id === openedItemId);
+  const taskToEdit = tasks.find((item: ITaskItem) => item.id === openedItemId);
 
   const initCategoryState = {
-    name: (taskToEdit!.categoryId) ? categories.find((item : IListItem) => taskToEdit!.categoryId === item.id)?.name : '',
+    name: (taskToEdit!.categoryId) ? categories.find((item : ICategoryItem) => taskToEdit!.categoryId === item.id)?.name : '',
     id: taskToEdit!.categoryId,
   };
 
@@ -69,7 +69,7 @@ const EditTaskForm: React.FC = () => {
       };
 
       editTaskAtApi(editedTask);
-      setTasks(tasks.map((item: IListItem) => {
+      setTasks(tasks.map((item: ITaskItem) => {
         if (item.id === openedItemId) {
           return editedTask;
         }
@@ -98,7 +98,13 @@ const EditTaskForm: React.FC = () => {
           onChangeHandler={handleOnChangeInput}
           onFocusHandler={handleOnFocusInput}
         />
-        <Dropdown width="364px" value={category.name} setValue={setCategory} />
+        <Dropdown
+          width="364px"
+          value={category.name}
+          setValue={setCategory}
+          placeholder="Выберите категорию"
+          label="Категория"
+        />
       </div>
       <div className=" row">
         <TextArea

@@ -1,12 +1,18 @@
 /* eslint-disable no-unused-vars */
 import React, { Dispatch, SetStateAction } from 'react';
 
-export default interface IListItem {
+export interface ITaskItem {
   id: number;
   name: string;
   description: string;
-  categoryId?: number;
+  categoryId: number;
   }
+
+export interface ICategoryItem {
+    id: number;
+    name: string;
+    description: string;
+    }
 
 export interface IChangeDataWrapper {
     title: string;
@@ -25,6 +31,8 @@ export interface IDropdownProps {
     setValue: Dispatch<SetStateAction<{ name: string; id: number; }>>;
     value: string;
     width: string;
+    placeholder: string;
+    label: string;
   }
 
 export interface IImgButtonProps {
@@ -77,10 +85,10 @@ export type Url = string;
 export type GetUrl = (id: number) => string;
 
 export interface IDataContext {
-  tasks: IListItem[] | never[];
-  categories: IListItem[] | never[];
-  setTasks: React.Dispatch<React.SetStateAction<IListItem[] | never[]>>;
-  setCategories: React.Dispatch<React.SetStateAction<IListItem[] | never[]>>;
+  tasks: ITaskItem[] | never[];
+  categories: ICategoryItem[] | never[];
+  setTasks: React.Dispatch<React.SetStateAction<ITaskItem[] | never[]>>;
+  setCategories: React.Dispatch<React.SetStateAction<ICategoryItem[] | never[]>>;
   openedItemId: number | null;
   setOpenedItemId: React.Dispatch<React.SetStateAction<number | null>>;
 }

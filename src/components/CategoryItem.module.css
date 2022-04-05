@@ -39,18 +39,6 @@
     word-wrap: break-word;
 }
 
-.category {
-    display: flex;
-    align-items: center;
-    color: var(--backgroundDark);
-    word-wrap: break-word;
-}
-
-.categoryImg {
-    max-width: 24px;
-    margin-right: 4px;
-}
-
 .itemRightSide {
     display: flex;
     column-gap: 15px;

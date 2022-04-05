@@ -1,5 +1,5 @@
 import axios from 'axios';
-import IListItem from '../types/data';
+import { ITaskItem, ICategoryItem } from '../types/data';
 import {
   getTasksUrl, getCategoriesUrl, addTaskUrl, addCategoryUrl,
   editTaskUrl, editCategoryUrl, getDeleteTaskUrl, getDeleteCategoryUrl,
@@ -24,7 +24,7 @@ async function getAllData() {
  * Возвращает ответ сервера, содержащий инфо о новой задаче (в т.ч. id),
  * результат обрабатывается в месте вызова (сетится в состояние)
  */
-async function addTaskToApi(data: IListItem) {
+async function addTaskToApi(data: ITaskItem) {
   try {
     const response = await axios.post(addTaskUrl, data);
     return response.data;
@@ -38,7 +38,7 @@ async function addTaskToApi(data: IListItem) {
  * Возвращает ответ сервера, содержащий инфо о новой категории (в т.ч. id),
  * результат обрабатывается в месте вызова (сетится в состояние)
  */
-async function addCategoryToApi(data: IListItem) {
+async function addCategoryToApi(data: ICategoryItem) {
   try {
     const response = await axios.post(addCategoryUrl, data);
     return response.data;
@@ -52,7 +52,7 @@ async function addCategoryToApi(data: IListItem) {
  * Отправляет post запрос с измененными данными, ничего не возвращает
  */
 // todo ошибка на бэке - не сохраняется измененная категория
-async function editTaskAtApi(data: IListItem) {
+async function editTaskAtApi(data: ITaskItem) {
   try {
     const response = await axios.post(editTaskUrl, data);
     console.log(response);
@@ -65,7 +65,7 @@ async function editTaskAtApi(data: IListItem) {
  * Функция редактирования категории в БД.
  * Отправляет post запрос с измененными данными, ничего не возвращает
  */
-async function editCategoryAtApi(data: IListItem) {
+async function editCategoryAtApi(data: ICategoryItem) {
   try {
     await axios.post(editCategoryUrl, data);
   } catch (error) {

@@ -9,6 +9,7 @@ import Dropdown from './UI/Dropdown/Dropdown';
 import NameInput from './UI/NameInput/NameInput';
 import TextArea from './UI/TextArea/TextArea';
 import { addTaskToApi } from '../API/api';
+import { ITaskItem } from '../types/data';
 
 /**
  * Компонент, конфигурирующий модальное окно добавления новой задачи
@@ -57,18 +58,12 @@ const AddTaskForm: React.FC = () => {
  */
   const addNewTask = async () => {
     if (name) {
-      const newTask = (category.id)
-        ? {
-          id: 0,
-          name,
-          description,
-          categoryId: category.id,
-        }
-        : {
-          id: 0,
-          name,
-          description,
-        };
+      const newTask = {
+        id: 0,
+        name,
+        description,
+        categoryId: category.id,
+      };
 
       const responseFromApi = await addTaskToApi(newTask);
       if (responseFromApi) {
@@ -99,7 +94,13 @@ const AddTaskForm: React.FC = () => {
           onChangeHandler={handleOnChangeInput}
           onFocusHandler={handleOnFocusInput}
         />
-        <Dropdown width="364px" value={category.name} setValue={setCategory} />
+        <Dropdown
+          width="364px"
+          value={category.name}
+          setValue={setCategory}
+          placeholder="Выберите категорию"
+          label="Категория"
+        />
       </div>
       <div className=" row">
         <TextArea

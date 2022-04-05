@@ -4,7 +4,7 @@ import React, { useContext } from 'react';
 import { deleteTaskFromApi } from '../API/api';
 import { DataContext, ModalContext } from '../context/context';
 import ModalConfirmActionWrapper from './modal/ModalConfirmAction/ModalConfirmActionWrapper';
-import IListItem from '../types/data';
+import { ITaskItem } from '../types/data';
 
 /**
  * Компонент, конфигурирующий модальное окно удаления задачи
@@ -21,7 +21,7 @@ const DeleteTask: React.FC = () => {
     if (openedItemId !== null) {
       deleteTaskFromApi(openedItemId);
     }
-    setTasks(tasks.filter((item: IListItem) => item.id !== openedItemId));
+    setTasks(tasks.filter((item: ITaskItem) => item.id !== openedItemId));
     setOpenedItemId(null);
     closeModal.closeDeleteTask();
   };
@@ -29,7 +29,7 @@ const DeleteTask: React.FC = () => {
   return (
     <ModalConfirmActionWrapper
       title="Удаление задачи"
-      question={`Вы уверены, что хотите удалить задачу "${tasks.find((item: IListItem) => item.id === openedItemId)!.name}"?`}
+      question={`Вы уверены, что хотите удалить задачу "${tasks.find((item: ITaskItem) => item.id === openedItemId)!.name}"?`}
       primaryButtonClickHandler={deleteTask}
     />
   );

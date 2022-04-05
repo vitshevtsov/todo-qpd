@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getAllData } from '../../API/api';
 import { DataContext } from './DataContext';
-import IListItem, { IDataProviderProps } from '../../types/data';
+import { ITaskItem, ICategoryItem, IDataProviderProps } from '../../types/data';
 
 /**
  * Компонент, возвращающий провайдер контекста данных. Компоненты, находящиеся в Provider (подписчики),
@@ -17,8 +17,8 @@ import IListItem, { IDataProviderProps } from '../../types/data';
  */
 
 const DataProvider = ({ children }: IDataProviderProps) => {
-  const [tasks, setTasks] = useState<IListItem[] | never[]>([]);
-  const [categories, setCategories] = useState<IListItem[] | never[]>([]);
+  const [tasks, setTasks] = useState<ITaskItem[] | never[]>([]);
+  const [categories, setCategories] = useState<ICategoryItem[] | never[]>([]);
   const [openedItemId, setOpenedItemId] = useState<number | null>(null);
 
   // Получаем списки задач и категорий с api и сохраняем в состояние

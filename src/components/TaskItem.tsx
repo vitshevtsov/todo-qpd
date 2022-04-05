@@ -1,44 +1,33 @@
 /* eslint-disable no-shadow */
 import React, { useContext, useMemo } from 'react';
-import { useLocation } from 'react-router-dom';
 import ImgButton from './UI/ImgButton/ImgButton';
 import { DataContext, ModalContext } from '../context/context';
-import IListItem from '../types/data';
+import { ITaskItem, ICategoryItem } from '../types/data';
 import styles from './TaskItem.module.css';
 
 const folderIcon = require('../assets/iconFolderCat.png');
 const editIcon = require('../assets/iconEdit.png');
 const deleteIcon = require('../assets/iconDelete.png');
 
-export default function ListItem({
+export default function TaskItem({
   id, name, categoryId, description,
-}: IListItem) {
-  const location = useLocation();
-  const isCategoriesPage = (location.pathname === '/categories');
+}: ITaskItem) {
   const { openModal } = useContext(ModalContext);
   const { tasks, categories, setOpenedItemId } = useContext(DataContext);
 
   const onClickEditButton = (id: number) => {
     setOpenedItemId(id);
-    if (isCategoriesPage) {
-      openModal.openEditCategory();
-      return;
-    }
     openModal.openEditTask();
   };
 
   const onClickDeleteButton = (id: number) => {
     setOpenedItemId(id);
-    if (isCategoriesPage) {
-      openModal.openDeleteCategory();
-      return;
-    }
     openModal.openDeleteTask();
   };
 
-  const getCategoryName = (id: number | undefined) => {
+  const getCategoryName = (id: number) => {
     if (id && (id !== 0)) {
-      return categories.find((item: IListItem) => item.id === id)?.name;
+      return categories.find((item: ICategoryItem) => item.id === id)?.name;
     }
     return '';
   };

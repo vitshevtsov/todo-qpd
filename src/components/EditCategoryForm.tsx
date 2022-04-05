@@ -6,7 +6,7 @@ import { DataContext, ModalContext } from '../context/context';
 import ModalChangeDataWrapper from './modal/ModalChangeDataWrapper/ModalChangeDataWrapper';
 import NameInput from './UI/NameInput/NameInput';
 import TextArea from './UI/TextArea/TextArea';
-import IListItem from '../types/data';
+import { ICategoryItem } from '../types/data';
 
 /**
  * Компонент, конфигурирующий модальное окно редактирования категории
@@ -21,7 +21,7 @@ const EditCategoryForm: React.FC = () => {
   const {
     categories, setCategories, openedItemId, setOpenedItemId,
   } = useContext(DataContext);
-  const categoryToEdit = categories.find((item: IListItem) => item.id === openedItemId);
+  const categoryToEdit = categories.find((item: ICategoryItem) => item.id === openedItemId);
 
   const [name, setName] = useState(categoryToEdit!.name);
   const [description, setDescription] = useState(categoryToEdit!.description);
@@ -59,7 +59,7 @@ const EditCategoryForm: React.FC = () => {
         description,
       };
       editCategoryAtApi(editedCategory);
-      setCategories(categories.map((item: IListItem) => {
+      setCategories(categories.map((item: ICategoryItem) => {
         if (item.id === openedItemId) {
           return editedCategory;
         }

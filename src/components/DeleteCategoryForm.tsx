@@ -4,7 +4,7 @@ import React, { useContext } from 'react';
 import { deleteCategoryFromApi, editTaskAtApi } from '../API/api';
 import { DataContext, ModalContext } from '../context/context';
 import ModalConfirmActionWrapper from './modal/ModalConfirmAction/ModalConfirmActionWrapper';
-import IListItem from '../types/data';
+import { ITaskItem, ICategoryItem } from '../types/data';
 
 /**
  * Компонент, конфигурирующий модальное окно удаления категории
@@ -21,7 +21,7 @@ const DeleteCategory: React.FC = () => {
     if (openedItemId !== null) {
       deleteCategoryFromApi(openedItemId);
     }
-    setCategories(categories.filter((item: IListItem) => item.id !== openedItemId));
+    setCategories(categories.filter((item: ICategoryItem) => item.id !== openedItemId));
 
     // в forEach меняем задачи, в которых выбрана удаляемая категория, ставим им categoryId:0, затем меняем в state с помощью map
     tasks.forEach((item: any) => {
@@ -31,7 +31,7 @@ const DeleteCategory: React.FC = () => {
           categoryId: 0,
         };
         editTaskAtApi(editedTask);
-        setTasks(tasks.map((task: IListItem) => {
+        setTasks(tasks.map((task: ITaskItem) => {
           if (task.categoryId === openedItemId) {
             return editedTask;
           }
@@ -47,7 +47,7 @@ const DeleteCategory: React.FC = () => {
   return (
     <ModalConfirmActionWrapper
       title="Удаление категории"
-      question={`Вы уверены, что хотите удалить категорию "${categories.find((item: IListItem) => item.id === openedItemId)!.name}"?`}
+      question={`Вы уверены, что хотите удалить категорию "${categories.find((item: ICategoryItem) => item.id === openedItemId)!.name}"?`}
       primaryButtonClickHandler={deleteCategory}
     />
   );
