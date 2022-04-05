@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 import { Url, GetUrl } from '../types/data';
 
-const getTasksUrl: Url = 'http://localhost:8089/api/ToDoList/GetTasks';
-const getCategoriesUrl: Url = 'http://localhost:8089/api/ToDoList/GetCategories';
+const allTasksUrl: Url = 'http://localhost:8089/api/ToDoList/GetTasks';
+const allCategoriesUrl: Url = 'http://localhost:8089/api/ToDoList/GetCategories';
 const addTaskUrl: Url = 'http://localhost:8089/api/ToDoList/AddTask';
 const addCategoryUrl: Url = 'http://localhost:8089/api/ToDoList/AddCategory';
 const editTaskUrl: Url = 'http://localhost:8089/api/ToDoList/UpdateTask';
@@ -11,6 +11,6 @@ const getDeleteTaskUrl:GetUrl = (id) => `http://localhost:8089/api/ToDoList/Remo
 const getDeleteCategoryUrl:GetUrl = (id) => `http://localhost:8089/api/ToDoList/RemoveCategory/${id}`;
 
 export {
-  getTasksUrl, getCategoriesUrl, addTaskUrl, addCategoryUrl,
+  allTasksUrl, allCategoriesUrl, addTaskUrl, addCategoryUrl,
   editTaskUrl, editCategoryUrl, getDeleteTaskUrl, getDeleteCategoryUrl,
 };
