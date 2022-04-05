@@ -57,9 +57,9 @@ const EditTaskForm: React.FC = () => {
 
   /**
  * Функция при условии пройденной валидации редактирует задачу в api,
- * и сохраняет изменения в state (не дожидаясь ответа сервера, тк id не меняется)
+ * и сохраняет изменения в state в случае получения ответа сервера)
  */
-  const editTask = () => {
+  const editTask = async () => {
     if (name) {
       const editedTask = {
         id: taskToEdit!.id,
@@ -68,15 +68,19 @@ const EditTaskForm: React.FC = () => {
         categoryId: category.id,
       };
 
-      editTaskAtApi(editedTask);
-      setTasks(tasks.map((item: ITaskItem) => {
-        if (item.id === openedItemId) {
-          return editedTask;
-        }
-        return item;
-      }));
-      setOpenedItemId(null);
-      closeModal.closeEditTask();
+      const response = await editTaskAtApi(editedTask);
+      if (response) {
+        closeModal.closeEditTask();
+        setTasks(tasks.map((item: ITaskItem) => {
+          if (item.id === openedItemId) {
+            return editedTask;
+          }
+          return item;
+        }));
+        setOpenedItemId(null);
+      } else {
+        alert('Произошла ошибка. Попробуйте позднее');
+      }
     } else {
       setNameIsDirty(true);
       setNameError('Поле обязательно для заполнения');

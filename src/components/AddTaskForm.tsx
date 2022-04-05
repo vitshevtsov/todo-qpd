@@ -51,7 +51,7 @@ const AddTaskForm: React.FC = () => {
   const handleOnChangeTextArea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setDescription(e.target.value);
   };
-
+  console.log('render');
   /**
  * Функция при условии пройденной валидации добавляет новую задачу в api,
  * полученный с сервера ответ сохраняет в state
@@ -67,9 +67,9 @@ const AddTaskForm: React.FC = () => {
 
       const responseFromApi = await addTaskToApi(newTask);
       if (responseFromApi) {
+        closeModal.closeAddTask();
         setTasks([...tasks, responseFromApi]);
         setOpenedItemId(null);
-        closeModal.closeAddTask();
       } else {
         alert('Произошла ошибка. Попробуйте позднее');
       }

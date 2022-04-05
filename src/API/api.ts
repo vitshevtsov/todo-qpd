@@ -27,6 +27,7 @@ async function getAllData() {
 async function addTaskToApi(data: ITaskItem) {
   try {
     const response = await axios.post(addTaskUrl, data);
+    console.log('success');
     return response.data;
   } catch (error) {
     console.error('Ошибка:', error);
@@ -49,13 +50,13 @@ async function addCategoryToApi(data: ICategoryItem) {
 
 /**
  * Функция редактирования задачи в БД.
- * Отправляет post запрос с измененными данными, ничего не возвращает
+ * Отправляет post запрос с измененными данными, возвращает ответ сервера
  */
 // todo ошибка на бэке - не сохраняется измененная категория
 async function editTaskAtApi(data: ITaskItem) {
   try {
     const response = await axios.post(editTaskUrl, data);
-    console.log(response);
+    return response.data;
   } catch (error) {
     console.error('Ошибка:', error);
   }
@@ -63,11 +64,12 @@ async function editTaskAtApi(data: ITaskItem) {
 
 /**
  * Функция редактирования категории в БД.
- * Отправляет post запрос с измененными данными, ничего не возвращает
+ * Отправляет post запрос с измененными данными, возвращает ответ сервера
  */
 async function editCategoryAtApi(data: ICategoryItem) {
   try {
-    await axios.post(editCategoryUrl, data);
+    const response = await axios.post(editCategoryUrl, data);
+    return response.data;
   } catch (error) {
     console.error('Ошибка:', error);
   }
@@ -75,11 +77,12 @@ async function editCategoryAtApi(data: ICategoryItem) {
 
 /**
  * Функция удаления задачи из БД.
- * Отправляет get запрос с id удаляемой задачи, ничего не возвращает
+ * Отправляет get запрос с id удаляемой задачи, возвращает ответ сервера
  */
-function deleteTaskFromApi(id: number) {
+async function deleteTaskFromApi(id: number) {
   try {
-    axios.get(getDeleteTaskUrl(id));
+    const response = await axios.get(getDeleteTaskUrl(id));
+    return response;
   } catch (error) {
     console.error('Ошибка:', error);
   }
@@ -87,11 +90,12 @@ function deleteTaskFromApi(id: number) {
 
 /**
  * Функция удаления категории из БД.
- * Отправляет get запрос с id удаляемой категории, ничего не возвращает
+ * Отправляет get запрос с id удаляемой категории, возвращает ответ сервера
  */
-function deleteCategoryFromApi(id: number) {
+async function deleteCategoryFromApi(id: number) {
   try {
-    axios.get(getDeleteCategoryUrl(id));
+    const response = await axios.get(getDeleteCategoryUrl(id));
+    return response;
   } catch (error) {
     console.error('Ошибка:', error);
   }

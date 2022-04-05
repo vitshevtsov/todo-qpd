@@ -17,31 +17,37 @@ const DeleteCategory: React.FC = () => {
   } = useContext(DataContext);
   const { closeModal } = useContext(ModalContext);
 
-  const deleteCategory = () => {
+  /**
+ * Функция удаляет категорию в api,
+ * и сохраняет изменения в state в случае получения ответа сервера
+ */
+  const deleteCategory = async () => {
     if (openedItemId !== null) {
-      deleteCategoryFromApi(openedItemId);
-    }
-    setCategories(categories.filter((item: ICategoryItem) => item.id !== openedItemId));
-
-    // в forEach меняем задачи, в которых выбрана удаляемая категория, ставим им categoryId:0, затем меняем в state с помощью map
-    tasks.forEach((item: any) => {
-      if (item.categoryId === openedItemId) {
-        const editedTask = {
-          ...item,
-          categoryId: 0,
-        };
-        editTaskAtApi(editedTask);
-        setTasks(tasks.map((task: ITaskItem) => {
-          if (task.categoryId === openedItemId) {
-            return editedTask;
+      const response = await deleteCategoryFromApi(openedItemId);
+      if (response) {
+        closeModal.closeDeleteCategory();
+        setCategories(categories.filter((item: ICategoryItem) => item.id !== openedItemId));
+        // в forEach меняем задачи, в которых выбрана удаляемая категория, ставим им categoryId:0, затем меняем в state с помощью map
+        tasks.forEach((item: any) => {
+          if (item.categoryId === openedItemId) {
+            const editedTask = {
+              ...item,
+              categoryId: 0,
+            };
+            editTaskAtApi(editedTask);
+            setTasks(tasks.map((task: ITaskItem) => {
+              if (task.categoryId === openedItemId) {
+                return editedTask;
+              }
+              return task;
+            }));
           }
-          return task;
-        }));
+        });
+        setOpenedItemId(null);
+      } else {
+        alert('Произошла ошибка. Попробуйте позднее');
       }
-    });
-
-    setOpenedItemId(null);
-    closeModal.closeDeleteCategory();
+    }
   };
 
   return (

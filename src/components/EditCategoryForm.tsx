@@ -51,22 +51,27 @@ const EditCategoryForm: React.FC = () => {
  * Функция при условии пройденной валидации редактирует категорию в api,
  * и сохраняет изменения в state (не дожидаясь ответа сервера, тк id не меняется)
  */
-  const editCategory = () => {
+  const editCategory = async () => {
     if (name) {
       const editedCategory = {
         id: categoryToEdit!.id,
         name,
         description,
       };
-      editCategoryAtApi(editedCategory);
-      setCategories(categories.map((item: ICategoryItem) => {
-        if (item.id === openedItemId) {
-          return editedCategory;
-        }
-        return item;
-      }));
-      setOpenedItemId(null);
-      closeModal.closeEditCategory();
+
+      const response = await editCategoryAtApi(editedCategory);
+      if (response) {
+        closeModal.closeEditCategory();
+        setCategories(categories.map((item: ICategoryItem) => {
+          if (item.id === openedItemId) {
+            return editedCategory;
+          }
+          return item;
+        }));
+        setOpenedItemId(null);
+      } else {
+        alert('Произошла ошибка. Попробуйте позднее');
+      }
     } else {
       setNameIsDirty(true);
       setNameError('Поле обязательно для заполнения');

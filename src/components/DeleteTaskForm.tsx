@@ -17,13 +17,21 @@ const DeleteTask: React.FC = () => {
   } = useContext(DataContext);
   const { closeModal } = useContext(ModalContext);
 
-  const deleteTask = () => {
+  /**
+ * Функция удаляет задачу в api,
+ * и сохраняет изменения в state в случае получения ответа сервера
+ */
+  const deleteTask = async () => {
     if (openedItemId !== null) {
-      deleteTaskFromApi(openedItemId);
+      const response = await deleteTaskFromApi(openedItemId);
+      if (response) {
+        closeModal.closeDeleteTask();
+        setTasks(tasks.filter((item: ITaskItem) => item.id !== openedItemId));
+        setOpenedItemId(null);
+      } else {
+        alert('Произошла ошибка. Попробуйте позднее');
+      }
     }
-    setTasks(tasks.filter((item: ITaskItem) => item.id !== openedItemId));
-    setOpenedItemId(null);
-    closeModal.closeDeleteTask();
   };
 
   return (

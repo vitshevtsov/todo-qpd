@@ -57,9 +57,9 @@ const AddCategoryForm: React.FC = () => {
 
       const responseFromApi = await addCategoryToApi(newCategory);
       if (responseFromApi) {
+        closeModal.closeAddCategory();
         setCategories([...categories, responseFromApi]);
         setOpenedItemId(null);
-        closeModal.closeAddCategory();
       } else {
         alert('Произошла ошибка. Попробуйте позднее');
       }
