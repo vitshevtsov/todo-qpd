@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { Url, GetUrl } from '../types/data';
 
 const allTasksUrl: Url = 'http://localhost:8089/api/ToDoList/GetTasks';

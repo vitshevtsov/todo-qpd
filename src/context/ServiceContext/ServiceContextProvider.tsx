@@ -1,8 +1,11 @@
 import React from 'react';
 import { ServiceContext } from './ServiceContext';
 import { IProviderProps } from '../../types/data';
-import TaskRequestService from '../../API/RequestService/TaskRequestService';
+// import TaskRequestService from '../../API/RequestService/TaskRequestService';
 import CategoryRequestService from '../../API/RequestService/CategoryRequestService';
+// import TaskStorageService from '../../API/StorageService/TaskStorageService';
+// import TaskRequestService from '../../API/RequestService/TaskRequestService';
+import TaskStorageService from '../../API/StorageService/TaskStorageService';
 
 // todo description edit
 /**
@@ -20,7 +23,7 @@ import CategoryRequestService from '../../API/RequestService/CategoryRequestServ
 
 const ServiceProvider = ({ children }: IProviderProps) => {
   const valueServiceProvider = {
-    taskService: new TaskRequestService(),
+    taskService: new TaskStorageService(),
     categoryService: new CategoryRequestService(),
   };
 
