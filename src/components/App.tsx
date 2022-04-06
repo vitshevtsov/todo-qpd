@@ -7,6 +7,7 @@ import NoMatchRoute from '../routes/NoMatchRoute';
 import '../styles.css';
 import ModalProvider from '../context/ModalContext/ModalContextProvider';
 import { DataContext } from '../context/context';
+import HeaderButton from './HeaderButton';
 
 const App: React.FC = () => {
   const { openedItemId } = useContext(DataContext);
@@ -17,7 +18,9 @@ const App: React.FC = () => {
   return (
     <ModalProvider>
       <div className={appClassNames}>
-        <Header />
+        <Header>
+          <HeaderButton />
+        </Header>
         <Routes>
           <Route path="/" element={<Navigate to="tasks" replace />} />
           <Route path="tasks" element={<Tasks />} />

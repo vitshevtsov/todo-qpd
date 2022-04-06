@@ -72,7 +72,7 @@ export interface INameInputProps {
     readonly?: boolean;
     onClickHandler?: (e: React.MouseEvent<HTMLInputElement>) => void;
     onChangeHandler?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    onFocusHandler?: any; // не могу прописать тип из-за условной отрисовки в компоненте NameInput
+    onFocusHandler?: any;
     value: string;
     isRequired?: boolean;
     label: string;
@@ -115,11 +115,6 @@ export interface IDataContext {
   openedItemId: number | null;
   setOpenedItemId: React.Dispatch<React.SetStateAction<number | null>>;
 }
-
-export interface IProviderProps {
-  children: React.ReactChild | React.ReactNode;
-}
-
 export interface IModalContext {
   openModal: {
       openAddTask: () => void;

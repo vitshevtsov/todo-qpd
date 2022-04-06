@@ -9,7 +9,6 @@ import EditCategoryForm from '../../components/EditCategoryForm';
 import DeleteTaskForm from '../../components/DeleteTaskForm';
 import DeleteCategoryForm from '../../components/DeleteCategoryForm';
 import { ModalContext } from './ModalContext';
-import { IProviderProps } from '../../types/data';
 
 /**
  * Компонент, возвращающий провайдер контекста модалок. Компоненты, находящиеся в Provider (подписчики),
@@ -20,7 +19,7 @@ import { IProviderProps } from '../../types/data';
  *
  * возвращает провайдер с переданным значением и слотом для children
  */
-const ModalProvider = ({ children }: IProviderProps) => {
+const ModalProvider: React.FC = ({ children }) => {
   const [addTaskIsOpened, setAddTaskIsOpened] = useState(false);
   const [addCategoryIsOpened, setAddCategoryIsOpened] = useState(false);
   const [editTaskIsOpened, setEditTaskIsOpened] = useState(false);

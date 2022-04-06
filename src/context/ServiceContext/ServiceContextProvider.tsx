@@ -1,6 +1,5 @@
 import React from 'react';
 import { ServiceContext } from './ServiceContext';
-import { IProviderProps } from '../../types/data';
 import TaskRequestService from '../../API/RequestService/TaskRequestService';
 import CategoryRequestService from '../../API/RequestService/CategoryRequestService';
 
@@ -22,7 +21,7 @@ import CategoryRequestService from '../../API/RequestService/CategoryRequestServ
  * возвращает провайдер с переданным значением и слотом для children
  */
 
-const ServiceProvider = ({ children }: IProviderProps) => {
+const ServiceProvider: React.FC = ({ children }) => {
   const valueServiceProvider = {
     taskService: new TaskRequestService(),
     categoryService: new CategoryRequestService(),

@@ -2,9 +2,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from './Header.module.css';
-import HeaderButton from './HeaderButton';
 
-const Header: React.FC = () => (
+const Header: React.FC = ({ children }) => (
   <header className={styles.header}>
     <div className={styles.logoAndNav}>
       <NavLink className={styles.logo} to="/tasks">ToDo List</NavLink>
@@ -28,9 +27,7 @@ const Header: React.FC = () => (
         Категории
       </NavLink>
     </div>
-
-    <HeaderButton />
-
+    {children}
   </header>
 );
 

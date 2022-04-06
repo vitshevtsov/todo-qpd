@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { ITaskItem, ICategoryItem, IProviderProps } from '../../types/data';
+import { ITaskItem, ICategoryItem } from '../../types/data';
 import { DataContext, ServiceContext } from '../context';
 
 /**
@@ -15,7 +15,7 @@ import { DataContext, ServiceContext } from '../context';
  * возвращает провайдер с переданным значением и слотом для children
  */
 
-const DataProvider = ({ children }: IProviderProps) => {
+const DataProvider: React.FC = ({ children }) => {
   const [tasks, setTasks] = useState<ITaskItem[] | never[]>([]);
   const [categories, setCategories] = useState<ICategoryItem[] | never[]>([]);
   const [openedItemId, setOpenedItemId] = useState<number | null>(null);
