@@ -15,17 +15,17 @@ export interface ICategoryItem {
     }
 
 export interface ITaskService {
-      getTasks: () => Promise<any>;
-      addTask: (newTask: ITaskItem) => Promise<any>;
-      editTask: (taskToEdit: ITaskItem) => Promise<any>;
-      deleteTask: (id: number) => Promise<any>;
+      getTasks: () => Promise<any> | ITaskItem[] | undefined;
+      addTask: (newTask: ITaskItem) => Promise<any> | ITaskItem | undefined;
+      editTask: (taskToEdit: ITaskItem) => Promise<any> | ITaskItem | undefined;
+      deleteTask: (id: number) => Promise<any> | number | undefined;
     }
 
 export interface ICategoryService {
-      getCategories: () => Promise<any>;
-      addCategory: (newCategory: ICategoryItem) => Promise<any>;
-      editCategory: (categoryToEdit: ICategoryItem) => Promise<any>;
-      deleteCategory: (id: number) => Promise<any>;
+      getCategories: () => Promise<any> | ICategoryItem[] | undefined;
+      addCategory: (newCategory: ICategoryItem) => Promise<any> | ICategoryItem | undefined;
+      editCategory: (categoryToEdit: ICategoryItem) => Promise<any> | ICategoryItem | undefined;
+      deleteCategory: (id: number) => Promise<any> | number | undefined;
     }
 
 export interface IChangeDataWrapper {
@@ -128,4 +128,8 @@ export interface IModalContext {
       closeDeleteTask: () => void;
       closeDeleteCategory: () => void;
   };
+}
+export interface IServiceContext {
+  taskService: ITaskService;
+  categoryService: ICategoryService;
 }

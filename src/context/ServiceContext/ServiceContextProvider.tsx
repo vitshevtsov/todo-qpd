@@ -1,29 +1,30 @@
 import React from 'react';
 import { ServiceContext } from './ServiceContext';
 import { IProviderProps } from '../../types/data';
-// import TaskRequestService from '../../API/RequestService/TaskRequestService';
+import TaskRequestService from '../../API/RequestService/TaskRequestService';
 import CategoryRequestService from '../../API/RequestService/CategoryRequestService';
-// import TaskStorageService from '../../API/StorageService/TaskStorageService';
-// import TaskRequestService from '../../API/RequestService/TaskRequestService';
-import TaskStorageService from '../../API/StorageService/TaskStorageService';
 
-// todo description edit
 /**
- * Компонент, возвращающий провайдер контекста данных. Компоненты, находящиеся в Provider (подписчики),
+ * Для переключения на сервисы local storage заменить импорты request-сервисов на данные импорты
+ */
+
+// import TaskStorageService from '../../API/StorageService/TaskStorageService';
+// import CategoryStorageService from '../../API/StorageService/CategoryStorageService';
+
+/**
+ * Компонент, возвращающий провайдер контекста сервиса работы с данными. Компоненты, находящиеся в Provider (подписчики),
  *  смогут пользоваться данными контекста
  *
  * В контексте хранятся:
- * - tasks, categories - массивы задач и категорий (первично подргужаются с api в useEffect ниже)
- * - setTasks, setCategories - сеттеры для изменения состояния в подписчиках провайдера
- * - openedItemId, setOpenedItemId - id текущего элемента, открытого в модальном окне
- *  (0 - при создании новых записей, int - при редактировании / удалении, null - если модалки не открыты)
+ * - taskService - экземпляр сервис-класса работы с задачами (request или storage), использующийся в данный момент
+ * - categoryService - экземпляр сервис-класса работы с категориями (request или storage), использующийся в данный момент
  *
  * возвращает провайдер с переданным значением и слотом для children
  */
 
 const ServiceProvider = ({ children }: IProviderProps) => {
   const valueServiceProvider = {
-    taskService: new TaskStorageService(),
+    taskService: new TaskRequestService(),
     categoryService: new CategoryRequestService(),
   };
 

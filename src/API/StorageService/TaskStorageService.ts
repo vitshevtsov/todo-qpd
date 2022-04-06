@@ -1,8 +1,8 @@
-import { ITaskItem } from '../../types/data';
+import { ITaskItem, ITaskService } from '../../types/data';
 /* eslint-disable class-methods-use-this */
 import * as localTasks from '../../data/tasks.json';
 
-export default class TaskStorageService {
+export default class TaskStorageService implements ITaskService {
   static clearAll() {
     localStorage.clear();
   }
@@ -15,7 +15,8 @@ export default class TaskStorageService {
     }
     const tasksInStorage = localStorage.getItem('tasks');
     if (tasksInStorage) {
-      return Array.from(JSON.parse(tasksInStorage));
+      const result: ITaskItem[] = Array.from(JSON.parse(tasksInStorage));
+      return result;
     }
   }
 
@@ -23,10 +24,10 @@ export default class TaskStorageService {
     const tasksInStorage = localStorage.getItem('tasks');
     if (tasksInStorage) {
       const tasksInStorageArr = Array.from(JSON.parse(tasksInStorage));
-      const newTaskwithId = { ...newTask, id: Date.now() };
-      tasksInStorageArr.push(newTaskwithId);
+      const newTaskWithId = { ...newTask, id: Date.now() };
+      tasksInStorageArr.push(newTaskWithId);
       localStorage.setItem('tasks', JSON.stringify(tasksInStorageArr));
-      return newTaskwithId;
+      return newTaskWithId;
     }
   }
 
