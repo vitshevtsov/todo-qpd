@@ -1,8 +1,7 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable import/extensions */
 import React, { useContext, useState } from 'react';
-import { editCategoryAtApi } from '../API/api';
-import { DataContext, ModalContext } from '../context/context';
+import { DataContext, ModalContext, ServiceContext } from '../context/context';
 import ModalChangeDataWrapper from './modal/ModalChangeDataWrapper/ModalChangeDataWrapper';
 import NameInput from './UI/NameInput/NameInput';
 import TextArea from './UI/TextArea/TextArea';
@@ -18,17 +17,18 @@ import { ICategoryItem } from '../types/data';
  * и UI-компоненты, необходимые для редактирования категории
  */
 const EditCategoryForm: React.FC = () => {
+  const { closeModal } = useContext(ModalContext);
+  const { categoryService } = useContext(ServiceContext);
   const {
     categories, setCategories, openedItemId, setOpenedItemId,
   } = useContext(DataContext);
+
   const categoryToEdit = categories.find((item: ICategoryItem) => item.id === openedItemId);
 
   const [name, setName] = useState(categoryToEdit!.name);
   const [description, setDescription] = useState(categoryToEdit!.description);
   const [nameIsDirty, setNameIsDirty] = useState(false);
   const [nameError, setNameError] = useState('');
-
-  const { closeModal } = useContext(ModalContext);
 
   const handleOnChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
@@ -59,7 +59,7 @@ const EditCategoryForm: React.FC = () => {
         description,
       };
 
-      const response = await editCategoryAtApi(editedCategory);
+      const response = await categoryService.editCategory(editedCategory);
       if (response) {
         closeModal.closeEditCategory();
         setCategories(categories.map((item: ICategoryItem) => {

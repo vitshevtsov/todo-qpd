@@ -22,10 +22,10 @@ export interface ITaskService {
     }
 
 export interface ICategoryService {
-      getTasks: () => ICategoryItem[];
-      addTask: (newTask: ICategoryItem) => ICategoryItem;
-      editTask: (taskToEdit: ICategoryItem) => ICategoryItem;
-      deleteTask: (id: number) => ICategoryItem;
+      getCategories: () => Promise<any>;
+      addCategory: (newCategory: ICategoryItem) => Promise<any>;
+      editCategory: (categoryToEdit: ICategoryItem) => Promise<any>;
+      deleteCategory: (id: number) => Promise<any>;
     }
 
 export interface IChangeDataWrapper {

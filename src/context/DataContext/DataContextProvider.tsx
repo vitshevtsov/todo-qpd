@@ -1,10 +1,6 @@
-import React, { useState, useEffect } from 'react';
-// import { getAllData } from '../../API/api';
-import { DataContext } from './DataContext';
-// import { ServiceContext } from '.';
-
+import React, { useState, useEffect, useContext } from 'react';
 import { ITaskItem, ICategoryItem, IProviderProps } from '../../types/data';
-import { getAllData } from '../../API/api';
+import { DataContext, ServiceContext } from '../context';
 
 /**
  * Компонент, возвращающий провайдер контекста данных. Компоненты, находящиеся в Provider (подписчики),
@@ -24,14 +20,16 @@ const DataProvider = ({ children }: IProviderProps) => {
   const [categories, setCategories] = useState<ICategoryItem[] | never[]>([]);
   const [openedItemId, setOpenedItemId] = useState<number | null>(null);
 
-  // const { taskService } = useContext(ServiceContext);
-  // Получаем списки задач и категорий с api и сохраняем в состояние
+  const { taskService, categoryService } = useContext(ServiceContext);
+
+  // Получаем списки задач и категорий с сервиса и сохраняем в состояние
   useEffect(() => {
     const fetchData = async () => {
-      const fetchedData: any[] | undefined = await getAllData();
-      if (fetchedData) {
-        setTasks(fetchedData[0]);
-        setCategories(fetchedData[1]);
+      const tasksFromService = await taskService.getTasks();
+      const categoriesFromService = await categoryService.getCategories();
+      if (tasksFromService && categoriesFromService) {
+        setTasks(tasksFromService);
+        setCategories(categoriesFromService);
       } else {
         console.error('Please repeat fetching data');
       }

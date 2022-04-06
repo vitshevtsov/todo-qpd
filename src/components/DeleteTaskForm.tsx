@@ -1,8 +1,7 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable import/extensions */
 import React, { useContext } from 'react';
-import { deleteTaskFromApi } from '../API/api';
-import { DataContext, ModalContext } from '../context/context';
+import { DataContext, ModalContext, ServiceContext } from '../context/context';
 import ModalConfirmActionWrapper from './modal/ModalConfirmAction/ModalConfirmActionWrapper';
 import { ITaskItem } from '../types/data';
 
@@ -16,6 +15,7 @@ const DeleteTask: React.FC = () => {
     tasks, setTasks, openedItemId, setOpenedItemId,
   } = useContext(DataContext);
   const { closeModal } = useContext(ModalContext);
+  const { taskService } = useContext(ServiceContext);
 
   /**
  * Функция удаляет задачу в api,
@@ -23,7 +23,7 @@ const DeleteTask: React.FC = () => {
  */
   const deleteTask = async () => {
     if (openedItemId !== null) {
-      const response = await deleteTaskFromApi(openedItemId);
+      const response = await taskService.deleteTask(openedItemId);
       if (response) {
         closeModal.closeDeleteTask();
         setTasks(tasks.filter((item: ITaskItem) => item.id !== openedItemId));

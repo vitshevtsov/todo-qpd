@@ -1,10 +1,10 @@
 import axios from 'axios';
-import { ITaskItem, ITaskService } from '../types/data';
+import { ITaskItem, ITaskService } from '../../types/data';
 /* eslint-disable class-methods-use-this */
 import {
   allTasksUrl, addTaskUrl,
   editTaskUrl, getDeleteTaskUrl,
-} from '../constants/url';
+} from '../../constants/url';
 
 export default class TaskRequestService implements ITaskService {
   // todo мб в верхнеуровневый класс перенести 2 статич. метода

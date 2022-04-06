@@ -1,9 +1,7 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable import/extensions */
 import React, { useContext, useState } from 'react';
-import { addCategoryToApi } from '../API/api';
-import { ModalContext } from '../context/context';
-import { DataContext } from '../context/DataContext/DataContext';
+import { ModalContext, DataContext, ServiceContext } from '../context/context';
 import ModalChangeDataWrapper from './modal/ModalChangeDataWrapper/ModalChangeDataWrapper';
 import NameInput from './UI/NameInput/NameInput';
 import TextArea from './UI/TextArea/TextArea';
@@ -25,6 +23,7 @@ const AddCategoryForm: React.FC = () => {
 
   const { closeModal } = useContext(ModalContext);
   const { categories, setCategories, setOpenedItemId } = useContext(DataContext);
+  const { categoryService } = useContext(ServiceContext);
 
   const handleOnChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
@@ -55,7 +54,7 @@ const AddCategoryForm: React.FC = () => {
         description,
       };
 
-      const responseFromApi = await addCategoryToApi(newCategory);
+      const responseFromApi = await categoryService.addCategory(newCategory);
       if (responseFromApi) {
         closeModal.closeAddCategory();
         setCategories([...categories, responseFromApi]);

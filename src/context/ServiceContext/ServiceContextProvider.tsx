@@ -1,7 +1,8 @@
 import React from 'react';
 import { ServiceContext } from './ServiceContext';
 import { IProviderProps } from '../../types/data';
-import TaskRequestService from '../../API/TaskRequestService';
+import TaskRequestService from '../../API/RequestService/TaskRequestService';
+import CategoryRequestService from '../../API/RequestService/CategoryRequestService';
 
 // todo description edit
 /**
@@ -20,8 +21,8 @@ import TaskRequestService from '../../API/TaskRequestService';
 const ServiceProvider = ({ children }: IProviderProps) => {
   const valueServiceProvider = {
     taskService: new TaskRequestService(),
+    categoryService: new CategoryRequestService(),
   };
-  console.log(valueServiceProvider.taskService.getTasks());
 
   return (
     <ServiceContext.Provider value={valueServiceProvider}>

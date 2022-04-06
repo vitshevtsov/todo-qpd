@@ -1,7 +1,6 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable import/extensions */
 import React, { useContext } from 'react';
-import { deleteCategoryFromApi } from '../API/api';
 import { DataContext, ModalContext, ServiceContext } from '../context/context';
 import ModalConfirmActionWrapper from './modal/ModalConfirmAction/ModalConfirmActionWrapper';
 import { ITaskItem, ICategoryItem } from '../types/data';
@@ -16,7 +15,7 @@ const DeleteCategory: React.FC = () => {
     tasks, setTasks, categories, setCategories, openedItemId, setOpenedItemId,
   } = useContext(DataContext);
   const { closeModal } = useContext(ModalContext);
-  const { taskService } = useContext(ServiceContext);
+  const { taskService, categoryService } = useContext(ServiceContext);
 
   /**
  * Функция удаляет категорию в api,
@@ -24,30 +23,33 @@ const DeleteCategory: React.FC = () => {
  */
   const deleteCategory = async () => {
     if (openedItemId !== null) {
-      const response = await deleteCategoryFromApi(openedItemId);
+      const response = await categoryService.deleteCategory(openedItemId);
       if (response) {
         closeModal.closeDeleteCategory();
         setCategories(categories.filter((item: ICategoryItem) => item.id !== openedItemId));
         // в forEach меняем задачи, в которых выбрана удаляемая категория, ставим им categoryId:0, затем меняем в state с помощью map
-        tasks.forEach((item: any) => {
+        tasks.forEach(async (item: any) => {
           if (item.categoryId === openedItemId) {
             const editedTask = {
               ...item,
               categoryId: 0,
             };
-            // todo сделать проверку ответа с сервера
-            taskService.editTask(editedTask);
-            setTasks(tasks.map((task: ITaskItem) => {
-              if (task.categoryId === openedItemId) {
-                return editedTask;
-              }
-              return task;
-            }));
+            const responseTask = await taskService.editTask(editedTask);
+            if (responseTask) {
+              setTasks(tasks.map((task: ITaskItem) => {
+                if (task.categoryId === openedItemId) {
+                  return editedTask;
+                }
+                return task;
+              }));
+            } else {
+              alert('Не удалось очистить категорию в списке задач. Попробуйте позднее');
+            }
           }
         });
         setOpenedItemId(null);
       } else {
-        alert('Произошла ошибка. Попробуйте позднее');
+        alert('Не удалось удалить категорию. Попробуйте позднее');
       }
     }
   };
