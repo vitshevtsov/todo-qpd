@@ -1,7 +1,6 @@
 /* eslint-disable default-case */
-import React, { useContext, useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { createPortal } from 'react-dom';
-import { DataContext, ModalContext } from '../../../context/context';
 import ImgButton from '../../UI/ImgButton/ImgButton';
 import TextButton from '../../UI/TextButton/TextButton';
 import styles from './ModalChangeDataWrapper.module.css';
@@ -16,7 +15,8 @@ const modalRootEl = document.querySelector('#modal');
  *  в div #modal вне app, при размонтировании - удаляет.
  */
 const ModalChangeDataWrapper = ({
-  title, children, primaryButtonText, primaryButtonClickHandler,
+  title, children, primaryButtonText, primaryButtonClickHandler, onClickCloseButton,
+  primaryButtonWidth, closeButtonText, closeButtonWidth,
 }: IWrapper) => {
   const el: HTMLDivElement = useMemo(() => document.createElement('div'), []);
   useEffect(() => {
@@ -26,22 +26,6 @@ const ModalChangeDataWrapper = ({
       modalRootEl!.removeChild(el);
     };
   }, []);
-
-  const { closeModal } = useContext(ModalContext);
-  const { setOpenedItemId } = useContext(DataContext);
-  const onClickCloseButton = () => {
-    setOpenedItemId(null);
-    switch (title) {
-      case 'Создание задачи': closeModal.closeAddTask();
-        break;
-      case 'Создание категории': closeModal.closeAddCategory();
-        break;
-      case 'Редактирование задачи': closeModal.closeEditTask();
-        break;
-      case 'Редактирование категории': closeModal.closeEditCategory();
-        break;
-    }
-  };
 
   return createPortal(
     (
@@ -59,8 +43,17 @@ const ModalChangeDataWrapper = ({
           {children}
 
           <div className={styles.rowButton}>
-            <TextButton isPrimary text={primaryButtonText} width="200px" onClickHandler={primaryButtonClickHandler} />
-            <TextButton text="Закрыть" width="120px" onClickHandler={onClickCloseButton} />
+            <TextButton
+              isPrimary
+              text={primaryButtonText}
+              width={primaryButtonWidth}
+              onClickHandler={primaryButtonClickHandler}
+            />
+            <TextButton
+              text={closeButtonText}
+              width={closeButtonWidth}
+              onClickHandler={onClickCloseButton}
+            />
           </div>
         </form>
       </div>

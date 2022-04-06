@@ -17,9 +17,14 @@ const DeleteCategory: React.FC = () => {
   const { closeModal } = useContext(ModalContext);
   const { taskService, categoryService } = useContext(ServiceContext);
 
+  const handleCloseButtonClick = () => {
+    setOpenedItemId(null);
+    closeModal.closeDeleteCategory();
+  };
+
   /**
  * Функция удаляет категорию в api,
- * и сохраняет изменения в state в случае получения ответа сервера
+ * и сохраняет изменения в state в случае получения ответа сервиса
  */
   const deleteCategory = async () => {
     if (openedItemId !== null) {
@@ -59,6 +64,11 @@ const DeleteCategory: React.FC = () => {
       title="Удаление категории"
       question={`Вы уверены, что хотите удалить категорию "${categories.find((item: ICategoryItem) => item.id === openedItemId)!.name}"?`}
       primaryButtonClickHandler={deleteCategory}
+      onClickCloseButton={handleCloseButtonClick}
+      primaryButtonText="Да"
+      primaryButtonWidth="120px"
+      closeButtonText="Нет"
+      closeButtonWidth="120px"
     />
   );
 };

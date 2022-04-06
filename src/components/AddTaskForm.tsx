@@ -8,7 +8,6 @@ import ModalChangeDataWrapper from './modal/ModalChangeDataWrapper/ModalChangeDa
 import Dropdown from './UI/Dropdown/Dropdown';
 import NameInput from './UI/NameInput/NameInput';
 import TextArea from './UI/TextArea/TextArea';
-import { ITaskItem } from '../types/data';
 
 /**
  * Компонент, конфигурирующий модальное окно добавления новой задачи
@@ -52,9 +51,14 @@ const AddTaskForm: React.FC = () => {
     setDescription(e.target.value);
   };
 
+  const handleCloseButtonClick = () => {
+    setOpenedItemId(null);
+    closeModal.closeAddTask();
+  };
+
   /**
  * Функция при условии пройденной валидации добавляет новую задачу в api,
- * полученный с сервера ответ сохраняет в state
+ * полученный от сервиса ответ сохраняет в state
  */
   const addNewTask = async () => {
     if (name) {
@@ -80,7 +84,15 @@ const AddTaskForm: React.FC = () => {
   };
 
   return (
-    <ModalChangeDataWrapper title="Создание задачи" primaryButtonText="Создать" primaryButtonClickHandler={addNewTask}>
+    <ModalChangeDataWrapper
+      title="Создание задачи"
+      primaryButtonText="Создать"
+      primaryButtonClickHandler={addNewTask}
+      primaryButtonWidth="200px"
+      onClickCloseButton={handleCloseButtonClick}
+      closeButtonText="Закрыть"
+      closeButtonWidth="120px"
+    >
       <div className="row">
         <NameInput
           width="364px"

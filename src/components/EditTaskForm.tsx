@@ -56,9 +56,14 @@ const EditTaskForm: React.FC = () => {
     setDescription(e.target.value);
   };
 
+  const handleCloseButtonClick = () => {
+    setOpenedItemId(null);
+    closeModal.closeEditTask();
+  };
+
   /**
  * Функция при условии пройденной валидации редактирует задачу в api,
- * и сохраняет изменения в state в случае получения ответа сервера)
+ * и сохраняет изменения в state в случае получения ответа сервиса
  */
   const editTask = async () => {
     if (name) {
@@ -89,7 +94,15 @@ const EditTaskForm: React.FC = () => {
   };
 
   return (
-    <ModalChangeDataWrapper title="Редактирование задачи" primaryButtonText="Сохранить" primaryButtonClickHandler={editTask}>
+    <ModalChangeDataWrapper
+      title="Редактирование задачи"
+      primaryButtonText="Сохранить"
+      primaryButtonClickHandler={editTask}
+      primaryButtonWidth="200px"
+      onClickCloseButton={handleCloseButtonClick}
+      closeButtonText="Закрыть"
+      closeButtonWidth="120px"
+    >
       <div className="row">
         <NameInput
           width="364px"

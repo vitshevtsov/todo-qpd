@@ -17,9 +17,14 @@ const DeleteTask: React.FC = () => {
   const { closeModal } = useContext(ModalContext);
   const { taskService } = useContext(ServiceContext);
 
+  const handleCloseButtonClick = () => {
+    setOpenedItemId(null);
+    closeModal.closeDeleteTask();
+  };
+
   /**
  * Функция удаляет задачу в api,
- * и сохраняет изменения в state в случае получения ответа сервера
+ * и сохраняет изменения в state в случае получения ответа сервиса
  */
   const deleteTask = async () => {
     if (openedItemId !== null) {
@@ -39,6 +44,11 @@ const DeleteTask: React.FC = () => {
       title="Удаление задачи"
       question={`Вы уверены, что хотите удалить задачу "${tasks.find((item: ITaskItem) => item.id === openedItemId)!.name}"?`}
       primaryButtonClickHandler={deleteTask}
+      onClickCloseButton={handleCloseButtonClick}
+      primaryButtonText="Да"
+      primaryButtonWidth="120px"
+      closeButtonText="Нет"
+      closeButtonWidth="120px"
     />
   );
 };

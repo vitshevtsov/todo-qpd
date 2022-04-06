@@ -1,7 +1,6 @@
 /* eslint-disable default-case */
-import React, { useContext, useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { createPortal } from 'react-dom';
-import { DataContext, ModalContext } from '../../../context/context';
 import ImgButton from '../../UI/ImgButton/ImgButton';
 import TextButton from '../../UI/TextButton/TextButton';
 import styles from './ModalConfirmActionWrapper.module.css';
@@ -15,7 +14,10 @@ const modalRootEl = document.querySelector('#modal');
  * Компонент-обертка для модальных окон, при монтировании создает портал
  *  в div #modal вне app, при размонтировании - удаляет.
  */
-const ModalConfirmAction = ({ title, question, primaryButtonClickHandler }: IConfirmActionWrapper) => {
+const ModalConfirmAction = ({
+  title, question, primaryButtonClickHandler, onClickCloseButton,
+  primaryButtonText, primaryButtonWidth, closeButtonText, closeButtonWidth,
+}: IConfirmActionWrapper) => {
   const el: HTMLDivElement = useMemo(() => document.createElement('div'), []);
   useEffect(() => {
     // '!.' - non-null assertion. Info:  https://stackoverflow.com/questions/40349987/how-to-suppress-error-ts2533-object-is-possibly-null-or-undefined
@@ -24,18 +26,6 @@ const ModalConfirmAction = ({ title, question, primaryButtonClickHandler }: ICon
       modalRootEl!.removeChild(el);
     };
   }, []);
-
-  const { closeModal } = useContext(ModalContext);
-  const { setOpenedItemId } = useContext(DataContext);
-  const onClickCloseButton = () => {
-    setOpenedItemId(null);
-    switch (title) {
-      case 'Удаление задачи': closeModal.closeDeleteTask();
-        break;
-      case 'Удаление категории': closeModal.closeDeleteCategory();
-        break;
-    }
-  };
 
   return createPortal(
     (
@@ -53,8 +43,13 @@ const ModalConfirmAction = ({ title, question, primaryButtonClickHandler }: ICon
           <p className={styles.question}>{question}</p>
 
           <div className={styles.rowButton}>
-            <TextButton isPrimary text="Да" width="120px" onClickHandler={primaryButtonClickHandler} />
-            <TextButton text="Нет" width="120px" onClickHandler={onClickCloseButton} />
+            <TextButton
+              isPrimary
+              text={primaryButtonText}
+              width={primaryButtonWidth}
+              onClickHandler={primaryButtonClickHandler}
+            />
+            <TextButton text={closeButtonText} width={closeButtonWidth} onClickHandler={onClickCloseButton} />
           </div>
         </div>
       </div>

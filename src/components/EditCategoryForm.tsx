@@ -47,9 +47,14 @@ const EditCategoryForm: React.FC = () => {
     setDescription(e.target.value);
   };
 
+  const handleCloseButtonClick = () => {
+    setOpenedItemId(null);
+    closeModal.closeEditCategory();
+  };
+
   /**
  * Функция при условии пройденной валидации редактирует категорию в api,
- * и сохраняет изменения в state (не дожидаясь ответа сервера, тк id не меняется)
+ * и сохраняет изменения в state при условии ответа от сервиса
  */
   const editCategory = async () => {
     if (name) {
@@ -79,7 +84,15 @@ const EditCategoryForm: React.FC = () => {
   };
 
   return (
-    <ModalChangeDataWrapper title="Редактирование категории" primaryButtonText="Сохранить" primaryButtonClickHandler={editCategory}>
+    <ModalChangeDataWrapper
+      title="Редактирование категории"
+      primaryButtonText="Сохранить"
+      primaryButtonClickHandler={editCategory}
+      primaryButtonWidth="200px"
+      onClickCloseButton={handleCloseButtonClick}
+      closeButtonText="Закрыть"
+      closeButtonWidth="120px"
+    >
       <div className="row">
         <NameInput
           width="752px"

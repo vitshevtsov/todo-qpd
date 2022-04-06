@@ -32,13 +32,22 @@ export interface IChangeDataWrapper {
     title: string;
     children?: React.ReactChild | React.ReactNode;
     primaryButtonText: string;
+    primaryButtonWidth: string;
     primaryButtonClickHandler: () => void;
+    closeButtonText: string;
+    closeButtonWidth: string;
+    onClickCloseButton: () => void;
   }
 
 export interface IConfirmActionWrapper {
     title: string;
     question: string;
+    primaryButtonText: string;
+    primaryButtonWidth: string;
     primaryButtonClickHandler: () => void;
+    closeButtonText: string;
+    closeButtonWidth: string;
+    onClickCloseButton: () => void;
   }
 
 export interface IDropdownProps {

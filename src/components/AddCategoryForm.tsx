@@ -42,9 +42,14 @@ const AddCategoryForm: React.FC = () => {
     setDescription(e.target.value);
   };
 
+  const handleCloseButtonClick = () => {
+    setOpenedItemId(null);
+    closeModal.closeAddCategory();
+  };
+
   /**
  * Функция при условии пройденной валидации добавляет новую категорию в api,
- * полученный с сервера ответ сохраняет в state
+ * полученный от сервиса ответ сохраняет в state
  */
   const addNewCategory = async () => {
     if (name) {
@@ -69,7 +74,15 @@ const AddCategoryForm: React.FC = () => {
   };
 
   return (
-    <ModalChangeDataWrapper title="Создание категории" primaryButtonText="Создать" primaryButtonClickHandler={addNewCategory}>
+    <ModalChangeDataWrapper
+      title="Создание категории"
+      primaryButtonText="Создать"
+      primaryButtonClickHandler={addNewCategory}
+      primaryButtonWidth="200px"
+      onClickCloseButton={handleCloseButtonClick}
+      closeButtonText="Закрыть"
+      closeButtonWidth="120px"
+    >
       <div className="row">
         <NameInput
           width="752px"
