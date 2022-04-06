@@ -6,8 +6,11 @@ import {
   editCategoryUrl, getDeleteCategoryUrl,
 } from '../../constants/url';
 
+/**
+ * Класс, содержащий методы в соответствии с интерфейсом ICategoryService
+ * для случая, если используется api сервера (http-request)
+ */
 export default class CategoryRequestService implements ICategoryService {
-  // todo мб в верхнеуровневый класс перенести 2 статич. метода
   static async getRequest(url :string) {
     try {
       const response = await axios.get(url);

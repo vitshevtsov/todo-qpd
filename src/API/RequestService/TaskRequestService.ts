@@ -6,8 +6,11 @@ import {
   editTaskUrl, getDeleteTaskUrl,
 } from '../../constants/url';
 
+/**
+ * Класс, содержащий методы в соответствии с интерфейсом ITaskService
+ * для случая, если используется api сервера (http-request)
+ */
 export default class TaskRequestService implements ITaskService {
-  // todo мб в верхнеуровневый класс перенести 2 статич. метода
   static async getRequest(url :string) {
     try {
       const response = await axios.get(url);

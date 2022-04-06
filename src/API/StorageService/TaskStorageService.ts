@@ -2,16 +2,26 @@ import { ITaskItem, ITaskService } from '../../types/data';
 /* eslint-disable class-methods-use-this */
 import * as localTasks from '../../data/tasks.json';
 
+/**
+ * Класс, содержащий методы в соответствии с интерфейсом ITaskService
+ * для случая, если используется local storage (исходники хранятся в папке data)
+ *
+ * методы возвращают значения в соотв-и с контрактом либо undefined (во втором случае,
+ * ошибки обрабатываются проверкой на nullable в местах вызова методов)
+ */
 export default class TaskStorageService implements ITaskService {
   static clearAll() {
     localStorage.clear();
   }
 
-  // возвращает массив задач либо undefined
+  /**
+ * Метод проверяет, есть ли в LS список категорий, если нет - сеттит,
+ * возвращает массив категорий либо undefined
+ * возвращает массив задач либо undefined
+ */
   getTasks() {
     if (!localStorage.getItem('tasks')) {
       localStorage.setItem('tasks', JSON.stringify(localTasks));
-      console.log('set');
     }
     const tasksInStorage = localStorage.getItem('tasks');
     if (tasksInStorage) {

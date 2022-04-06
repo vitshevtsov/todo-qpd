@@ -2,12 +2,22 @@ import { ICategoryItem, ICategoryService } from '../../types/data';
 /* eslint-disable class-methods-use-this */
 import * as localTasks from '../../data/categories.json';
 
+/**
+ * Класс, содержащий методы в соответствии с интерфейсом ICategoryService
+ * для случая, если используется local storage (исходники хранятся в папке data)
+ *
+ * методы возвращают значения в соотв-и с контрактом либо undefined (во втором случае,
+ * ошибки обрабатываются проверкой на nullable в местах вызова методов)
+ */
 export default class CategoryStorageService implements ICategoryService {
-  // возвращает массив задач либо undefined
+/**
+ * Метод проверяет, есть ли в LS список категорий, если нет - сеттит,
+ * возвращает массив категорий либо undefined
+ * возвращает массив задач либо undefined
+ */
   getCategories() {
     if (!localStorage.getItem('categories')) {
       localStorage.setItem('categories', JSON.stringify(localTasks));
-      console.log('set');
     }
     const categoriesInStorage = localStorage.getItem('categories');
     if (categoriesInStorage) {
