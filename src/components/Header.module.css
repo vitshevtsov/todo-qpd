@@ -1,0 +1,45 @@
+.header {
+    height: 88px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    background-color: var(--backgroundDark);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+    color: white;
+}
+
+.headerLink {
+    font-size: 24px;
+    line-height: 40px;
+    color: var(--background);
+}
+
+.divider {
+    width: 2px;
+    height: 28px;
+    margin: 0 8px;
+    background-color: var(--background);
+}
+
+.logoAndNav {
+display: flex;
+align-items: center;
+}
+
+.logo {
+    font-size: 36px;
+    line-height: 40px;
+    margin: 24px 65px 24px 24px;
+    text-decoration: none;
+    color: white;
+}
+
+.btnPrimary {
+    font-size: 20px;
+    line-height: 46px;
+    color: white;
+    background-color: var(--backgroundDark);
+    border: none;
+    cursor: pointer;
+}

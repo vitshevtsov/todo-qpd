@@ -1,0 +1,46 @@
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,0.25);
+}
+
+.wrapperContent {
+    width: 800px;
+    min-height: 376px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    column-gap: 40px;
+    position: relative;
+    padding: 24px;
+    background-color: var(--background);
+    box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+.closeIconWrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 24px;
+}
+
+.title {
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 56px;
+    color: var(--backgroundDark)
+}
+
+.rowButton {
+    display: flex;
+    column-gap: 24px;
+    margin-bottom: 24px;
+    justify-content: flex-end;
+}

@@ -1,0 +1,53 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,regular,italic,500,500italic,700,700italic,900,900italic);
+
+:root {
+    --background: #DBE2EF;
+    --backgroundDark: #3F72AF;
+    --backgroundHover: rgba(37, 127, 234, 0.2);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'roboto';
+    font-style: normal;
+}
+
+.app {
+    min-height: 100vh;
+    background-color: var(--background);
+    font-family: 'roboto';
+    font-style: normal;
+    font-weight: 400;
+}
+
+.appWithOpenModal {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.nonSupportedScreen {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    color: var(--backgroundDark);
+    background-color: var(--background);
+
+}
+
+.row {
+    display: flex;
+    column-gap: 24px;
+    margin-bottom: 24px;
+}

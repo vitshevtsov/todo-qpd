@@ -1,0 +1,40 @@
+.inputWrapper {
+    position: relative;
+    height: 46px;
+}
+
+.input {
+    font-size: 20px;
+    line-height: 46px;
+    width: 100%;
+    height: 46px;
+    padding: 0 0.5rem;
+    border: 2px solid #3F72AF;
+    border-radius: 4px;
+    background-color: transparent;
+}
+
+.input:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(158, 158, 158, 0.25);
+}
+
+.label {
+    position: absolute;
+    top: -10px;
+    left: 12px;
+    display: flex;
+    font-size: 18px;
+    line-height: 20px;
+    color: var(--backgroundDark);
+    background-color: var(--background);
+}
+
+.errorDiv {
+    font-size: 12px;
+    color: #EC1D1D;
+}
+
+.requiredSign {
+    color: #EC1D1D;
+}

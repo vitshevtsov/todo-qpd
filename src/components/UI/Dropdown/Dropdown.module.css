@@ -1,0 +1,68 @@
+.dropdownWrapper {
+    position: relative;
+}
+
+.dropdownWrapper input {
+    cursor: auto;
+}
+
+.arrowIcon {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 16px;
+    cursor: pointer;
+    pointer-events: none; /*чтобы клик срабатывал в т.ч. на инпуте под стрелкой*/
+}
+
+.closeIcon {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 16px;
+    cursor: pointer;
+}
+
+.dropdownItems {
+    position: absolute;
+    z-index: 2;
+    width: 364px;
+    max-height: 180px;
+    margin-top: 10px;
+    padding: 0 20px;
+    background-color: var(--background);
+    list-style: none;
+    font-size: 20px;
+    line-height: 40px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.dropdownItems li {
+    border-bottom: 1px solid var(--backgroundDark);
+}
+
+.dropdownItems li:last-child {
+    border-bottom: none;
+}
+
+.dropdownItems li:hover {
+    background-color: var(--backgroundHover);
+    cursor: pointer;
+}
+
+/* полоса прокрутки (скроллбар) */
+::-webkit-scrollbar {
+    width: 10px;
+    background-color: var(--background);
+}
+
+/* ползунок скроллбара */
+::-webkit-scrollbar-thumb {
+    background-color: var(--backgroundHover);
+    border-radius: 9em;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--backgroundDark);
+}
